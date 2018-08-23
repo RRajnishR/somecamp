@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2018 at 02:56 PM
+-- Generation Time: Aug 23, 2018 at 03:25 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -36,7 +36,7 @@ CREATE TABLE `admin_user` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `code` varchar(50) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `admin_user`
@@ -44,6 +44,31 @@ CREATE TABLE `admin_user` (
 
 INSERT INTO `admin_user` (`id`, `user_name`, `password`, `user_type`, `created`, `code`, `status`) VALUES
 (1, 'sharma.amresh@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2018-08-21 13:30:36', 'asqwww32t', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `b_account`
+--
+
+CREATE TABLE `b_account` (
+  `id` int(11) NOT NULL,
+  `b_reg_no` varchar(100) NOT NULL COMMENT 'business registeration no',
+  `b_reg_scan` varchar(100) NOT NULL COMMENT 'Certificate scanned image',
+  `add_street` varchar(100) NOT NULL COMMENT 'street / house number',
+  `add_city` varchar(150) NOT NULL COMMENT 'city',
+  `add_post_code` varchar(20) NOT NULL COMMENT 'postal code',
+  `add_state` varchar(50) NOT NULL COMMENT 'state / province',
+  `add_country` varchar(20) NOT NULL COMMENT 'country',
+  `c_person` varchar(100) NOT NULL COMMENT 'contact person full name',
+  `c_contact` varchar(25) NOT NULL COMMENT 'contact number of contact person',
+  `bo_full_name` varchar(80) NOT NULL COMMENT 'Business Owner Full Name',
+  `bo_dob` date NOT NULL COMMENT 'Business Owner Birth day',
+  `b_license_id` varchar(100) NOT NULL COMMENT 'Business licence id',
+  `b_issue_body` varchar(100) NOT NULL COMMENT 'Business license issuing Body',
+  `b_license_scan` varchar(100) NOT NULL COMMENT 'License scan image',
+  `org_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -323,6 +348,14 @@ CREATE TABLE `organisers` (
   `email` varchar(150) NOT NULL,
   `pass` varchar(150) NOT NULL,
   `contact` varchar(50) DEFAULT NULL,
+  `add_street` varchar(100) NOT NULL COMMENT 'Street / House No',
+  `add_city` varchar(100) NOT NULL COMMENT 'City',
+  `add_postal` varchar(100) NOT NULL COMMENT 'postal code',
+  `add_state` varchar(100) NOT NULL COMMENT 'state / province',
+  `add_country` varchar(20) NOT NULL COMMENT 'country',
+  `dob` date NOT NULL,
+  `p_id` varchar(100) NOT NULL COMMENT 'passport id',
+  `p_scan` varchar(100) NOT NULL COMMENT 'passport scan',
   `email_verify` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'if 1 then email is verified',
   `secret_code` varchar(20) NOT NULL COMMENT 'Will be used for forgotten passwords and email verification',
   `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'If 1 then Account has been verified by Admin, else still awaiting approval',
@@ -331,16 +364,21 @@ CREATE TABLE `organisers` (
   `b_name` varchar(100) NOT NULL COMMENT 'business name',
   `b_desc` varchar(300) NOT NULL COMMENT 'business Description',
   `b_photo` varchar(80) NOT NULL COMMENT 'Featured Photo',
-  `image` varchar(80) NOT NULL COMMENT 'Logo / Profile Image'
+  `b_website` varchar(100) NOT NULL COMMENT 'website address',
+  `b_social` varchar(100) NOT NULL COMMENT 'social media page',
+  `image` varchar(80) NOT NULL COMMENT 'Logo / Profile Image',
+  `b_cert_id` varchar(100) NOT NULL COMMENT 'Business Certification id',
+  `b_cert_body` varchar(100) NOT NULL COMMENT 'Certificate issuing body',
+  `b_cert_scan` varchar(100) NOT NULL COMMENT 'Certificate scanned image'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Basic Registeration details of Organisers';
 
 --
 -- Dumping data for table `organisers`
 --
 
-INSERT INTO `organisers` (`id`, `first_name`, `last_name`, `email`, `pass`, `contact`, `email_verify`, `secret_code`, `status`, `acc_type`, `created`, `b_name`, `b_desc`, `b_photo`, `image`) VALUES
-(3, 'Rajnish', 'Kumar', 'raj@gm.com', '1537c1dea8479ff52bc68336e323385f', '+10987654321', 0, 'vCl1534768993', 0, 1, '2018-08-20 18:13:13', '', '', '', ''),
-(4, 'Rajnish', 'Kumar', 'ravi@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+919876543210', 0, 'frF1534933059', 1, 1, '2018-08-22 15:47:39', '', '', '', '');
+INSERT INTO `organisers` (`id`, `first_name`, `last_name`, `email`, `pass`, `contact`, `add_street`, `add_city`, `add_postal`, `add_state`, `add_country`, `dob`, `p_id`, `p_scan`, `email_verify`, `secret_code`, `status`, `acc_type`, `created`, `b_name`, `b_desc`, `b_photo`, `b_website`, `b_social`, `image`, `b_cert_id`, `b_cert_body`, `b_cert_scan`) VALUES
+(3, 'Rajnish', 'Kumar', 'raj@gm.com', '1537c1dea8479ff52bc68336e323385f', '+10987654321', '', '', '', '', '', '0000-00-00', '', '', 0, 'vCl1534768993', 0, 1, '2018-08-20 18:13:13', '', '', '', '', '', '', '', '', ''),
+(4, 'Rajnish', 'Kumar', 'ravi@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+919876543210', '', '', '', '', '', '0000-00-00', '', '', 0, 'frF1534933059', 1, 1, '2018-08-22 15:47:39', '', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -350,6 +388,12 @@ INSERT INTO `organisers` (`id`, `first_name`, `last_name`, `email`, `pass`, `con
 -- Indexes for table `admin_user`
 --
 ALTER TABLE `admin_user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `b_account`
+--
+ALTER TABLE `b_account`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -373,6 +417,12 @@ ALTER TABLE `organisers`
 --
 ALTER TABLE `admin_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `b_account`
+--
+ALTER TABLE `b_account`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `countries`
