@@ -15,6 +15,8 @@ class Iprofile extends CI_Controller {
 			redirect('camp_organiser/Dashboard/login','refresh');
         
         $data['user'] = $this->My_model->selectRecord('organisers', '*', array('id' => $this->session->userdata('org_id')));
+        $data['country'] = $this->My_model->selectRecord('countries', 'countries_id, countries_name','');
+        //print_r($data['country']); die();
         
         $this->load->view('include/org_header');
 		$this->load->view('organiser/individual_profile', $data);

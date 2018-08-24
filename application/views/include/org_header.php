@@ -20,6 +20,7 @@
   <link href="<?php echo base_url() ?>assets/admin/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/admin/lib/bootstrap-fileupload/bootstrap-fileupload.css" />
   <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/admin/lib/bootstrap-datepicker/css/datepicker.css" />
+  <script src="https://cdn.ckeditor.com/4.10.0/standard/ckeditor.js"></script>
   <!-- Custom styles for this template -->
   <link href="<?php echo base_url() ?>assets/admin/css/style.css" rel="stylesheet">
   <link href="<?php echo base_url() ?>assets/admin/css/style-responsive.css" rel="stylesheet">
