@@ -15,6 +15,7 @@
                   <li><a data-toggle="tab" href="#address"><i class="fa fa-map-marker"></i> Address</a></li>
                   <li><a data-toggle="tab" href="#business"><i class="fa fa-credit-card"></i> Business</a></li>
                   <li><a data-toggle="tab" href="#certificate"><i class="fa fa-certificate"></i> Certificate</a></li>
+                  <li><a data-toggle="tab" href="#image"><i class="fa fa-picture-o"></i> Upload Image</a></li>
                 </ul>
             </div>
         </div>
@@ -42,6 +43,12 @@
                   <div class="col-sm-10">
                     <input type="text" name="contact" class="form-control" placeholder="Eg: +10987654321" value="<?php if($this_user->contact) echo $this_user->contact; ?>">
                     <span class="help-block">Please add the country code infront of your mobile number, like +91xxxxxxxxxx for india.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Date of Birth</label>
+                  <div class="col-sm-10">
+                    <input type="date" name="dob" class="form-control" placeholder="dd/MM/YYYY" value="<?php if(!$this_user->dob == "0000-00-00") echo $this_user->dob; ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -133,45 +140,48 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Business Name</label>
                   <div class="col-sm-10">
-                    <input type="text" name="fname" class="form-control" placeholder="Eg: Jhon" value="">
-                  </div>
-                </div>
-                <div class="form-group last">
-                  <label class="control-label col-md-3">Business Image / Logo </label>
-                  <div class="col-md-9">
-                    <div class="fileupload fileupload-new" data-provides="fileupload">
-                      <?php 
-                        $img="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image";
-                        if($this_user->image){
-                            $img = base_url()."assets/uploads/organisers/image/".$this_user->image;
-                        }
-                      ?>
-                      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="<?php echo $img; ?>" alt="Organisers Image" />
-                      </div>
-                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                      <div>
-                        <span class="btn btn-theme02 btn-file">
-                        <span class="fileupload-new"><i class="fa fa-paperclip"></i> Select image</span>
-                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                        <input type="file" class="default" name="image"/>
-                        </span>
-                        <a href="advanced_form_components.html#" class="btn btn-theme04 fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Remove</a>
-                      </div>
-                    </div>
-                    <span class="label label-info">NOTE!</span>
-                    <span>
-                      Attached image thumbnail is
-                      supported in Latest Firefox, Chrome, Opera,
-                      Safari and Internet Explorer 10 only
-                      </span>
+                    <input type="text" name="" class="form-control" placeholder="Eg: John and Sons.." value="">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Business Description</label>
                   <div class="col-sm-10">
-                    <textarea col="4" rows="5" class="form-control" name="bdesc" id="bdesc"></textarea>
+                    <textarea col="4" rows="5" class="form-control" name="bdesc" id="bdesc" placeholder="We started this camping facility to help passionate travellers enjoy the beauty of this hilly area......."></textarea>
                     <span class="help-block">Give us a little idea about your business. include mission and vision too if you have any.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Website Address</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="w_add" class="form-control" placeholder="www.abc.com" value="">
+                    <span class="help-block">A genuine website assures the campers of your validity.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Social Media Page</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="" class="form-control" placeholder="url of instagram/facebook/blogspot profile" value="">
+                    <span class="help-block">Any social media page where you regularly update about your camp.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Certificate id</label>
+                  <div class="col-sm-10">
+                    <input type="text" name="" class="form-control" placeholder="" value="">
+                    <span class="help-block">Certificate issued to your business by any governing body.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Certificate Scan</label>
+                  <div class="col-sm-10">
+                    <input type="file" name="" class="form-control" placeholder="" value="">
+                    <span class="help-block">Scanned image of your certificate.</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">&nbsp;</label>
+                  <div class="col-sm-10">
+                    <button class="btn btn-success">Update Business Details <i class="fa fa-check-circle"></i> </button>
                   </div>
                 </div>
               </form>
@@ -194,9 +204,60 @@
             </div>
           </div>
         </div>
+        <!--    End of certificates Form //// Start of images details    -->
+        <div class="row mt tab-pane fade" id="image">
+            <div class="col-lg-12">
+            <div class="form-panel">
+              <h4 class="mb"><i class="fa fa-certificate"></i> Certificate Details </h4>
+              <form class="form-horizontal style-form" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/" autocomplete="off">
+                <div class="form-group last">
+                  <label class="control-label col-md-2">Your Image / Profile Pic </label>
+                  <div class="col-md-10">
+                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                      <?php 
+                        $img="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image";
+                        if($this_user->image){
+                            $img = base_url()."assets/uploads/organisers/image/".$this_user->image;
+                        }
+                      ?>
+                      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                        <img src="<?php echo $img; ?>" alt="Organisers Image" />
+                      </div>
+                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                      <div>
+                        <span class="btn btn-theme02 btn-file">
+                        <span class="fileupload-new"><i class="fa fa-paperclip"></i> Select image</span>
+                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                        <input type="file" class="default" id="profile_image"/>
+                        </span>
+                        <a href="advanced_form_components.html#" class="btn btn-theme04 fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Remove</a>
+                      </div>
+                    </div>
+                    <span class="label label-info">NOTE!</span>
+                    <span>
+                      Attached image thumbnail is
+                      supported in Latest Firefox, Chrome, Opera,
+                      Safari and Internet Explorer 10 only
+                      </span>
+                  </div>
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
         </div>
     </section>
 </section>
 <script>
-    CKEDITOR.replace( 'bdesc' );
+    CKEDITOR.plugins.addExternal( 'wordcount', '<?php echo base_url(); ?>assets/admin/lib/ckeditor/wordcount/', 'plugin.js' );
+    CKEDITOR.replace( 'bdesc', {
+        extraPlugins:   'wordcount',
+        wordcount: {
+                        showParagraphs: false,
+                        showWordCount: false,
+			            showCharCount: true,
+			            maxCharCount: 400
+			        }
+    });
 </script>
