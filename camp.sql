@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2018 at 03:25 PM
+-- Generation Time: Aug 30, 2018 at 02:29 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -348,7 +348,7 @@ CREATE TABLE `organisers` (
   `email` varchar(150) NOT NULL,
   `pass` varchar(150) NOT NULL,
   `contact` varchar(50) DEFAULT NULL,
-  `add_street` varchar(100) NOT NULL COMMENT 'Street / House No',
+  `add_street` varchar(200) NOT NULL COMMENT 'Basic Address',
   `add_city` varchar(100) NOT NULL COMMENT 'City',
   `add_postal` varchar(100) NOT NULL COMMENT 'postal code',
   `add_state` varchar(100) NOT NULL COMMENT 'state / province',
@@ -362,7 +362,7 @@ CREATE TABLE `organisers` (
   `acc_type` tinyint(1) DEFAULT '1' COMMENT '1 for individual or 2 for Business Accounts',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `b_name` varchar(100) NOT NULL COMMENT 'business name',
-  `b_desc` varchar(300) NOT NULL COMMENT 'business Description',
+  `b_desc` varchar(500) NOT NULL COMMENT 'business Description',
   `b_photo` varchar(80) NOT NULL COMMENT 'Featured Photo',
   `b_website` varchar(100) NOT NULL COMMENT 'website address',
   `b_social` varchar(100) NOT NULL COMMENT 'social media page',
@@ -378,7 +378,7 @@ CREATE TABLE `organisers` (
 
 INSERT INTO `organisers` (`id`, `first_name`, `last_name`, `email`, `pass`, `contact`, `add_street`, `add_city`, `add_postal`, `add_state`, `add_country`, `dob`, `p_id`, `p_scan`, `email_verify`, `secret_code`, `status`, `acc_type`, `created`, `b_name`, `b_desc`, `b_photo`, `b_website`, `b_social`, `image`, `b_cert_id`, `b_cert_body`, `b_cert_scan`) VALUES
 (3, 'Rajnish', 'Kumar', 'raj@gm.com', '1537c1dea8479ff52bc68336e323385f', '+10987654321', '', '', '', '', '', '0000-00-00', '', '', 0, 'vCl1534768993', 0, 1, '2018-08-20 18:13:13', '', '', '', '', '', '', '', '', ''),
-(4, 'Rajnish', 'Kumar', 'ravi@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+919876543210', '', '', '', '', '', '0000-00-00', '', '', 0, 'frF1534933059', 1, 1, '2018-08-22 15:47:39', '', '', '', '', '', '', '', '', '');
+(4, 'Rajnish', 'Kumar', 'ravi@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+919835819214', 'H-23', 'New Delhi', '110025', 'Delhi', '99', '2001-05-01', 'Passport (H20064841)', '300820181231271.jpg', 0, 'frF1534933059', 1, 1, '2018-08-22 15:47:39', '', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
