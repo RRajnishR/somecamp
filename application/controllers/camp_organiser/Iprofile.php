@@ -72,7 +72,7 @@ class Iprofile extends CI_Controller {
             }
             //if there is an error...
             else{
-                $message = 'Ooops! error: '.$_FILES['image']['error']." occured, try again later.";
+                $message = 'Ooops! error: '.$_FILES['p_scan']['error']." occured, try again later.";
             }
         } else {
             $basic_details = array(
@@ -113,6 +113,72 @@ class Iprofile extends CI_Controller {
                 </script>";
     }
     public function update_business(){
+        if( !$this->session->userdata('org_id') )
+			redirect('camp_organiser/Dashboard/login','refresh');
         
+        $business_details = array();
+        $message = "";
+        $new_file_name="";
+        if($_FILES['b_cert_scan']['name'])
+        {
+            $fileExtensions = ['jpeg','jpg','png'];
+            $fileName = $_FILES['b_cert_scan']['name'];
+            $fileExtension =  pathinfo($fileName, PATHINFO_EXTENSION);
+            //if no errors...
+            if(!$_FILES['b_cert_scan']['error'])
+            {
+                if(in_array($fileExtension,$fileExtensions)){
+                    $new_file_name = $this->session->userdata('org_id')."_".date('dmYHis').".".$fileExtension; //rename file
+                    if($_FILES['b_cert_scan']['size'] > (1024000)) //can't be larger than 1 MB
+                    {
+                        $valid_file = false;
+                        $message = 'Oops! Your file\'s size is bigger than 1 MB. Retry after compressing / resizing.';
+                    } else{
+                        $valid_file = true;
+                    }
+
+                    if($valid_file){
+                        //move it to where we want it to be
+                        if(move_uploaded_file($_FILES['b_cert_scan']['tmp_name'], 'assets/uploads/organisers/b_certs/'.$new_file_name)){
+                            $business_details = array(
+                                'b_name' => $this->input->post('bname'),
+                                'b_desc' => $this->input->post('bdesc'),
+                                'b_website' => $this->input->post('bweb'),
+                                'b_social' => $this->input->post('bsocial'),
+                                'b_cert_id' => $this->input->post('bcertid'),
+                                'b_cert_body' => $this->input->post('certbody'),
+                                'b_cert_scan' => $new_file_name
+                            );
+                            
+                        } else {
+                            $message = 'Upload failed, Try again later!!';
+                        }
+                    }
+                } else {
+                    $message="Sorry, we only accept images with extension jpg or png.";
+                }
+            }
+            else{
+                $message = 'Ooops! error: '.$_FILES['b_cert_scan']['error']." occured, try again later.";
+            }
+        } else {
+            $business_details = array(
+                'b_name' => $this->input->post('bname'),
+                'b_desc' => $this->input->post('bdesc'),
+                'b_website' => $this->input->post('bweb'),
+                'b_social' => $this->input->post('bsocial'),
+                'b_cert_id' => $this->input->post('bcertid'),
+                'b_cert_body' => $this->input->post('certbody'),       
+            );
+        }
+        $done = $this->My_model->updateRecord('organisers', $business_details, array('id' => $this->session->userdata('org_id')));
+        if($done == '1' || $done =='0'){
+            $message = "Awesome, Your business details updated successfully";
+            
+        } 
+        echo "<script>
+                    alert('".$message."'); 
+                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                </script>";
     }
 }

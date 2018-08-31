@@ -155,50 +155,65 @@
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Business Name</label>
                   <div class="col-sm-10">
-                    <input type="text" name="bname" class="form-control" placeholder="Eg: John and Sons.." value="">
+                    <input type="text" name="bname" class="form-control" placeholder="Eg: John and Sons.." value="<?php if($this_user->b_name) echo $this_user->b_name; ?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Business Description</label>
                   <div class="col-sm-10">
-                    <textarea col="4" rows="5" class="form-control" name="bdesc" id="bdesc" placeholder="We started this camping facility to help passionate travellers enjoy the beauty of this hilly area......."></textarea>
+                    <textarea col="4" rows="5" class="form-control" name="bdesc" id="bdesc" placeholder="We started this camping facility to help passionate travellers enjoy the beauty of this hilly area......."><?php if($this_user->b_desc) echo htmlentities($this_user->b_desc); ?></textarea>
                     <span class="help-block">Give us a little idea about your business. include mission and vision too if you have any.</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Website Address</label>
                   <div class="col-sm-10">
-                    <input type="text" name="bweb" class="form-control" placeholder="www.abc.com" value="">
+                    <input type="text" name="bweb" class="form-control" placeholder="www.abc.com" value="<?php if($this_user->b_website) echo $this_user->b_website; ?>">
                     <span class="help-block">A genuine website assures the campers of your validity.</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Social Media Page</label>
                   <div class="col-sm-10">
-                    <input type="text" name="bsocial" class="form-control" placeholder="url of instagram/facebook/blogspot profile" value="">
+                    <input type="text" name="bsocial" class="form-control" placeholder="url of instagram/facebook/blogspot profile" value="<?php if($this_user->b_social) echo $this_user->b_social; ?>">
                     <span class="help-block">Any social media page where you regularly update about your camp.</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Certificate id</label>
                   <div class="col-sm-10">
-                    <input type="text" name="certbody" class="form-control" placeholder="" value="">
+                    <input type="text" name="certbody" class="form-control" placeholder="" value="<?php if($this_user->b_cert_id) echo $this_user->b_cert_id; ?>">
                     <span class="help-block">Issued by which governing body.</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Certificate id</label>
+                  <label class="col-sm-2 col-sm-2 control-label">Certificate issued by</label>
                   <div class="col-sm-10">
-                    <input type="text" name="bcertid" class="form-control" placeholder="" value="">
+                    <input type="text" name="bcertid" class="form-control" placeholder="" value="<?php if($this_user->b_cert_body) echo $this_user->b_cert_body; ?>">
                     <span class="help-block">Certificate issued to your business by any governing body.</span>
                   </div>
                 </div>
                 <div class="form-group">
+                 <?php 
+                        if($this_user->b_cert_scan==""){
+                    ?>
                   <label class="col-sm-2 col-sm-2 control-label">Certificate Scan</label>
                   <div class="col-sm-10">
                     <input type="file" name="b_cert_scan" class="form-control" placeholder="" value="">
                     <span class="help-block">Scanned image of your certificate.</span>
                   </div>
+                  <?php
+                        } else {
+                    ?>
+                  <label class="col-sm-2 col-sm-2 control-label">Certificate Scan</label>
+                  <div class="col-sm-7">
+                    <input type="file" name="b_cert_scan" class="form-control" placeholder="" value="">
+                    <span class="help-block">You have already uploaded a scanned document</span>
+                  </div>
+                  <div class="col-sm-3">
+                      <img class="img-thumbnail" src="<?php echo base_url() ?>assets/uploads/organisers/b_certs/<?php echo $this_user->b_cert_scan; ?>"/>
+                  </div>
+                  <?php } ?>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">&nbsp;</label>
