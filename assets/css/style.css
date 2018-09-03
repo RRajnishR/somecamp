@@ -263,3 +263,7 @@ figure:hover{
     border-radius: 2px;
     padding: 4px;
 }
+#camp_access > .btn, #host_access > .btn {
+    padding: 2%;
+    margin: 2%;
+}

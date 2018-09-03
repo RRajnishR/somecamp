@@ -32,7 +32,7 @@
             <a class="nav-link" href="#">Blogs</a>
           </li>
           <li class="nav-item">
-             <a href="<?php echo base_url(); ?>Hostsignup" class="nav-link" role="button"><i class="fas fa-user-circle"></i></a>
+             <a href="#" class="nav-link" role="button" data-toggle="modal" data-target="#signbox"><i class="fas fa-user-circle"></i></a>
           </li>    
         </ul>
       </div>  
