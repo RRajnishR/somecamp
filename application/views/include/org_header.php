@@ -18,7 +18,6 @@
   <link href="<?php echo base_url() ?>assets/admin/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
   <link href="<?php echo base_url() ?>assets/admin/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/admin/lib/bootstrap-fileupload/bootstrap-fileupload.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="//cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
   <!-- Custom styles for this template -->
@@ -54,7 +53,12 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="<?php echo base_url() ?>camp_organiser/Dashboard"><img src="<?php echo base_url() ?>assets/admin/img/admin.png" class="img-circle" width="80"></a></p>
+            <?php 
+                $pro = base_url()."assets/admin/img/admin.png";
+                if($this->session->userdata('image'))
+                    $pro = base_url()."assets/uploads/organisers/pro_image/".$this->session->userdata('image');
+            ?>
+          <p class="centered"><a href="<?php echo base_url() ?>camp_organiser/Dashboard"><img src="<?php echo $pro; ?>" class="img-circle" width="80"></a></p>
           <h5 class="centered"><?php if($this->session->userdata('acc_type') == 1){ echo "Individual Account"; } else if($this->session->userdata('acc_type') == 2) {echo "Business Account"; } else { echo "Login Required"; } ?></h5>
           <?php 
             if($this->session->userdata('org_id')){

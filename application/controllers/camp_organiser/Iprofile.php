@@ -13,10 +13,11 @@ class Iprofile extends CI_Controller {
 	{
         if( !$this->session->userdata('org_id') )
 			redirect('camp_organiser/Dashboard/login','refresh');
+        if($this->session->userdata('acc_type') == '2')
+            redirect('camp_organiser/Dashboard/','refresh');
         
         $data['user'] = $this->My_model->selectRecord('organisers', '*', array('id' => $this->session->userdata('org_id')));
         $data['country'] = $this->My_model->selectRecord('countries', 'countries_id, countries_name','');
-        //print_r($data['country']); die();
         
         $this->load->view('include/org_header');
 		$this->load->view('organiser/individual_profile', $data);
@@ -176,6 +177,147 @@ class Iprofile extends CI_Controller {
             $message = "Awesome, Your business details updated successfully";
             
         } 
+        echo "<script>
+                    alert('".$message."'); 
+                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                </script>";
+    }
+    function getExtension($str) 
+	{
+		$i = strrpos($str,".");
+		if (!$i) { return ""; } 
+		$l = strlen($str) - $i;
+		$ext = substr($str,$i+1,$l);
+		return $ext;
+	}
+	
+	/*
+	**  compress image
+	*/
+	
+	function compressImage($ext,$uploadedfile,$path,$actual_image_name,$newwidth)
+	{
+		if($ext=="jpg" || $ext=="jpeg" )
+		{
+		$src = imagecreatefromjpeg($uploadedfile);
+		}
+		else if($ext=="png")
+		{
+		$src = imagecreatefrompng($uploadedfile);
+		}
+		else if($ext=="gif")
+		{
+		$src = imagecreatefromgif($uploadedfile);
+		}
+		else
+		{
+		$src = imagecreatefrombmp($uploadedfile);
+		}
+																		
+		list($width,$height)=getimagesize($uploadedfile);
+		$newheight=($height/$width)*$newwidth;
+		$tmp=imagecreatetruecolor($newwidth,$newheight);
+		imagecopyresampled($tmp,$src,0,0,0,0,$newwidth,$newheight,$width,$height);
+		$filename = $path.$newwidth.'_'.$actual_image_name;
+		imagejpeg($tmp,$filename,100);
+		imagedestroy($tmp);
+		$img_filename = $newwidth.'_'.$actual_image_name;
+		return $img_filename;
+	}
+    public function uploadImage(){
+        $empPath = 'assets/uploads/organisers/pro_image/';
+        $path =  FCPATH.$empPath;
+        $actual_image_name="";
+        $valid_formats = array("jpg", "png", "gif", "bmp","jpeg","PNG","JPG","JPEG","GIF","BMP");
+        if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
+        {
+            $imagename = $_FILES['photoimg']['name'];
+            $size = $_FILES['photoimg']['size'];
+
+            if(strlen($imagename))
+            {
+                $ext = strtolower($this->getExtension($imagename));
+                if(in_array($ext,$valid_formats))
+                {
+                    if($size<(1024*1024))
+                    {
+                        $actual_image_name = time().'.'.$ext ; //.substr(str_replace(" ", "_", $imagename), 5);
+                        $uploadedfile = $_FILES['photoimg']['tmp_name'];
+
+                        $widthArray = array(80,80);
+                        foreach($widthArray as $newwidth)
+                        {
+                            $filename=$this->compressImage($ext,$uploadedfile,$path,$actual_image_name,$newwidth);
+                            $where   = array('id' => $this->session->userdata('org_id'));
+                            $data    = array('image' => $filename);
+                            $bStatus = $this->My_model->updateRecord('organisers',$data,$where);
+                            //header("Location:".base_url('camp_organiser/Iprofile/'));
+                            $this->session->set_userdata('image', $filename);
+                            echo "<script>
+                                    alert('Profile Image changed successfully'); 
+                                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                                </script>";
+                        }	
+                    }
+                    else
+                        echo "<script>
+                                    alert('Image size too big, Try images of size less than 1 MB'); 
+                                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                                </script>";					
+                }
+                else
+                    echo "<script>
+                            alert(''); 
+                            window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                        </script>";	
+            }
+            else
+                echo "Please select image..!";
+            exit;
+        }	
+    }
+    public function uploadFeaturedImage(){
+        $message = "";
+        $new_file_name="";
+        if($_FILES['bphoto']['name'])
+        {
+            $fileExtensions = ['jpeg','jpg','png'];
+            $fileName = $_FILES['bphoto']['name'];
+            $fileExtension =  pathinfo($fileName, PATHINFO_EXTENSION);
+            //if no errors...
+            if(!$_FILES['bphoto']['error'])
+            {
+                if(in_array($fileExtension,$fileExtensions)){
+                    $new_file_name = $this->session->userdata('org_id')."_".date('dmYHis').".".$fileExtension; //rename file
+                    if($_FILES['bphoto']['size'] > (1536000)) //can't be larger than 1.5 MB
+                    {
+                        $valid_file = false;
+                        $message = 'Oops! Your file\'s size is bigger than 1 MB. Retry after compressing / resizing.';
+                    } else{
+                        $valid_file = true;
+                    }
+
+                    if($valid_file){
+                        //move it to where we want it to be
+                        if(move_uploaded_file($_FILES['bphoto']['tmp_name'], 'assets/uploads/organisers/featured/'.$new_file_name)){
+                            $where   = array('id' => $this->session->userdata('org_id'));
+                            $data    = array('b_photo' => $new_file_name);
+                            $bStatus = $this->My_model->updateRecord('organisers',$data,$where);
+                            $message = "Awesome, Your business image was uploaded successfully";
+                        } else {
+                            $message = 'Upload failed, Try again later!!';
+                        }
+                    }
+                } else {
+                    $message="Sorry, we only accept images with extension jpg or png.";
+                }
+            }
+            else{
+                $message = 'Ooops! error: '.$_FILES['bphoto']['error']." occured, try again later.";
+            }
+        } else {
+            $message = "";
+        }
         echo "<script>
                     alert('".$message."'); 
                     window.location.href = '".base_url('camp_organiser/Iprofile')."';

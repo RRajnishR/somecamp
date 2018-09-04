@@ -33,5 +33,8 @@ class Organiser_model extends CI_Model {
 		    return false;
 		}		
     }
+    public function retrieve_business_users(){
+        
+    }
 }
 ?>

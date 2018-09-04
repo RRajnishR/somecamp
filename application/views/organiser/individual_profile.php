@@ -11,10 +11,9 @@
         <div class="row mt">
             <div class="col-lg-12">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a data-toggle="tab" href="#basic"><i class="fa fa-pencil"></i> Basic Info</a></li>
-                  <li><a data-toggle="tab" href="#address"><i class="fa fa-map-marker"></i> Address</a></li>
-                  <li><a data-toggle="tab" href="#business"><i class="fa fa-credit-card"></i> Business</a></li>
-                  <li><a data-toggle="tab" href="#certificate"><i class="fa fa-certificate"></i> Certificate</a></li>
+                  <li class="active"><a data-toggle="tab" href="#basic"><i class="fa fa-pencil"></i> Add/ Update Basic Info</a></li>
+                  <li><a data-toggle="tab" href="#address"><i class="fa fa-map-marker"></i> Update Address Details</a></li>
+                  <li><a data-toggle="tab" href="#business"><i class="fa fa-credit-card"></i> Update Business Details</a></li>
                   <li><a data-toggle="tab" href="#image"><i class="fa fa-picture-o"></i> Upload Image</a></li>
                 </ul>
             </div>
@@ -225,60 +224,51 @@
             </div>
           </div>
         </div>
-        <!--    End of Business Form //// Start of certificates details    -->
-        <div class="row mt tab-pane fade" id="certificate">
-            <div class="col-lg-12">
-            <div class="form-panel">
-              <h4 class="mb"><i class="fa fa-certificate"></i> Certificate Details </h4>
-              <form class="form-horizontal style-form" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/" autocomplete="off">
-                <div class="form-group">
-                  <label class="col-sm-2 col-sm-2 control-label">Street / House Number</label>
-                  <div class="col-sm-10">
-                    <input type="text" name="fname" class="form-control" placeholder="Eg: Jhon" value="">
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <!--    End of certificates Form //// Start of images details    -->
+        <!--    End of Business Form //// Start of images details    -->
         <div class="row mt tab-pane fade" id="image">
             <div class="col-lg-12">
             <div class="form-panel">
-              <h4 class="mb"><i class="fa fa-certificate"></i> Certificate Details </h4>
-              <form class="form-horizontal style-form" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/" autocomplete="off">
+              <h4 class="mb"><i class="fa fa-picture-o"></i> Upload and Manage Images </h4>
+              <form class="form-horizontal style-form" id="imageform" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/uploadImage" autocomplete="off" enctype="multipart/form-data">
                 <div class="form-group last">
-                  <label class="control-label col-md-2">Your Image / Profile Pic </label>
-                  <div class="col-md-10">
-                    <div class="fileupload fileupload-new" data-provides="fileupload">
-                      <?php 
+                  <label class="control-label col-md-3">Your Image / Profile Pic </label>
+                  <?php 
                         $img="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image";
                         if($this_user->image){
-                            $img = base_url()."assets/uploads/organisers/image/".$this_user->image;
+                            $img = base_url()."assets/uploads/organisers/pro_image/".$this_user->image; 
                         }
-                      ?>
-                      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                        <img src="<?php echo $img; ?>" alt="Organisers Image" />
-                      </div>
-                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
-                      <div>
-                        <span class="btn btn-theme02 btn-file">
-                        <span class="fileupload-new"><i class="fa fa-paperclip"></i> Select image</span>
-                        <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
-                        <input type="file" class="default" id="profile_image"/>
-                        </span>
-                        <a href="advanced_form_components.html#" class="btn btn-theme04 fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> Remove</a>
-                      </div>
+                ?>
+                    <div class="col-md-9">
+                        <div id='preview'>
+                        <img class="img-thumbnail" src="<?php echo $img; ?>" width="150" height="200">	
+                        </div>	
+                        <div id='imageloadbutton' style="margin-bottom: 5px;">	
+                            <label>Add New Profile Image:</label><br/>
+                            <input id="photoimg" name="photoimg" type="file" class="inputFile" accept="image/*" />
+                        </div>	
+                        <button class="btn btn-primary"><i class="fa fa-upload"></i> Upload Profile Image</button>
                     </div>
-                    <span class="label label-info">NOTE!</span>
-                    <span>
-                      Attached image thumbnail is
-                      supported in Latest Firefox, Chrome, Opera,
-                      Safari and Internet Explorer 10 only
-                      </span>
                   </div>
-                </div>
-                
+              </form>
+              <hr/>
+              <form class="form-horizontal style-form" id="imageform" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/uploadFeaturedImage" autocomplete="off" enctype="multipart/form-data">
+                <div class="form-group last">
+                  <label class="control-label col-md-3">Your Business's Featured image </label>
+                  <?php 
+                        $img2="http://www.placehold.it/400x350/EFEFEF/AAAAAA&text=Your+Business's+Image+here";
+                        if($this_user->b_photo){
+                            $img2 = base_url()."assets/uploads/organisers/featured/".$this_user->b_photo; 
+                        }
+                ?>
+                    <div class="col-md-9">
+                        <img class="img-thumbnail" src="<?php echo $img2; ?>" width="350" height="400">	
+                        <div id='imageloadbutton' style="margin-bottom: 5px;">	
+                            <label>Add New Featured Image (Try good resolution images):</label><br/>
+                            <input name="bphoto" type="file" class="inputFile" />
+                        </div>	
+                        <button class="btn btn-primary"><i class="fa fa-upload"></i> Upload Featured Image</button>
+                    </div>
+                  </div>
               </form>
             </div>
           </div>
