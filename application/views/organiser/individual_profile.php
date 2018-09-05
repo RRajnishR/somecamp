@@ -7,7 +7,7 @@
 </style>
 <section id="main-content">
     <section class="wrapper">
-        <h3><i class="fa fa-user-circle"></i> Individual Profile</h3>
+        <h3><i class="fa fa-user-circle"></i> Organiser/Partner's Profile</h3>
         <div class="row mt">
             <div class="col-lg-12">
                 <ul class="nav nav-tabs">
@@ -15,6 +15,12 @@
                   <li><a data-toggle="tab" href="#address"><i class="fa fa-map-marker"></i> Update Address Details</a></li>
                   <li><a data-toggle="tab" href="#business"><i class="fa fa-credit-card"></i> Update Business Details</a></li>
                   <li><a data-toggle="tab" href="#image"><i class="fa fa-picture-o"></i> Upload Image</a></li>
+                  <?php 
+                    if($this->session->userdata('acc_type') == '2'){ ?>
+                        <li><a data-toggle="tab" href="#bown"><i class="fa fa-info-circle"></i> Business Owner Details </a></li>
+                 <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -250,7 +256,6 @@
                     </div>
                   </div>
               </form>
-              <hr/>
               <form class="form-horizontal style-form" id="imageform" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/uploadFeaturedImage" autocomplete="off" enctype="multipart/form-data">
                 <div class="form-group last">
                   <label class="control-label col-md-3">Your Business's Featured image </label>
@@ -273,6 +278,82 @@
             </div>
           </div>
         </div>
+        <?php 
+            if($this->session->userdata('acc_type') == '2'){ ?>
+               
+        <!--   business owner details form     -->
+        <div class="row mt tab-pane fade" id="bown">
+            <div class="col-lg-12">
+            <div class="form-panel">
+              <h4 class="mb"><i class="fa fa-info-circle"></i> Business Owner's Details </h4>
+              <form class="form-horizontal style-form" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/change_ownership" autocomplete="off" name="check_owner">
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Do you own this business? </label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="is_owner" onchange="this.form.submit()">
+                        <option value="">Select</option>
+                        <option value="1" <?php if($this_user->is_owner == "1") echo "selected"; ?> >Yes</option>
+                        <option value="0" <?php if($this_user->is_owner == "0") echo "selected"; ?> >No [I will fill up the owner's details]</option>
+                    </select>
+                    <noscript><button type="submit" class="btn btn-info"><i class="fa fa-save"></i>Save</button></noscript>
+                  </div>
+                </div>
+              </form>
+              <?php 
+                if($this_user->is_owner == "0"){ 
+              ?>
+              <form class="form-horizontal style-form" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/change_ownership" autocomplete="off" name="check_owner">
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Owner's Full Name </label>
+                  <div class="col-sm-10">
+                    <input type="text" name="own_fn" class="form-control" placeholder="Eg: Chandler Muriel Bing.." value="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Owner's Email </label>
+                  <div class="col-sm-10">
+                    <input type="text" name="own_email" class="form-control" placeholder="Eg: yourcampsite@camp.com" value="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Owner's Contact </label>
+                  <div class="col-sm-10">
+                    <input type="text" name="" class="form-control" placeholder="Eg: (country code) number" value="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Owner's Identification </label>
+                  <div class="col-sm-10">
+                    <input type="text" name="" class="form-control" placeholder="Eg: Id Number (Id Type)" value="">
+                    <span class="help-block">Mention id number and id type in this format: "HZ100934 (Passport)"</span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">Scanned Copy of Identity card </label>
+                  <div class="col-sm-10">
+                    <input type="file" name="" class="form-control" placeholder="Eg: Id Number (Id Type)" accept="image/*">
+                    <span class="help-block">Please upload image file. size limit: < 1MB </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 col-sm-2 control-label">&nbsp;</label>
+                  <div class="col-sm-10">
+                    <button class="btn btn-success">Update Owner's Detail <i class="fa fa-check-circle"></i></button>
+                  </div>
+                </div>
+              </form>
+              
+               <?php        
+                }
+                ?>
+            </div>
+          </div>
+        </div>
+           
+        <?php                
+            }
+        ?>
+            
         </div>
     </section>
 </section>

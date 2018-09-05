@@ -27,7 +27,10 @@
   <script>
     $(document).ready(function() {
         $('[type="date"]').attr('placeholder', 'Select Date "YYYY/MM/dd"');
-        $('[type="date"]').flatpickr();       
+        $('[type="date"]').flatpickr();
+        //to switch to the tab where we were working
+        var tab = window.location.hash;
+        $('a[href="'+tab+'"]').trigger('click');
     });
   </script>
   

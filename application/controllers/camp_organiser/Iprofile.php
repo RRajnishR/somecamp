@@ -13,8 +13,6 @@ class Iprofile extends CI_Controller {
 	{
         if( !$this->session->userdata('org_id') )
 			redirect('camp_organiser/Dashboard/login','refresh');
-        if($this->session->userdata('acc_type') == '2')
-            redirect('camp_organiser/Dashboard/','refresh');
         
         $data['user'] = $this->My_model->selectRecord('organisers', '*', array('id' => $this->session->userdata('org_id')));
         $data['country'] = $this->My_model->selectRecord('countries', 'countries_id, countries_name','');
@@ -110,7 +108,7 @@ class Iprofile extends CI_Controller {
         }
          echo "<script>
                     alert('".$message."'); 
-                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                    window.location.href = '".base_url('camp_organiser/Iprofile#address')."';
                 </script>";
     }
     public function update_business(){
@@ -179,7 +177,7 @@ class Iprofile extends CI_Controller {
         } 
         echo "<script>
                     alert('".$message."'); 
-                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                    window.location.href = '".base_url('camp_organiser/Iprofile#business')."';
                 </script>";
     }
     function getExtension($str) 
@@ -255,24 +253,27 @@ class Iprofile extends CI_Controller {
                             $this->session->set_userdata('image', $filename);
                             echo "<script>
                                     alert('Profile Image changed successfully'); 
-                                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                                    window.location.href = '".base_url('camp_organiser/Iprofile#image')."';
                                 </script>";
                         }	
                     }
                     else
                         echo "<script>
                                     alert('Image size too big, Try images of size less than 1 MB'); 
-                                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                                    window.location.href = '".base_url('camp_organiser/Iprofile#image')."';
                                 </script>";					
                 }
                 else
                     echo "<script>
-                            alert(''); 
-                            window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                            alert('Please select a valid image file'); 
+                            window.location.href = '".base_url('camp_organiser/Iprofile#image')."';
                         </script>";	
             }
             else
-                echo "Please select image..!";
+                echo "<script>
+                            alert('Please select an image to upload'); 
+                            window.location.href = '".base_url('camp_organiser/Iprofile#image')."';
+                        </script>";	
             exit;
         }	
     }
@@ -320,7 +321,17 @@ class Iprofile extends CI_Controller {
         }
         echo "<script>
                     alert('".$message."'); 
-                    window.location.href = '".base_url('camp_organiser/Iprofile')."';
+                    window.location.href = '".base_url('camp_organiser/Iprofile#image')."';
+                </script>";
+    }
+    public function change_ownership(){
+        $where   = array('id' => $this->session->userdata('org_id'));
+        $data    = array('is_owner' => $this->input->post('is_owner'));
+        $bStatus = $this->My_model->updateRecord('organisers',$data,$where);
+        $message = "Business Ownership status changed";
+        echo "<script>
+                    alert('".$message."'); 
+                    window.location.href = '".base_url('camp_organiser/Iprofile#bown')."';
                 </script>";
     }
 }

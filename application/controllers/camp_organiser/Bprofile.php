@@ -23,5 +23,4 @@ class Bprofile extends CI_Controller {
 		$this->load->view('organiser/business_profile', $data);
         $this->load->view('include/org_footer');
 	}
-    public function 
 }
