@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2018 at 02:44 PM
+-- Generation Time: Sep 06, 2018 at 02:35 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -360,7 +360,7 @@ CREATE TABLE `organisers` (
 INSERT INTO `organisers` (`id`, `first_name`, `last_name`, `email`, `pass`, `contact`, `add_street`, `add_city`, `add_postal`, `add_state`, `add_country`, `dob`, `p_id`, `p_scan`, `email_verify`, `secret_code`, `status`, `acc_type`, `created`, `b_name`, `b_desc`, `b_photo`, `b_website`, `b_social`, `image`, `b_cert_id`, `b_cert_body`, `b_cert_scan`, `is_owner`, `owner_name`, `owner_email`, `owner_contact`, `owner_card`, `owner_card_image`) VALUES
 (3, 'Rajnish', 'Kumar', 'raj@gm.com', '1537c1dea8479ff52bc68336e323385f', '+10987654321', '', '', '', '', '', '0000-00-00', '', '', 0, 'vCl1534768993', 0, 1, '2018-08-20 18:13:13', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', ''),
 (4, 'Rajnish', 'Kumar', 'ravi@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+919835819214', 'H-23', 'New Delhi', '110025', 'Delhi', '99', '2001-05-01', 'Passport (H20064841)', '300820181231271.jpg', 0, 'frF1534933059', 1, 1, '2018-08-22 15:47:39', 'Ramesh Inn', '<p><span style=\"color:#e74c3c\">We are the best in business.</span></p>\r\n\r\n<p><span style=\"color:#000000\"><strong>We love to cater and help all the travellers</strong></span></p>\r\n', '4_04092018130355.jpg', 'www.ramesh.com', 'facebook.com/rameshinn', '80_1536058199.gif', 'c01-22345-gh', 'Business association of Asia', '4_31082018083951.png', 0, '', '', '', '', ''),
-(5, 'Amit', 'Kashyap', 'abc@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+918287051797', 'Street - 4', 'cansas city', '876543', 'New Jersey', '223', '0000-00-00', '', '', 0, 'eJd1536063410', 1, 2, '2018-09-04 17:46:50', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '');
+(5, 'Amit', 'Kashyap', 'abc@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+918287051797', 'Street - 4', 'cansas city', '876543', 'New Jersey', '223', '0000-00-00', '', '', 0, 'eJd1536063410', 1, 2, '2018-09-04 17:46:50', '', '', '', '', '', '', '', '', '', 0, 'Amitabh Kumar', 'amitabh@langjobs.com', '+908765432190', 'RN2144ZX54', '5_06092018090216.jpg');
 
 --
 -- Indexes for dumped tables

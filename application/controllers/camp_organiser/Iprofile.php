@@ -334,4 +334,69 @@ class Iprofile extends CI_Controller {
                     window.location.href = '".base_url('camp_organiser/Iprofile#bown')."';
                 </script>";
     }
+    public function owner_details(){
+        if( !$this->session->userdata('org_id') )
+			redirect('camp_organiser/Dashboard/login','refresh');
+        
+        $owner_details = array();
+        $message = "";
+        $new_file_name="";
+        if($_FILES['own_image']['name'])
+        {
+            $fileExtensions = ['jpeg','jpg','png'];
+            $fileName = $_FILES['own_image']['name'];
+            $fileExtension =  pathinfo($fileName, PATHINFO_EXTENSION);
+            //if no errors...
+            if(!$_FILES['own_image']['error'])
+            {
+                if(in_array($fileExtension,$fileExtensions)){
+                    $new_file_name = $this->session->userdata('org_id')."_".date('dmYHis').".".$fileExtension; //rename file
+                    if($_FILES['own_image']['size'] > (1024000)) //can't be larger than 1 MB
+                    {
+                        $valid_file = false;
+                        $message = 'Oops! Your file\'s size is bigger than 1 MB. Retry after compressing / resizing.';
+                    } else{
+                        $valid_file = true;
+                    }
+
+                    if($valid_file){
+                        //move it to where we want it to be
+                        if(move_uploaded_file($_FILES['own_image']['tmp_name'], 'assets/uploads/organisers/owner_id/'.$new_file_name)){
+                            $owner_details = array(
+                                'owner_name' => $this->input->post('own_fn'),
+                                'owner_email' => $this->input->post('own_email'),
+                                'owner_contact' => $this->input->post('own_con'),
+                                'owner_card' => $this->input->post('own_id'),
+                                'owner_card_image' => $new_file_name
+                            );
+                            
+                        } else {
+                            $message = 'Upload failed, Try again later!!';
+                        }
+                    }
+                } else {
+                    $message="Sorry, we only accept images with extension jpg or png.";
+                }
+            }
+            else{
+                $message = 'Ooops! error: '.$_FILES['own_image']['error']." occured, try again later.";
+            }
+        } else {
+            $owner_details = array(
+                'owner_name' => $this->input->post('own_fn'),
+                'owner_email' => $this->input->post('own_email'),
+                'owner_contact' => $this->input->post('own_con'),
+                'owner_card' => $this->input->post('own_id'),    
+            );
+        }
+        $done = $this->My_model->updateRecord('organisers', $owner_details, array('id' => $this->session->userdata('org_id')));
+        if($done == '1' || $done =='0'){
+            $message = "Awesome, Owner details updated successfully";
+            
+        } 
+        echo "<script>
+                    alert('".$message."'); 
+                    window.location.href = '".base_url('camp_organiser/Iprofile#bown')."';
+                </script>";
+    }
 }

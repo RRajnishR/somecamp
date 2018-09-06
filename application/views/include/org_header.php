@@ -76,13 +76,7 @@
             </a>
           </li>
           <li class="mt">
-            <a href="<?php echo base_url() ?>camp_organiser/Bprofile">
-              <i class="fa fa-credit-card"></i>
-              <span>Business Profile</span>
-            </a>
-          </li>
-          <li class="mt">
-            <a href="<?php echo base_url() ?>camp_organiser/Dashboard/bprofile">
+            <a href="<?php echo base_url() ?>camp_organiser/Camp">
               <i class="fa fa-th-large"></i>
               <span>Camps</span>
               </a>

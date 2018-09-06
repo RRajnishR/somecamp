@@ -302,43 +302,48 @@
               <?php 
                 if($this_user->is_owner == "0"){ 
               ?>
-              <form class="form-horizontal style-form" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/change_ownership" autocomplete="off" name="check_owner">
+              <form class="form-horizontal style-form" method="post" action="<?php echo base_url(); ?>camp_organiser/Iprofile/owner_details" autocomplete="off" enctype="multipart/form-data">
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Owner's Full Name </label>
                   <div class="col-sm-10">
-                    <input type="text" name="own_fn" class="form-control" placeholder="Eg: Chandler Muriel Bing.." value="">
+                    <input type="text" name="own_fn" class="form-control" placeholder="Eg: Chandler Muriel Bing.." value="<?php if($this_user->owner_name) echo $this_user->owner_name; ?>" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Owner's Email </label>
                   <div class="col-sm-10">
-                    <input type="text" name="own_email" class="form-control" placeholder="Eg: yourcampsite@camp.com" value="">
+                    <input type="email" name="own_email" class="form-control" placeholder="Eg: yourcampsite@camp.com" value="<?php if($this_user->owner_email) echo $this_user->owner_email; ?>" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Owner's Contact </label>
                   <div class="col-sm-10">
-                    <input type="text" name="" class="form-control" placeholder="Eg: (country code) number" value="">
+                    <input type="text" name="own_con" class="form-control" placeholder="Eg: (country code) number" value="<?php if($this_user->owner_contact) echo $this_user->owner_contact; ?>" required />
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Owner's Identification </label>
                   <div class="col-sm-10">
-                    <input type="text" name="" class="form-control" placeholder="Eg: Id Number (Id Type)" value="">
+                    <input type="text" name="own_id" class="form-control" placeholder="Eg: Id Number (Id Type)" value="<?php if($this_user->owner_card) echo $this_user->owner_card; ?>" required />
                     <span class="help-block">Mention id number and id type in this format: "HZ100934 (Passport)"</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">Scanned Copy of Identity card </label>
                   <div class="col-sm-10">
-                    <input type="file" name="" class="form-control" placeholder="Eg: Id Number (Id Type)" accept="image/*">
+                    <?php 
+                        if($this_user->owner_card_image){
+                            echo "<img src='".base_url()."assets/uploads/organisers/owner_id/".$this_user->owner_card_image."' width='300' alt='Owners ID Scanned Image' /> <br/> You have already uploaded the image, Update a new one only if there is any errors in this scanned image. <br/>";
+                        } 
+                    ?>
+                    <input type="file" name="own_image" class="form-control" placeholder="Eg: Id Number (Id Type)" accept="image/*" required />
                     <span class="help-block">Please upload image file. size limit: < 1MB </span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 col-sm-2 control-label">&nbsp;</label>
                   <div class="col-sm-10">
-                    <button class="btn btn-success">Update Owner's Detail <i class="fa fa-check-circle"></i></button>
+                    <button type="submit" class="btn btn-success">Update Owner's Detail <i class="fa fa-check-circle"></i></button>
                   </div>
                 </div>
               </form>
