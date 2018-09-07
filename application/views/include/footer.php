@@ -39,6 +39,13 @@
         introPlayer.style.display = 'none';
     }
 </script>
+<script src="<?php echo base_url() ?>assets/slider/ideal-image-slider.js"></script>
+<script src="<?php echo base_url() ?>assets/slider/extensions/bullet-nav/iis-bullet-nav.js"></script>
+<script>
+var slider = new IdealImageSlider.Slider('#slider');
+slider.addBulletNav();
+slider.start();
+</script>
 <script src="<?php echo base_url(); ?>assets/js/intlTelInput.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/utils.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>

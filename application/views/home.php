@@ -86,7 +86,7 @@
                         <div class="col-sm-3 header">
                             <h5>Rs. 14000 /-</h5>
                             <div class="extra_text">
-                                <button class="btn btn-danger btn-outline-success">See Details</button>
+                                <a class="btn btn-danger btn-outline-success" href="<?php echo base_url(); ?>Camp/view">See Details</a>
                             </div>
                         </div>
                     </div>

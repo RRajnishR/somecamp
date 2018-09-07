@@ -2,7 +2,9 @@
 body {
   margin: 0;
 }
-
+.bg-light {
+    background-color: #fff !important;
+}
 .banner {
   /* this bit of markup is essential */
   position: relative;
