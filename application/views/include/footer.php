@@ -3,7 +3,6 @@
     <div class="modal-content">
       <!-- Modal body -->
       <div class="modal-body">
-<!--       <button type="button" class="close" data-dismiss="modal">&times;</button>-->
         <ul class="nav nav-tabs nav-justified">
           <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#camp_access"><i class="fas fa-user-ninja"></i> Campers</a>
@@ -16,8 +15,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <div class="tab-pane container active" id="camp_access">
-              <button class="btn btn-success form-control"><i class="fas fa-user-plus"></i> Sign Up</button>
-              <button class="btn btn-info form-control"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+             <div class="g-signin2 form-control btn" data-onsuccess="onSignIn" data-theme="dark"></div>
           </div>
           <div class="tab-pane container fade" id="host_access">
             <a href="<?php echo base_url() ?>Hostsignup" class="btn btn-primary form-control"><i class="fas fa-user-plus"></i> Sign Up</a>
@@ -29,6 +27,42 @@
     </div>
   </div>
 </div>
+<script>
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log(profile);
+    let googleid = profile.getId();
+    let fname = profile.getGivenName();
+    let lname = profile.getFamilyName();
+    let photo = profile.getImageUrl();
+    let email = profile.getEmail();
+    var id_token = googleUser.getAuthResponse().id_token;
+    login(googleid, fname, lname, photo, email);
+  };
+  function login(googleid, fname, lname, photo, email){
+      alert('in the method');
+      $.ajax({
+        type: "jsonp",
+        url: baseurl+ "Home/login",
+        dataType: 'html',
+        data: {googleid:googleid, fname:fname, lname:lname, photo:photo, email:email},
+        success: function(res)
+        {
+//            if(res == "1"){
+//                alert('Loggedin successfully'); 
+//                window.location.href = baseurl; 
+//            } else {
+//                alert('Something went wrong, Please come back later'); 
+//                window.location.href = baseurl; 
+//            }
+        },
+        error: function (request, status, error) 
+        {
+            alert(request.responseText);
+        }
+    });
+  }
+</script>
 <script>
     var intro = document.querySelector('.banner');
     var introPlayer = document.querySelector('.banner__video');

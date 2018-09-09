@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2018 at 02:35 PM
+-- Generation Time: Sep 09, 2018 at 09:50 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -362,6 +362,32 @@ INSERT INTO `organisers` (`id`, `first_name`, `last_name`, `email`, `pass`, `con
 (4, 'Rajnish', 'Kumar', 'ravi@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+919835819214', 'H-23', 'New Delhi', '110025', 'Delhi', '99', '2001-05-01', 'Passport (H20064841)', '300820181231271.jpg', 0, 'frF1534933059', 1, 1, '2018-08-22 15:47:39', 'Ramesh Inn', '<p><span style=\"color:#e74c3c\">We are the best in business.</span></p>\r\n\r\n<p><span style=\"color:#000000\"><strong>We love to cater and help all the travellers</strong></span></p>\r\n', '4_04092018130355.jpg', 'www.ramesh.com', 'facebook.com/rameshinn', '80_1536058199.gif', 'c01-22345-gh', 'Business association of Asia', '4_31082018083951.png', 0, '', '', '', '', ''),
 (5, 'Amit', 'Kashyap', 'abc@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+918287051797', 'Street - 4', 'cansas city', '876543', 'New Jersey', '223', '0000-00-00', '', '', 0, 'eJd1536063410', 1, 2, '2018-09-04 17:46:50', '', '', '', '', '', '', '', '', '', 0, 'Amitabh Kumar', 'amitabh@langjobs.com', '+908765432190', 'RN2144ZX54', '5_06092018090216.jpg');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `google_id` varchar(100) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(80) NOT NULL,
+  `photo` varchar(150) NOT NULL,
+  `last_login` datetime NOT NULL,
+  `first_login` datetime NOT NULL COMMENT 'date of first login',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'if 1 then approved, else pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `last_login`, `first_login`, `status`) VALUES
+(1, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/APUIFaOkVQW4CzsLIyI47H96TQzUdp824w/s96-c/photo.jpg', '2018-09-09 21:38:21', '2018-09-09 21:38:21', 1),
+(2, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-09-09 21:46:07', '2018-09-09 21:46:07', 1);
+
 --
 -- Indexes for dumped tables
 --
@@ -385,6 +411,12 @@ ALTER TABLE `organisers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -405,6 +437,12 @@ ALTER TABLE `countries`
 --
 ALTER TABLE `organisers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

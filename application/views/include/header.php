@@ -15,6 +15,9 @@
     <script>
         var baseurl = '<?php echo base_url(); ?>';
     </script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="184284430038-e0rkm7s72jgus7isbad487rmrahd8htd.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 
 <body>
@@ -31,9 +34,25 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Blogs</a>
           </li>
+          <?php 
+                if(!$this->session->userdata('googleid')){
+            ?>
           <li class="nav-item">
              <a href="#" class="nav-link" role="button" data-toggle="modal" data-target="#signbox"><i class="fas fa-user-circle"></i></a>
-          </li>    
+          </li> 
+          <?php 
+                } else { ?>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <i class="fas fa-user-circle"></i> Hi, <?php echo $this->session->userdata('first_name'); ?>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="<?php echo base_url() ?>Logout">Log out <i class="fas fa-sign-out-alt"></i></a>
+                  </div>
+                </li>
+           <?php
+            }
+            ?>   
         </ul>
       </div>  
     </nav>
