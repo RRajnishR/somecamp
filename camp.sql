@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2018 at 09:50 PM
+-- Generation Time: Sep 10, 2018 at 02:59 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -44,6 +44,38 @@ CREATE TABLE `admin_user` (
 
 INSERT INTO `admin_user` (`id`, `user_name`, `password`, `user_type`, `created`, `code`, `status`) VALUES
 (1, 'sharma.amresh@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2018-08-21 13:30:36', 'asqwww32t', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `camp_type`
+--
+
+CREATE TABLE `camp_type` (
+  `id` int(11) NOT NULL,
+  `ctype` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `camp_type`
+--
+
+INSERT INTO `camp_type` (`id`, `ctype`) VALUES
+(1, 'Adventure'),
+(2, 'Trekking'),
+(3, 'Backpacking/Hiking Camping'),
+(4, 'Tent Camping'),
+(5, 'Survivalist Camping'),
+(6, 'Rv and Van Camping'),
+(7, 'Ultralight Backpacking'),
+(8, 'Dry Camping'),
+(9, 'Reenactment Camping'),
+(10, 'Overlanding'),
+(11, 'Winter Camping'),
+(12, 'Work Camping'),
+(13, 'Glamping'),
+(14, 'Backcountry Camping'),
+(15, 'Frontcountry Camping');
 
 -- --------------------------------------------------------
 
@@ -313,6 +345,118 @@ INSERT INTO `countries` (`countries_id`, `countries_name`, `countries_iso_code`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `drink_type`
+--
+
+CREATE TABLE `drink_type` (
+  `id` int(11) NOT NULL,
+  `drink_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `drink_type`
+--
+
+INSERT INTO `drink_type` (`id`, `drink_type`) VALUES
+(1, 'Alcoholic beverages'),
+(2, 'Coffee'),
+(3, 'Detox juices'),
+(4, 'Soda'),
+(5, 'Tea'),
+(6, 'Water');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facilities`
+--
+
+CREATE TABLE `facilities` (
+  `id` int(11) NOT NULL,
+  `icon` varchar(100) NOT NULL,
+  `facilityname` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `facilities`
+--
+
+INSERT INTO `facilities` (`id`, `icon`, `facilityname`) VALUES
+(1, '', 'spa'),
+(2, '', 'swimming pool'),
+(3, '', 'Bar'),
+(4, '', 'barbeque'),
+(5, '', 'garden'),
+(6, '', 'shopping'),
+(7, '', 'kitchen'),
+(8, '', 'lounge'),
+(9, '', 'free wifi'),
+(10, '', 'Laundry'),
+(11, '', 'Smoke-free property'),
+(12, '', 'Special menu request'),
+(13, '', 'Tour assistance'),
+(14, '', 'Luggage room / storage');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food_type`
+--
+
+CREATE TABLE `food_type` (
+  `id` int(11) NOT NULL,
+  `food_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `food_type`
+--
+
+INSERT INTO `food_type` (`id`, `food_type`) VALUES
+(1, 'Ayurvedic Food'),
+(2, 'Fruitarian Food'),
+(3, 'Gluten Free Food'),
+(4, 'Hallal Food'),
+(5, 'Lacto-Ovo Vegetarian Food'),
+(6, 'Lactose-free Food'),
+(7, 'Naturopathic Diet Food'),
+(8, 'Organic Food'),
+(9, 'Other Dietary Requirements'),
+(10, 'Paleo Diet Food'),
+(11, 'Pescatarian Food(You take fish but not meat)'),
+(12, 'Raw Food'),
+(13, 'Regular Food(Meat, Poultry, Fish)'),
+(14, 'Seafood'),
+(15, 'Vegan Food'),
+(16, 'Vegetarian Food'),
+(17, 'Whole Food'),
+(18, 'Yogic Diet Food');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meals`
+--
+
+CREATE TABLE `meals` (
+  `id` int(11) NOT NULL,
+  `meal_type` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `meals`
+--
+
+INSERT INTO `meals` (`id`, `meal_type`) VALUES
+(1, 'Breakfast'),
+(2, 'Brunch'),
+(3, 'Lunch'),
+(4, 'Dinner'),
+(5, 'Snacks');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `organisers`
 --
 
@@ -385,8 +529,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `last_login`, `first_login`, `status`) VALUES
-(1, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/APUIFaOkVQW4CzsLIyI47H96TQzUdp824w/s96-c/photo.jpg', '2018-09-09 21:38:21', '2018-09-09 21:38:21', 1),
-(2, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-09-09 21:46:07', '2018-09-09 21:46:07', 1);
+(3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-09-10 07:38:02', '2018-09-10 07:27:47', 1);
 
 --
 -- Indexes for dumped tables
@@ -399,10 +542,40 @@ ALTER TABLE `admin_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `camp_type`
+--
+ALTER TABLE `camp_type`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`countries_id`);
+
+--
+-- Indexes for table `drink_type`
+--
+ALTER TABLE `drink_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `facilities`
+--
+ALTER TABLE `facilities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `food_type`
+--
+ALTER TABLE `food_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `meals`
+--
+ALTER TABLE `meals`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `organisers`
@@ -427,10 +600,40 @@ ALTER TABLE `admin_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `camp_type`
+--
+ALTER TABLE `camp_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
   MODIFY `countries_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+
+--
+-- AUTO_INCREMENT for table `drink_type`
+--
+ALTER TABLE `drink_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `facilities`
+--
+ALTER TABLE `facilities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `food_type`
+--
+ALTER TABLE `food_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `meals`
+--
+ALTER TABLE `meals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `organisers`
@@ -442,7 +645,7 @@ ALTER TABLE `organisers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

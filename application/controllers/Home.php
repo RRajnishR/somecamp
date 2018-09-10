@@ -29,7 +29,7 @@ class Home extends CI_Controller {
         $check = $this->db->where('email', $this->input->post('email'))->from("users")->count_all_results();
         if($check > 0){
             $old_user = array(
-                'photo' => $this->input->post(),    
+                'photo' => $this->input->post('photo'),    
                 'last_login' => date('Y-m-d H:i:s'), 
             );
             //update photo and login details if there is any change in the gmail account

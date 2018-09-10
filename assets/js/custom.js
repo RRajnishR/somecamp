@@ -122,7 +122,13 @@ if(page_name=="host_signup"){
             }
         });
         
-    }
-    
+    }  
     
 }
+//Js For View Camp page
+if(page_name=="camps"){
+    var slider = new IdealImageSlider.Slider('#slider');
+    slider.addBulletNav();
+    slider.start();
+}
+

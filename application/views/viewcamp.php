@@ -1,6 +1,6 @@
-<style>
-    
-</style>
+<script>
+    var page_name = "camps";
+</script>
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/slider/normalize.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/slider/ideal-image-slider.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/slider/themes/default/default.css">
@@ -23,19 +23,23 @@
                     </div>
                 </div>
                 <div class="col-sm-12 introduction">
-                    Cleansing Yoga Retreat Bali
-                    Expert tip: This is one of the most popular yoga retreats offered Indonesia.
+                    <h3>Cleansing Yoga Retreat Bali</h3>
+                    Expert tip: This is one of the most popular yoga retreats offered Indonesia. <br/> <br/>
 
-                    Santhika Retreat Center detoxify continuously throughout life. They process food, thoughts, and all forms of energy. When that flow is continuous and clear, we are steady and flexible. The trouble is that we accumulate more than we process. We become weighted down under the ash of metabolism and the remnants of old emotions. This set systematically moves the energy of the body and mind to keep you light and vitalized.
+                    Santhika Retreat Center detoxify continuously throughout life. They process food, thoughts, and all forms of energy. When that flow is continuous and clear, we are steady and flexible. The trouble is that we accumulate more than we process. We become weighted down under the ash of metabolism and the remnants of old emotions. This set systematically moves the energy of the body and mind to keep you light and vitalized. <br/>
 
                     RETREAT HIGHLIGHTS
-                    Daily yoga classes
-                    Daily meditation sessions
-                    Relax your body in the spa during detoxing programs
-                    Enjoy healthy organic food and drinks with a special diet prepared for you
-                    Have a good time on trekking tours during the retreat
-                    6 nights accommodation
-                    Daily organic meals
+                    
+                    <ul>
+                        <li>Daily yoga classes</li>
+                        <li>Daily meditation sessions</li>
+                        <li>Relax your body in the spa during detoxing programs</li>
+                        <li>Enjoy healthy organic food and drinks with a special diet prepared for you</li>
+                        <li>Have a good time on trekking tours during the retreat</li>
+                        <li>6 nights accommodation</li>
+                        <li>Daily organic meals</li>
+                    </ul>
+                    
                 </div>
                 <div class="col-sm-12" style="background:white; margin-bottom:10px; padding-bottom: 10px;">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

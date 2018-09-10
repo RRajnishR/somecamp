@@ -22,20 +22,20 @@
 
 <body>
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="<?php echo base_url(); ?>">Navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="far fa-heart"></i> My WishCamps (0)</a>
+            <a class="nav-link" href="<?php echo base_url(); ?>Wishlist"><i class="far fa-heart"></i> My WishCamps (0)</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Blogs</a>
+            <a class="nav-link" href="<?php echo base_url(); ?>Blogs">Blogs</a>
           </li>
           <?php 
-                if(!$this->session->userdata('googleid')){
+                if(!$this->session->userdata('google_id')){
             ?>
           <li class="nav-item">
              <a href="#" class="nav-link" role="button" data-toggle="modal" data-target="#signbox"><i class="fas fa-user-circle"></i></a>

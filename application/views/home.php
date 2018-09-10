@@ -1,3 +1,6 @@
+<script>
+    var page_name = "home";
+</script>
 <div class="banner">
     <h1>Search Your Camp</h1>
     <form class="search-container">
