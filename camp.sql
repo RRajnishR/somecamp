@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2018 at 02:59 PM
+-- Generation Time: Sep 11, 2018 at 03:23 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -435,6 +435,207 @@ INSERT INTO `food_type` (`id`, `food_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `langs`
+--
+
+CREATE TABLE `langs` (
+  `id` int(11) NOT NULL,
+  `code` varchar(3) DEFAULT NULL,
+  `name` varchar(80) NOT NULL,
+  `nativeName` varchar(57) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `langs`
+--
+
+INSERT INTO `langs` (`id`, `code`, `name`, `nativeName`) VALUES
+(1, 'ab', 'Abkhaz', 'аҧсуа'),
+(2, 'aa', 'Afar', 'Afaraf'),
+(3, 'af', 'Afrikaans', 'Afrikaans'),
+(4, 'ak', 'Akan', 'Akan'),
+(5, 'sq', 'Albanian', 'Shqip'),
+(6, 'am', 'Amharic', 'አማርኛ'),
+(7, 'ar', 'Arabic', 'العربية'),
+(8, 'an', 'Aragonese', 'Aragonés'),
+(9, 'hy', 'Armenian', 'Հայերեն'),
+(10, 'as', 'Assamese', 'অসমীয়া'),
+(11, 'av', 'Avaric', 'авар мацӀ, магӀарул мацӀ'),
+(12, 'ae', 'Avestan', 'avesta'),
+(13, 'ay', 'Aymara', 'aymar aru'),
+(14, 'az', 'Azerbaijani', 'azərbaycan dili'),
+(15, 'bm', 'Bambara', 'bamanankan'),
+(16, 'ba', 'Bashkir', 'башҡорт теле'),
+(17, 'eu', 'Basque', 'euskara, euskera'),
+(18, 'be', 'Belarusian', 'Беларуская'),
+(19, 'bn', 'Bengali', 'বাংলা'),
+(20, 'bh', 'Bihari', 'भोजपुरी'),
+(21, 'bi', 'Bislama', 'Bislama'),
+(22, 'bs', 'Bosnian', 'bosanski jezik'),
+(23, 'br', 'Breton', 'brezhoneg'),
+(24, 'bg', 'Bulgarian', 'български език'),
+(25, 'my', 'Burmese', 'ဗမာစာ'),
+(26, 'ca', 'Catalan; Valencian', 'Català'),
+(27, 'ch', 'Chamorro', 'Chamoru'),
+(28, 'ce', 'Chechen', 'нохчийн мотт'),
+(29, 'ny', 'Chichewa; Chewa; Nyanja', 'chiCheŵa, chinyanja'),
+(30, 'zh', 'Chinese', '中文 (Zhōngwén), 汉语, 漢語'),
+(31, 'cv', 'Chuvash', 'чӑваш чӗлхи'),
+(32, 'kw', 'Cornish', 'Kernewek'),
+(33, 'co', 'Corsican', 'corsu, lingua corsa'),
+(34, 'cr', 'Cree', 'ᓀᐦᐃᔭᐍᐏᐣ'),
+(35, 'hr', 'Croatian', 'hrvatski'),
+(36, 'cs', 'Czech', 'česky, čeština'),
+(37, 'da', 'Danish', 'dansk'),
+(38, 'dv', 'Divehi; Dhivehi; Maldivian;', 'ދިވެހި'),
+(39, 'nl', 'Dutch', 'Nederlands, Vlaams'),
+(40, 'en', 'English', 'English'),
+(41, 'eo', 'Esperanto', 'Esperanto'),
+(42, 'et', 'Estonian', 'eesti, eesti keel'),
+(43, 'ee', 'Ewe', 'Eʋegbe'),
+(44, 'fo', 'Faroese', 'føroyskt'),
+(45, 'fj', 'Fijian', 'vosa Vakaviti'),
+(46, 'fi', 'Finnish', 'suomi, suomen kieli'),
+(47, 'fr', 'French', 'français, langue française'),
+(48, 'ff', 'Fula; Fulah; Pulaar; Pular', 'Fulfulde, Pulaar, Pular'),
+(49, 'gl', 'Galician', 'Galego'),
+(50, 'ka', 'Georgian', 'ქართული'),
+(51, 'de', 'German', 'Deutsch'),
+(52, 'el', 'Greek, Modern', 'Ελληνικά'),
+(53, 'gn', 'Guaraní', 'Avañeẽ'),
+(54, 'gu', 'Gujarati', 'ગુજરાતી'),
+(55, 'ht', 'Haitian; Haitian Creole', 'Kreyòl ayisyen'),
+(56, 'ha', 'Hausa', 'Hausa, هَوُسَ'),
+(57, 'he', 'Hebrew (modern)', 'עברית'),
+(58, 'hz', 'Herero', 'Otjiherero'),
+(59, 'hi', 'Hindi', 'हिन्दी, हिंदी'),
+(60, 'ho', 'Hiri Motu', 'Hiri Motu'),
+(61, 'hu', 'Hungarian', 'Magyar'),
+(62, 'ia', 'Interlingua', 'Interlingua'),
+(63, 'id', 'Indonesian', 'Bahasa Indonesia'),
+(64, 'ie', 'Interlingue', 'Originally called Occidental; then Interlingue after WWII'),
+(65, 'ga', 'Irish', 'Gaeilge'),
+(66, 'ig', 'Igbo', 'Asụsụ Igbo'),
+(67, 'ik', 'Inupiaq', 'Iñupiaq, Iñupiatun'),
+(68, 'io', 'Ido', 'Ido'),
+(69, 'is', 'Icelandic', 'Íslenska'),
+(70, 'it', 'Italian', 'Italiano'),
+(71, 'iu', 'Inuktitut', 'ᐃᓄᒃᑎᑐᑦ'),
+(72, 'ja', 'Japanese', '日本語 (にほんご／にっぽんご)'),
+(73, 'jv', 'Javanese', 'basa Jawa'),
+(74, 'kl', 'Kalaallisut, Greenlandic', 'kalaallisut, kalaallit oqaasii'),
+(75, 'kn', 'Kannada', 'ಕನ್ನಡ'),
+(76, 'kr', 'Kanuri', 'Kanuri'),
+(77, 'ks', 'Kashmiri', 'कश्मीरी, كشميري‎'),
+(78, 'kk', 'Kazakh', 'Қазақ тілі'),
+(79, 'km', 'Khmer', 'ភាសាខ្មែរ'),
+(80, 'ki', 'Kikuyu, Gikuyu', 'Gĩkũyũ'),
+(81, 'rw', 'Kinyarwanda', 'Ikinyarwanda'),
+(82, 'ky', 'Kirghiz, Kyrgyz', 'кыргыз тили'),
+(83, 'kv', 'Komi', 'коми кыв'),
+(84, 'kg', 'Kongo', 'KiKongo'),
+(85, 'ko', 'Korean', '한국어 (韓國語), 조선말 (朝鮮語)'),
+(86, 'ku', 'Kurdish', 'Kurdî, كوردی‎'),
+(87, 'kj', 'Kwanyama, Kuanyama', 'Kuanyama'),
+(88, 'la', 'Latin', 'latine, lingua latina'),
+(89, 'lb', 'Luxembourgish, Letzeburgesch', 'Lëtzebuergesch'),
+(90, 'lg', 'Luganda', 'Luganda'),
+(91, 'li', 'Limburgish, Limburgan, Limburger', 'Limburgs'),
+(92, 'ln', 'Lingala', 'Lingála'),
+(93, 'lo', 'Lao', 'ພາສາລາວ'),
+(94, 'lt', 'Lithuanian', 'lietuvių kalba'),
+(95, 'lu', 'Luba-Katanga', NULL),
+(96, 'lv', 'Latvian', 'latviešu valoda'),
+(97, 'gv', 'Manx', 'Gaelg, Gailck'),
+(98, 'mk', 'Macedonian', 'македонски јазик'),
+(99, 'mg', 'Malagasy', 'Malagasy fiteny'),
+(100, 'ms', 'Malay', 'bahasa Melayu, بهاس ملايو‎'),
+(101, 'ml', 'Malayalam', 'മലയാളം'),
+(102, 'mt', 'Maltese', 'Malti'),
+(103, 'mi', 'Māori', 'te reo Māori'),
+(104, 'mr', 'Marathi (Marāṭhī)', 'मराठी'),
+(105, 'mh', 'Marshallese', 'Kajin M̧ajeļ'),
+(106, 'mn', 'Mongolian', 'монгол'),
+(107, 'na', 'Nauru', 'Ekakairũ Naoero'),
+(108, 'nv', 'Navajo, Navaho', 'Diné bizaad, Dinékʼehǰí'),
+(109, 'nb', 'Norwegian Bokmål', 'Norsk bokmål'),
+(110, 'nd', 'North Ndebele', 'isiNdebele'),
+(111, 'ne', 'Nepali', 'नेपाली'),
+(112, 'ng', 'Ndonga', 'Owambo'),
+(113, 'nn', 'Norwegian Nynorsk', 'Norsk nynorsk'),
+(114, 'no', 'Norwegian', 'Norsk'),
+(115, 'ii', 'Nuosu', 'ꆈꌠ꒿ Nuosuhxop'),
+(116, 'nr', 'South Ndebele', 'isiNdebele'),
+(117, 'oc', 'Occitan', 'Occitan'),
+(118, 'oj', 'Ojibwe, Ojibwa', 'ᐊᓂᔑᓈᐯᒧᐎᓐ'),
+(119, 'cu', 'Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic', 'ѩзыкъ словѣньскъ'),
+(120, 'om', 'Oromo', 'Afaan Oromoo'),
+(121, 'or', 'Oriya', 'ଓଡ଼ିଆ'),
+(122, 'os', 'Ossetian, Ossetic', 'ирон æвзаг'),
+(123, 'pa', 'Panjabi, Punjabi', 'ਪੰਜਾਬੀ, پنجابی‎'),
+(124, 'pi', 'Pāli', 'पाऴि'),
+(125, 'fa', 'Persian', 'فارسی'),
+(126, 'pl', 'Polish', 'polski'),
+(127, 'ps', 'Pashto, Pushto', 'پښتو'),
+(128, 'pt', 'Portuguese', 'Português'),
+(129, 'qu', 'Quechua', 'Runa Simi, Kichwa'),
+(130, 'rm', 'Romansh', 'rumantsch grischun'),
+(131, 'rn', 'Kirundi', 'kiRundi'),
+(132, 'ro', 'Romanian, Moldavian, Moldovan', 'română'),
+(133, 'ru', 'Russian', 'русский язык'),
+(134, 'sa', 'Sanskrit (Saṁskṛta)', 'संस्कृतम्'),
+(135, 'sc', 'Sardinian', 'sardu'),
+(136, 'sd', 'Sindhi', 'सिन्धी, سنڌي، سندھی‎'),
+(137, 'se', 'Northern Sami', 'Davvisámegiella'),
+(138, 'sm', 'Samoan', 'gagana faa Samoa'),
+(139, 'sg', 'Sango', 'yângâ tî sängö'),
+(140, 'sr', 'Serbian', 'српски језик'),
+(141, 'gd', 'Scottish Gaelic; Gaelic', 'Gàidhlig'),
+(142, 'sn', 'Shona', 'chiShona'),
+(143, 'si', 'Sinhala, Sinhalese', 'සිංහල'),
+(144, 'sk', 'Slovak', 'slovenčina'),
+(145, 'sl', 'Slovene', 'slovenščina'),
+(146, 'so', 'Somali', 'Soomaaliga, af Soomaali'),
+(147, 'st', 'Southern Sotho', 'Sesotho'),
+(148, 'es', 'Spanish; Castilian', 'español, castellano'),
+(149, 'su', 'Sundanese', 'Basa Sunda'),
+(150, 'sw', 'Swahili', 'Kiswahili'),
+(151, 'ss', 'Swati', 'SiSwati'),
+(152, 'sv', 'Swedish', 'svenska'),
+(153, 'ta', 'Tamil', 'தமிழ்'),
+(154, 'te', 'Telugu', 'తెలుగు'),
+(155, 'tg', 'Tajik', 'тоҷикӣ, toğikī, تاجیکی‎'),
+(156, 'th', 'Thai', 'ไทย'),
+(157, 'ti', 'Tigrinya', 'ትግርኛ'),
+(158, 'bo', 'Tibetan Standard, Tibetan, Central', 'བོད་ཡིག'),
+(159, 'tk', 'Turkmen', 'Türkmen, Түркмен'),
+(160, 'tl', 'Tagalog', 'Wikang Tagalog, ᜏᜒᜃᜅ᜔ ᜆᜄᜎᜓᜄ᜔'),
+(161, 'tn', 'Tswana', 'Setswana'),
+(162, 'to', 'Tonga (Tonga Islands)', 'faka Tonga'),
+(163, 'tr', 'Turkish', 'Türkçe'),
+(164, 'ts', 'Tsonga', 'Xitsonga'),
+(165, 'tt', 'Tatar', 'татарча, tatarça, تاتارچا‎'),
+(166, 'tw', 'Twi', 'Twi'),
+(167, 'ty', 'Tahitian', 'Reo Tahiti'),
+(168, 'ug', 'Uighur, Uyghur', 'Uyƣurqə, ئۇيغۇرچە‎'),
+(169, 'uk', 'Ukrainian', 'українська'),
+(170, 'ur', 'Urdu', 'اردو'),
+(171, 'uz', 'Uzbek', 'zbek, Ўзбек, أۇزبېك‎'),
+(172, 've', 'Venda', 'Tshivenḓa'),
+(173, 'vi', 'Vietnamese', 'Tiếng Việt'),
+(174, 'vo', 'Volapük', 'Volapük'),
+(175, 'wa', 'Walloon', 'Walon'),
+(176, 'cy', 'Welsh', 'Cymraeg'),
+(177, 'wo', 'Wolof', 'Wollof'),
+(178, 'fy', 'Western Frisian', 'Frysk'),
+(179, 'xh', 'Xhosa', 'isiXhosa'),
+(180, 'yi', 'Yiddish', 'ייִדיש'),
+(181, 'yo', 'Yoruba', 'Yorùbá'),
+(182, 'za', 'Zhuang, Chuang', 'Saɯ cueŋƅ, Saw cuengh');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `meals`
 --
 
@@ -572,6 +773,12 @@ ALTER TABLE `food_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `langs`
+--
+ALTER TABLE `langs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `meals`
 --
 ALTER TABLE `meals`
@@ -628,6 +835,12 @@ ALTER TABLE `facilities`
 --
 ALTER TABLE `food_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `langs`
+--
+ALTER TABLE `langs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183;
 
 --
 -- AUTO_INCREMENT for table `meals`
