@@ -21,6 +21,30 @@
   <!-- Custom styles for this template -->
   <link href="<?php echo base_url() ?>assets/admin/css/style.css" rel="stylesheet">
   <link href="<?php echo base_url() ?>assets/admin/css/style-responsive.css" rel="stylesheet">
+  <style>
+    .round_div{
+        text-align: center;
+        border: 1px green solid;
+    }
+    .first_half, .second_half{
+        display: block;
+        width: 100%;
+        font-weight: bold;
+    }
+    .first_half{
+        background-color: beige;
+        font-size: 22px;
+        padding: 8%;
+    }
+    .second_half{
+        font-size: 16px;
+        padding: 4%;
+        background-color: darkturquoise;
+        color: white;
+        border-top: 2px yellow double;
+    }
+    .sec
+</style>
 </head>
 
 <body>
@@ -60,6 +84,30 @@
             <a href="<?php echo base_url() ?>camp_admin/Admin">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
+              </a>
+          </li>
+          <li class="mt">
+            <a href="<?php echo base_url() ?>camp_admin/Facilities">
+              <i class="fa fa-dashboard"></i>
+              <span>Manage Organisers</span>
+              </a>
+          </li>
+          <li class="mt">
+            <a href="<?php echo base_url() ?>camp_admin/Admin">
+              <i class="fa fa-dashboard"></i>
+              <span>Manage Users</span>
+              </a>
+          </li>
+          <li class="mt">
+            <a href="<?php echo base_url() ?>camp_admin/Admin">
+              <i class="fa fa-dashboard"></i>
+              <span>Manage Camps</span>
+              </a>
+          </li>
+          <li class="mt">
+            <a href="<?php echo base_url() ?>camp_admin/Admin">
+              <i class="fa fa-dashboard"></i>
+              <span>Manage Other things</span>
               </a>
           </li>
           <?php 
