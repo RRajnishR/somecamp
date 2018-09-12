@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2018 at 03:23 PM
+-- Generation Time: Sep 12, 2018 at 02:58 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -44,6 +44,38 @@ CREATE TABLE `admin_user` (
 
 INSERT INTO `admin_user` (`id`, `user_name`, `password`, `user_type`, `created`, `code`, `status`) VALUES
 (1, 'sharma.amresh@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2018-08-21 13:30:36', 'asqwww32t', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `camp_for`
+--
+
+CREATE TABLE `camp_for` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `small_desc` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `camp_for`
+--
+
+INSERT INTO `camp_for` (`id`, `name`, `small_desc`) VALUES
+(1, 'School Boys', 'Age group of 4-13 years old boys'),
+(2, 'School Girls', 'Age group of 4-13 years old girls'),
+(3, 'School (Mix Group)', 'Age group of 4-13 years old All Genders'),
+(4, 'Teen Males', ''),
+(5, 'Teen Females', ''),
+(6, 'Teen Mix', ''),
+(7, 'Adult Males', ''),
+(8, 'Adult Females', ''),
+(9, 'Adult Mix', ''),
+(10, 'Adult Couples', ''),
+(11, 'Senior Males', ''),
+(12, 'Senior Females', ''),
+(13, 'Senior Group', ''),
+(14, 'Senior Couples', '');
 
 -- --------------------------------------------------------
 
@@ -743,6 +775,12 @@ ALTER TABLE `admin_user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `camp_for`
+--
+ALTER TABLE `camp_for`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `camp_type`
 --
 ALTER TABLE `camp_type`
@@ -805,6 +843,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admin_user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `camp_for`
+--
+ALTER TABLE `camp_for`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `camp_type`

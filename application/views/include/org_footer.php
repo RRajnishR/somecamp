@@ -33,9 +33,42 @@
         var tab = window.location.hash;
         $('a[href="'+tab+'"]').trigger('click');
         $('.select2').select2();
+        $("#inc_food").change(function() {
+            if(this.checked) {
+                $("#ml_list").prop('disabled', true);
+            } else {
+                $("#ml_list").prop('disabled', false);
+            }
+        });
+        $("#drnk").change(function() {
+            if(this.checked) {
+                $("#dl").prop('disabled', true);
+            } else {
+                $("#dl").prop('disabled', false);
+            }
+        });
     });
   </script>
-  
+  <script>
+      function show_another_input(x){
+          if(x=="2"){
+              let currency = document.getElementById('currency').value;
+              if(currency == ""){
+                  alert('select currency first');
+                  document.getElementById('po').value="";
+                  return false;
+              }
+              document.getElementById('option2').style.display="block";
+              document.getElementById('option2').placeholder +=" [in "+currency+"]";
+              CKEDITOR.remove('camp_direction');
+              document.getElementById('option3').style.display="none";
+          } else if(x=="3") {
+              document.getElementById('option3').style.display="block";
+              document.getElementById('option2').style.display="none";
+              CKEDITOR.replace('camp_direction');
+          }
+      }
+  </script>
 </body>
 
 </html>

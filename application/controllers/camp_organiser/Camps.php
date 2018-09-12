@@ -24,6 +24,11 @@ class Camps extends CI_Controller {
         
         $data['countries'] = $this->My_model->selectRecord('countries', '*', '');
         $data['languages'] = $this->My_model->selectRecord('langs', '*', '');
+        $data['camp_type'] = $this->My_model->selectRecord('camp_type', '*', '');
+        $data['camp_for'] = $this->My_model->selectRecord('camp_for', '*', '');
+        $data['food_type'] = $this->My_model->selectRecord('food_type', '*', '');
+        $data['meals'] = $this->My_model->selectRecord('meals', '*', '');
+        $data['drink_type'] = $this->My_model->selectRecord('drink_type', '*', '');
         
         $this->load->view('include/org_header');
 		$this->load->view('organiser/camp_basic_details', $data);
