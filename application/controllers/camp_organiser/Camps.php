@@ -34,4 +34,7 @@ class Camps extends CI_Controller {
 		$this->load->view('organiser/camp_basic_details', $data);
         $this->load->view('include/org_footer');
     }
+    public function save_camp(){
+        print_r($this->input->post());
+    }
 }

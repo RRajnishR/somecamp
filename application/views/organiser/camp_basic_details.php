@@ -6,7 +6,7 @@
             <!--  DATE PICKERS -->
             <div class="col-lg-12">
                 <div class="form-panel">
-                    <form action="#" class="form-horizontal style-form">
+                    <form action="<?php echo base_url() ?>camp_organiser/Camps/save_camp" class="form-horizontal style-form" method="post">
                         <div class="form-group">
                             <label class="control-label col-md-3">Country</label>
                             <div class="col-md-4 col-xs-11" >
@@ -66,6 +66,15 @@
                             </div>
                             <div class="col-md-4">
                                 <span class="help-block">Help: Add full camp's Address (Use Google Maps) <br/> If you can find Latitude and Longitude, Please provide that also. You can use <a href="https://www.latlong.net/" target="_blank">Latlong.net</a> to find those </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Camp's Duration</label>
+                            <div class="col-md-4 col-xs-11">
+                                 
+                            </div>
+                            <div class="col-md-4">
+                                <span class="help-block">Help: Number of days in the camp </span>
                             </div>
                         </div>
                         <div class="form-group">
