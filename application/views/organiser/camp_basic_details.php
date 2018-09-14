@@ -71,10 +71,56 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Camp's Duration</label>
                             <div class="col-md-4 col-xs-11">
-                                 
+                                 <select name="duration" class="form-control select2">
+                                     <option value="2">2 days / 1 nights</option>
+                                     <option value="3">3 days / 2 nights</option>
+                                     <option value="4">4 days / 3 nights</option>
+                                     <option value="5">5 days / 4 nights</option>
+                                     <option value="6">6 days / 5 nights</option>
+                                     <option value="7">7 days / 6 nights</option>
+                                     <option value="8">8 days / 7 nights</option>
+                                     <option value="9">9 days / 8 nights</option>
+                                     <option value="10">10 days / 9 nights</option>
+                                     <option value="11">11 days / 10 nights</option>
+                                     <option value="12">12 days / 11 nights</option>
+                                     <option value="13">13 days / 12 nights</option>
+                                     <option value="14">14 days / 13 nights</option>
+                                     <option value="15">15 days / 14 nights</option>
+                                     <option value="16">16 days / 15 nights</option>
+                                     <option value="17">17 days / 16 nights</option>
+                                     <option value="18">18 days / 17 nights</option>
+                                     <option value="19">19 days / 18 nights</option>
+                                     <option value="20">20 days / 19 nights</option>
+                                     <option value="21">21 days / 20 nights</option>
+                                     <option value="22">22 days / 21 nights</option>
+                                     <option value="23">23 days / 22 nights</option>
+                                     <option value="24">24 days / 23 nights</option>
+                                     <option value="25">25 days / 24 nights</option>
+                                     <option value="26">26 days / 25 nights</option>
+                                     <option value="27">27 days / 26 nights</option>
+                                     <option value="28">28 days / 27 nights</option>
+                                     <option value="29">29 days / 28 nights</option>
+                                     <option value="30">30 days / 29 nights</option>
+                                </select>
                             </div>
                             <div class="col-md-4">
                                 <span class="help-block">Help: Number of days in the camp </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Accomodation Facilities</label>
+                            <div class="col-md-4 col-xs-11"> &nbsp;&nbsp;
+                                <?php 
+                                    foreach($facilities as $f){ ?>
+                                    <label class="checkbox-inline">
+                                      <input type="checkbox" name="facilities[]" value="<?php echo $f->id; ?>"><?php echo $f->facilityname; ?>
+                                    </label>
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="help-block">Help: Select the facilities available at your camp</span>
                             </div>
                         </div>
                         <div class="form-group">
@@ -276,12 +322,21 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3">Things to do</label>
+                            <div class="col-md-6 col-xs-11">
+                               <textarea class="form-control" name="things_to_do"></textarea>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="help-block">Help: list all those things which aren't included in price <br/> Like: Alcohol, Midnight Meal etc...</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3">&nbsp;</label>
                             <div class="col-md-4 col-xs-11">
                                <button class="btn btn-success" type="submit"> Create new Camp <i class="fa fa-check-circle"></i></button>
                             </div>
                             <div class="col-md-4">
-                                <span class="help-block">Tip: Please try to fill up the form with as much information as you can. This will help our admins to verify your details easily and make your camp visible to campers</span>
+                                <span class="help-block">Tip: List of other things which campers can do near your camp</span>
                             </div>
                         </div>
                     </form>
@@ -293,5 +348,5 @@
     </section>
 </section>
 <script>
-    CKEDITOR.replace('intro');CKEDITOR.replace('program');CKEDITOR.replace('included');CKEDITOR.replace('notincluded');
+CKEDITOR.replace('intro');CKEDITOR.replace('program');CKEDITOR.replace('included');CKEDITOR.replace('notincluded');CKEDITOR.replace('things_to_do');
 </script>
