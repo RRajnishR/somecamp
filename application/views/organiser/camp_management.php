@@ -31,7 +31,7 @@
                                   <th>Camp Name</th>
                                   <th>Camp Details [Edit] </th>
                                   <th>Created On</th>
-                                  <th>Status</th>
+                                  <th>Status / Action</th>
                               </tr>
                           </thead>
                           <tbody>
@@ -54,17 +54,18 @@
                                             }
                                         ?>
                                          &nbsp;
-                                         <button class="btn btn-xs btn-danger"><i class="fa fa-camera-retro"></i></button>  
+                                         <a class="btn btn-xs btn-danger" href="<?php echo base_url() ?>camp_organiser/Camps/images/<?php echo $c->camp_id; ?>"><i class="fa fa-camera-retro"></i></a>  
                                     </td>
                                     <td><?php echo $c->created; ?></td>
-                                    <td style="text-align: center;"><?php 
+                                    <td><?php 
                                             if($c->status)
                                             { 
                                                 echo "<i class='fa fa-check-circle-o' title='Approved'></i>"; 
                                             } else {
                                                 echo "<i class='fa fa-times-circle' title='Awaiting Approval'></i>";
                                             }
-                                        ?></td>
+                                        ?> &nbsp; <a class="btn btn-xs btn-danger" title="delete this camp" href="<?php echo base_url() ?>camp_organiser/Camps/deletecamp/<?php echo $c->camp_id; ?>"><i class="fa fa-trash"></i></a>
+                                    </td>
                                 </tr>
                               <?php  
                                     $count++;

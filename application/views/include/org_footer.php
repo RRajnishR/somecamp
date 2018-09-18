@@ -47,6 +47,9 @@
                 $("#dl").prop('disabled', false);
             }
         });
+        $("#mulImages").change(function(){
+            $("#imageForm").submit();
+         });
     });
   </script>
   <script>

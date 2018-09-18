@@ -113,4 +113,43 @@ class Camps extends CI_Controller {
                 </script>";
         }
     }
+    
+    public function images($camp_id){
+        $data['images'] = $this->My_model->selectRecord('camp_images', '*', array('camp_id' => $camp_id));
+        $data['error'] = '';
+        $this->load->view('include/org_header');
+		$this->load->view('organiser/upload_camp_images', $data);
+        $this->load->view('include/org_footer');
+    }
+    public function uploadImage() { 
+        if( !$this->session->userdata('org_id') )
+			redirect('camp_organiser/Dashboard/login','refresh');
+        
+        if(isset($_POST['submit'])){
+        // File upload configuration
+        $targetDir = "assets/uploads";
+        $allowTypes = array('jpg','png','jpeg','gif');
+
+        $images_arr = array();
+        foreach($_FILES['images']['name'] as $key=>$val){
+            $image_name = $_FILES['images']['name'][$key];
+            $tmp_name   = $_FILES['images']['tmp_name'][$key];
+            $size       = $_FILES['images']['size'][$key];
+            $type       = $_FILES['images']['type'][$key];
+            $error      = $_FILES['images']['error'][$key];
+
+            // File upload path
+            $fileName = basename($_FILES['images']['name'][$key]);
+            $targetFilePath = $targetDir . $fileName;
+
+            // Check whether file type is valid
+            $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+            if(in_array($fileType, $allowTypes)){    
+                // Store images on the server
+                if(move_uploaded_file($_FILES['images']['tmp_name'][$key],$targetFilePath)){
+                    $images_arr[] = $targetFilePath;
+                }
+            }
+        }
+    }
 }
