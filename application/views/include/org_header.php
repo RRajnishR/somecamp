@@ -8,6 +8,28 @@
   <meta name="author" content="Rajnish Kumar | rajnishcv.com">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
   <meta name="robots" content="noindex,nofollow">
+  
+    <link rel="shortcut icon" href="<?php echo base_url()?>assets/favicon/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="<?php echo base_url()?>assets/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="<?php echo base_url()?>assets/favicon/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="<?php echo base_url()?>assets/favicon/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url()?>assets/favicon/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url()?>assets/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/favicon/favicon-16.png">
+    <link rel="apple-touch-icon" href="<?php echo base_url()?>assets/favicon/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url()?>assets/favicon/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<?php echo base_url()?>assets/favicon/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url()?>assets/favicon/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<?php echo base_url()?>assets/favicon/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url()?>assets/favicon/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url()?>assets/favicon/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url()?>assets/favicon/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url()?>assets/favicon/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="<?php echo base_url()?>assets/favicon/favicon-144.png">
+    <meta name="msapplication-config" content="<?php echo base_url()?>assets/favicon/browserconfig.xml">
+  
   <title>Camp Organiser Dashboard</title>
 
   <!-- Favicons -->

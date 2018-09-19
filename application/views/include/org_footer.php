@@ -50,6 +50,9 @@
         $("#mulImages").change(function(){
             $("#imageForm").submit();
          });
+         $('.confirmation').on('click', function () {
+            return confirm('Are you sure?');
+        });
     });
   </script>
   <script>
@@ -69,6 +72,10 @@
               document.getElementById('option3').style.display="block";
               document.getElementById('option2').style.display="none";
               CKEDITOR.replace('camp_direction');
+          } else if(x=="1"){
+              document.getElementById('option3').style.display="none";
+              document.getElementById('option2').style.display="none";
+              CKEDITOR.remove('camp_direction');
           }
       }
   </script>
