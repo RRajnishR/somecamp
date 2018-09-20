@@ -21,8 +21,9 @@ class Home extends CI_Controller {
 	public function index()
 	{
         $data['camp_for'] = $this->My_model->selectRecord('camp_for','*','');
+        $data['camp_type'] = $this->My_model->selectRecord('camp_type','*','');
         $this->load->view('include/header');
-		$this->load->view('home');
+		$this->load->view('home', $data);
         $this->load->view('include/footer');
 	}
     public function login(){

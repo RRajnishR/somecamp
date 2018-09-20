@@ -6,6 +6,122 @@
     h3 input[type="text"]::placeholder{
        color: blue;
     }
+    .box{
+        width: 100%;
+        border: 1px solid grey;
+        margin-bottom: 4px;
+        background: #fff;
+    }
+    .box{
+        max-height: 300px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .box::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+
+    .box::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    .box::-webkit-scrollbar-thumb
+    {
+        background-color: #000000;
+    }
+    .inputGroup {
+      display: block;
+      margin: 10px 0;
+      position: relative;
+    }
+    .inputGroup label {
+      padding: 1px 10px;
+      width: 100%;
+      display: block;
+      text-align: left;
+      color: #81af96;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      transition: color 200ms ease-in;
+      overflow: hidden;
+    }
+    .inputGroup label:before {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      content: '';
+      background-color: #5562eb;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%) scale3d(1, 1, 1);
+              transform: translate(-50%, -50%) scale3d(1, 1, 1);
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      z-index: -1;
+    }
+    .inputGroup label:after {
+      width: 16px;
+      height: 16px;
+      content: '';
+      border: 2px solid #D1D7DC;
+      background-color: #fff;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+      background-repeat: no-repeat;
+      background-position: 2px 3px;
+      border-radius: 50%;
+      z-index: 2;
+      position: absolute;
+      right: 0px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      cursor: pointer;
+      transition: all 200ms ease-in;
+    }
+    .inputGroup input:checked ~ label {
+      color: #fff;
+    }
+    .inputGroup input:checked ~ label:before {
+      -webkit-transform: translate(-50%, -50%) scale3d(56, 56, 1);
+              transform: translate(-50%, -50%) scale3d(56, 56, 1);
+      opacity: 1;
+    }
+    .inputGroup input:checked ~ label:after {
+      background-color: #54E0C7;
+      border-color: #54E0C7;
+    }
+    .inputGroup input {
+      width: 32px;
+      height: 32px;
+      order: 1;
+      z-index: 2;
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      cursor: pointer;
+      visibility: hidden;
+    }
+    .form {
+      padding: 0 16px;
+      max-width: 550px;
+      margin: 15px auto;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    .form h2{
+        font-size: 1em;
+        font-weight: 800;
+        margin-bottom: 0px;
+    }
 </style>
 <script>
     var page_name = "home";
@@ -38,10 +154,37 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-lg-3">
-                    <div class="box">
-                        <h4>Select Your Suitable Form</h4>
-                        
-                    </div>
+                   <div class="box">
+                      <form class="form">
+                          <h2>Camp Type</h2>
+                          <?php 
+                            foreach($camp_type as $ct){ ?>
+                            <div class="inputGroup">
+                                <input id="<?php echo "ct_".$ct->id; ?>" name="camp_type" type="checkbox"/>
+                                <label for="<?php echo "ct_".$ct->id; ?>"><?php echo $ct->ctype; ?></label>
+                            </div> 
+                          <?php
+                            }
+                          ?>                         
+                        </form> 
+                   </div>
+                   <div class="box">
+                      <form class="form">
+                          <h2>Camp Best For</h2>
+                          <?php 
+                            foreach($camp_for as $cf){ ?>
+                            <div class="inputGroup">
+                                <input id="<?php echo "cf_".$cf->id; ?>" name="camp_for" type="checkbox"/>
+                                <label for="<?php echo "cf_".$cf->id; ?>"><?php echo $cf->name; ?></label>
+                            </div> 
+                          <?php
+                            }
+                          ?>                         
+                        </form> 
+                   </div>
+                   <div class="box">
+                      <input type="text" class="form-control date-picker" value="" placeholder="select Date" data-datepicker-color="primary">
+                   </div>
                 </div>
                 <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
                     
