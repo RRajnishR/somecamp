@@ -20,6 +20,7 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
+        $data['camp_for'] = $this->My_model->selectRecord('camp_for','*','');
         $this->load->view('include/header');
 		$this->load->view('home');
         $this->load->view('include/footer');

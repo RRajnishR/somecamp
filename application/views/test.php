@@ -54,6 +54,69 @@
   top: -38px;
   right: 10px;
 }
+.navbar-brand{
+    background: #333333;
+    line-height: 0.7rem !important;
+    padding: 4px;
+    font-weight: bold;
+    border-radius: 4%;
+}
+.h1-seo{
+    color: #B6FF00;
+    -webkit-animation: neon4 1.5s ease-in-out infinite alternate;
+    -moz-animation: neon4 1.5s ease-in-out infinite alternate;
+    animation: neon4 1.5s ease-in-out infinite alternate;
+}
+@-webkit-keyframes neon4 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #B6FF00, 0 0 70px #B6FF00, 0 0 80px #B6FF00, 0 0 100px #B6FF00, 0 0 150px #B6FF00;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #B6FF00, 0 0 35px #B6FF00, 0 0 40px #B6FF00, 0 0 50px #B6FF00, 0 0 75px #B6FF00;
+  }
+}
+#scrolltocamps span{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-left: -12px;
+  border-left: 5px solid #fff;
+  border-bottom: 5px solid #fff;
+  -webkit-transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);
+  -webkit-animation: sdb06 1.5s infinite;
+  animation: sdb06 1.5s infinite;
+  box-sizing: border-box;
+}
+@-webkit-keyframes sdb06 {
+  0% {
+    -webkit-transform: rotateY(0) rotateZ(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotateY(720deg) rotateZ(-45deg) translate(-20px, 20px);
+    opacity: 0;
+  }
+}
+@keyframes sdb06 {
+  0% {
+    transform: rotateY(0) rotateZ(-45deg) translate(0, 0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotateY(720deg) rotateZ(-45deg) translate(-20px, 20px);
+    opacity: 0;
+  }
+}
+
   </style>
 </head>
 
@@ -63,7 +126,8 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="<?php echo base_url(); ?>" rel="tooltip" title="Bookourcamp.com" data-placement="bottom" target="_blank">
-          <img src="<?php echo base_url() ?>assets/logo.png" height="60" width="60" class="rounded-circle img-raised"/>
+<!--           BOOKOURCAMP-->
+           <span style="color:#0202fd;">BOOK</span><span style="color:#e97231;">OUR</span><span style="color:#00ff00;">CAMP</span>
         </a>
         <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar top-bar"></span>
@@ -120,7 +184,7 @@
       </div>
       <div class="container">
         <div class="content-center brand">
-          <img class="n-logo rounded" src="<?php echo base_url(); ?>assets/logo.png" alt="Book Our Camp Logo">
+          <img class="n-logo rounded-circle img-raised" src="<?php echo base_url(); ?>assets/logo.png" alt="Book Our Camp Logo">
           <h1 class="h1-seo">Search Your Favourite Camp</h1>
           <h3>
               <input type="text" class="form-control" placeholder="Search using Name and Location..."/>
@@ -128,11 +192,11 @@
           </h3>
         </div>
         <h6 class="category category-absolute">
-            A one stop solution for campers! <i class="fa fa-heart"></i> 
+            A one stop solution for campers! <a id="scrolltocamps" href="#camps"><span></span></a>
         </h6>
       </div>
     </div>
-    <div class="main">
+    <div class="main" id="camps">
       <br/>
       <br/>
       <br/>
