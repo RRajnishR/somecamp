@@ -122,6 +122,16 @@
         font-weight: 800;
         margin-bottom: 0px;
     }
+    table.camp_box{
+        border: 1px solid #37d54c;
+        table-layout: fixed;
+    }
+    table.camp_box tr td{
+        width: 33.33%;
+    }
+    td.camp_view_button, td.camp_duration, td.camp_rate, td.rating{
+        text-align: right;
+    }
 </style>
 <script>
     var page_name = "home";
@@ -187,7 +197,50 @@
                    </div>
                 </div>
                 <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
-                    
+                    <?php if(is_array($camps)){ 
+                            foreach($camps as $c){ ?>
+                            
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <table class="camp_box table-borderless">
+                                        <tr>
+                                            <td rowspan="4" class="camp_image"></td>
+                                            <td class="camp_name"><?php echo $c->title; ?></td>
+                                            <td class="rating">
+                                                <span class="far fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                                <span class="far fa-star"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="camp_rate"><?php echo $c->currency.". ".$c->price; ?></td>
+                                        </tr>
+                                        <tr> 
+                                            <td></td>
+                                            <td class="camp_duration"><?php echo $c->duration." days /".($c->duration - 1)." Nights"; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="camp_speciality">
+                                                <?php echo "<i class='far fa-comment-dots'></i> Instruction language: English <br/>"; ?>
+                                                <?php echo "<i class='fas fa-car'></i> Airport Pickup available <br/>"; ?>
+                                                <?php echo "<i class='fas fa-coffee'></i> Free Drinks available"; ?>
+                                            </td>
+                                            <td class="camp_view_button"><a class="btn btn-primary" href="<?php echo base_url(); ?>Camp/view/<?php echo $c->camp_id; ?>">See Details <i class="fas fa-eye"></i></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                    <?php
+                            }
+                        } else {
+                            echo "<h6> 0 Camps Found.</h6>";
+                            echo "<div style='height:200px;margin-top:15%;margin-left:25%;font-weight:bold;'>Try Using other filter combination!!</div>";
+                        }
+                    ?> 
                 </div>
             </div>
         </div>

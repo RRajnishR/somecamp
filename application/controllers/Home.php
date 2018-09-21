@@ -22,10 +22,16 @@ class Home extends CI_Controller {
 	{
         $data['camp_for'] = $this->My_model->selectRecord('camp_for','*','');
         $data['camp_type'] = $this->My_model->selectRecord('camp_type','*','');
+        $data['camps'] = $this->My_model->selectRecord('camp', '*', array('status'=>'1'));
         $this->load->view('include/header');
 		$this->load->view('home', $data);
         $this->load->view('include/footer');
 	}
+    public function old(){
+        $this->load->view('include/header_old');
+		$this->load->view('home_old');
+        $this->load->view('include/footer_old');
+    }
     public function login(){
         //check if user exists
         $check = $this->db->where('email', $this->input->post('email'))->from("users")->count_all_results();
