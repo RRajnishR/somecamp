@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2018 at 02:57 PM
+-- Generation Time: Sep 25, 2018 at 03:53 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -79,6 +79,8 @@ CREATE TABLE `camp` (
   `noincluded` mediumtext NOT NULL,
   `things_to_do` mediumtext NOT NULL,
   `video_link` text NOT NULL,
+  `price` int(11) NOT NULL,
+  `accomodation` varchar(200) NOT NULL COMMENT 'comma seperated accomodation ids',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `organiser_id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0'
@@ -88,8 +90,8 @@ CREATE TABLE `camp` (
 -- Dumping data for table `camp`
 --
 
-INSERT INTO `camp` (`camp_id`, `country_id`, `main_lang`, `other_lang`, `address`, `lot_long`, `duration`, `facilities`, `camp_type`, `camp_for`, `title`, `intro`, `currency`, `near_airport`, `pickup_service`, `pickup_cost`, `camp_direction`, `inc_meal`, `meal_list`, `food_type`, `inc_drink`, `drink_list`, `itinerary`, `included`, `noincluded`, `things_to_do`, `video_link`, `created`, `organiser_id`, `status`) VALUES
-(1, 4, 5, '3,5', 'Surya Retreat, 100 Calle La Tabaiba, Villaverde, Fuerteventura 35640, Spain', '27.134845,36.8545321', '27', '4,5,6', '1,4', '2,5', '2 Days Rejuvenating Pilates and Yoga Retreat in Fuerteventura, Spain', '<p>INTRODUCING</p>\r\n\r\n<h2>Pilates and Yoga Retreat in Spain</h2>\r\n\r\n<p>Expert tip: This is one of the most popular yoga retreats offered Spain.</p>\r\n\r\n<p>Relax and revitalise at Europe&#39;s leading Yoga and Pilates Retreat, Canary Islands, Spain. Join us at our stunning Surya Retreat. Stretch and strengthen your body and mind and bring yourself back into balance with a unique blend of yoga, pilates and meditation. Enjoy mouthwatering vegetarian meals, holistic massage and stunning sunsets over the volcanoes.</p>\r\n\r\n<h3>RETREAT HIGHLIGHTS</h3>\r\n\r\n<ul>\r\n	<li>Daily Pilates</li>\r\n	<li>Daily yoga and meditation</li>\r\n	<li>Brand new facilities, such as a hot tub and a large outdoor yoga deck</li>\r\n	<li>Delicious, nourishing vegetarian breakfasts/brunches</li>\r\n	<li>5 freshly prepared vegetarian evening meals</li>\r\n	<li>1 rejuvenating full body massage</li>\r\n	<li>7 nights deluxe accommodation</li>\r\n	<li>Free WiFi</li>\r\n</ul>\r\n\r\n<h3>SKILL LEVEL</h3>\r\n\r\n<ul>\r\n	<li>Beginner</li>\r\n	<li>Intermediate</li>\r\n	<li>Advanced</li>\r\n</ul>\r\n', 'BRL', '', 2, '2457', '', 1, '', '13,16', 1, '4,6', '<p>At the heart of the retreat program, is exceptional yoga and pilates instruction by a team of dedicated and caring teachers who have a heartfelt and down-to-earth approach to wellbeing.</p>\r\n\r\n<p>Below is a sample schedule.</p>\r\n\r\n<h3>SATURDAY</h3>\r\n\r\n<ul>\r\n	<li>New arrivals</li>\r\n	<li>17.30 - 19.00: Gentle yoga</li>\r\n</ul>\r\n\r\n<h3>SUNDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga and pranayama class</li>\r\n	<li>Time for beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>17.00: Pilates session</li>\r\n	<li>18.00: Guided meditation</li>\r\n</ul>\r\n\r\n<h3>MONDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga</li>\r\n	<li>Time for beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>17.00: Pilates session</li>\r\n</ul>\r\n\r\n<h3>TUESDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>11.00 - 12.00: Pilates Q and A</li>\r\n	<li>Time for inclusive massages, beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>16.30 - 17.00: Understanding yoga</li>\r\n	<li>17.00 - 18.15: Yoga and meditation</li>\r\n</ul>\r\n\r\n<h3>WEDNESDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga and meditation</li>\r\n	<li>Inclusive beach transfer to stunning beach, time to visit Natural Park, sand dunes</li>\r\n	<li>Evening is free to rest and explore</li>\r\n</ul>\r\n\r\n<h3>THURSDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>Time for one on one and private sessions</li>\r\n	<li>17.00 - 18.30: Yin Yoga</li>\r\n</ul>\r\n\r\n<h3>FRIDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>Time for one on one and private sessions.</li>\r\n	<li>17.00: Yoga and pranayama</li>\r\n	<li>18.30: Farewell meditation</li>\r\n</ul>\r\n\r\n<h3>SATURDAY</h3>\r\n\r\n<ul>\r\n	<li>Brunch</li>\r\n	<li>Departures</li>\r\n</ul>\r\n', '<ul>\r\n	<li>7 nights accommodation</li>\r\n	<li>2 daily yoga practice</li>\r\n	<li>Meditations</li>\r\n	<li>Pranayamas and conscious breath work</li>\r\n	<li>1 day trip to Es Vedra</li>\r\n	<li>3 meals per day</li>\r\n</ul>\r\n', '<ul>\r\n	<li>Beauty treatments</li>\r\n	<li>Horse riding</li>\r\n	<li>Massages</li>\r\n</ul>\r\n', '<p>So Jao,</p>\r\n\r\n<p>Uth jao</p>\r\n', 'https://www.youtube.com/watch', '2018-09-14 18:09:33', 5, 0);
+INSERT INTO `camp` (`camp_id`, `country_id`, `main_lang`, `other_lang`, `address`, `lot_long`, `duration`, `facilities`, `camp_type`, `camp_for`, `title`, `intro`, `currency`, `near_airport`, `pickup_service`, `pickup_cost`, `camp_direction`, `inc_meal`, `meal_list`, `food_type`, `inc_drink`, `drink_list`, `itinerary`, `included`, `noincluded`, `things_to_do`, `video_link`, `price`, `accomodation`, `created`, `organiser_id`, `status`) VALUES
+(1, 4, 5, '3,5', 'Surya Retreat, 100 Calle La Tabaiba, Villaverde, Fuerteventura 35640, Spain', '27.134845,36.8545321', '27', '4,5,6', '1,4', '2,5', '2 Days Rejuvenating Pilates and Yoga Retreat in Fuerteventura, Spain', '<p>INTRODUCING</p>\r\n\r\n<h2>Pilates and Yoga Retreat in Spain</h2>\r\n\r\n<p>Expert tip: This is one of the most popular yoga retreats offered Spain.</p>\r\n\r\n<p>Relax and revitalise at Europe&#39;s leading Yoga and Pilates Retreat, Canary Islands, Spain. Join us at our stunning Surya Retreat. Stretch and strengthen your body and mind and bring yourself back into balance with a unique blend of yoga, pilates and meditation. Enjoy mouthwatering vegetarian meals, holistic massage and stunning sunsets over the volcanoes.</p>\r\n\r\n<h3>RETREAT HIGHLIGHTS</h3>\r\n\r\n<ul>\r\n	<li>Daily Pilates</li>\r\n	<li>Daily yoga and meditation</li>\r\n	<li>Brand new facilities, such as a hot tub and a large outdoor yoga deck</li>\r\n	<li>Delicious, nourishing vegetarian breakfasts/brunches</li>\r\n	<li>5 freshly prepared vegetarian evening meals</li>\r\n	<li>1 rejuvenating full body massage</li>\r\n	<li>7 nights deluxe accommodation</li>\r\n	<li>Free WiFi</li>\r\n</ul>\r\n\r\n<h3>SKILL LEVEL</h3>\r\n\r\n<ul>\r\n	<li>Beginner</li>\r\n	<li>Intermediate</li>\r\n	<li>Advanced</li>\r\n</ul>\r\n', 'BRL', '', 2, '100', '', 1, '', '13,16', 1, '4,6', '<p>At the heart of the retreat program, is exceptional yoga and pilates instruction by a team of dedicated and caring teachers who have a heartfelt and down-to-earth approach to wellbeing.</p>\r\n\r\n<p>Below is a sample schedule.</p>\r\n\r\n<h3>SATURDAY</h3>\r\n\r\n<ul>\r\n	<li>New arrivals</li>\r\n	<li>17.30 - 19.00: Gentle yoga</li>\r\n</ul>\r\n\r\n<h3>SUNDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga and pranayama class</li>\r\n	<li>Time for beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>17.00: Pilates session</li>\r\n	<li>18.00: Guided meditation</li>\r\n</ul>\r\n\r\n<h3>MONDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga</li>\r\n	<li>Time for beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>17.00: Pilates session</li>\r\n</ul>\r\n\r\n<h3>TUESDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>11.00 - 12.00: Pilates Q and A</li>\r\n	<li>Time for inclusive massages, beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>16.30 - 17.00: Understanding yoga</li>\r\n	<li>17.00 - 18.15: Yoga and meditation</li>\r\n</ul>\r\n\r\n<h3>WEDNESDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga and meditation</li>\r\n	<li>Inclusive beach transfer to stunning beach, time to visit Natural Park, sand dunes</li>\r\n	<li>Evening is free to rest and explore</li>\r\n</ul>\r\n\r\n<h3>THURSDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>Time for one on one and private sessions</li>\r\n	<li>17.00 - 18.30: Yin Yoga</li>\r\n</ul>\r\n\r\n<h3>FRIDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>Time for one on one and private sessions.</li>\r\n	<li>17.00: Yoga and pranayama</li>\r\n	<li>18.30: Farewell meditation</li>\r\n</ul>\r\n\r\n<h3>SATURDAY</h3>\r\n\r\n<ul>\r\n	<li>Brunch</li>\r\n	<li>Departures</li>\r\n</ul>\r\n', '<ul>\r\n	<li>7 nights accommodation</li>\r\n	<li>2 daily yoga practice</li>\r\n	<li>Meditations</li>\r\n	<li>Pranayamas and conscious breath work</li>\r\n	<li>1 day trip to Es Vedra</li>\r\n	<li>3 meals per day</li>\r\n</ul>\r\n', '<ul>\r\n	<li>Beauty treatments</li>\r\n	<li>Horse riding</li>\r\n	<li>Massages</li>\r\n</ul>\r\n', '<p>So Jao,</p>\r\n\r\n<p>Uth jao</p>\r\n', 'https://www.youtube.com/watch', 2700, '', '2018-09-14 18:09:33', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -101,11 +103,19 @@ CREATE TABLE `camp_accomodation` (
   `id` int(11) NOT NULL,
   `acc_name` varchar(150) NOT NULL COMMENT 'Accomodation Name',
   `no_room` varchar(10) NOT NULL COMMENT 'No. of Rooms available',
+  `person_num` int(11) NOT NULL,
   `sharing` tinyint(4) NOT NULL COMMENT 'Yes or No',
-  `start_date` date NOT NULL,
   `price` varchar(50) NOT NULL,
-  `camp_id` int(11) NOT NULL
+  `org_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `camp_accomodation`
+--
+
+INSERT INTO `camp_accomodation` (`id`, `acc_name`, `no_room`, `person_num`, `sharing`, `price`, `org_id`) VALUES
+(1, 'Hostel', '3', 2, 1, '14', 5),
+(2, 'Tent', '1', 1, 2, '10', 5);
 
 -- --------------------------------------------------------
 
@@ -159,6 +169,42 @@ CREATE TABLE `camp_images` (
 INSERT INTO `camp_images` (`id`, `name`, `camp_id`, `del_status`) VALUES
 (1, '19092018075849LJ2.jpg', 1, 0),
 (2, '19092018085009IMG-20170817-WA0049.jpg', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `camp_rating`
+--
+
+CREATE TABLE `camp_rating` (
+  `id` int(11) NOT NULL,
+  `camp_id` int(11) NOT NULL COMMENT 'Camp id',
+  `rating` enum('1','2','3','4','5') NOT NULL COMMENT 'Rating out of 5',
+  `comment` tinytext NOT NULL,
+  `given_by` int(11) NOT NULL COMMENT 'Camper_id',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Admin can turn off the visibility of comment and rating, by turning value to 0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `camp_start_dates`
+--
+
+CREATE TABLE `camp_start_dates` (
+  `id` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `camp_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `camp_start_dates`
+--
+
+INSERT INTO `camp_start_dates` (`id`, `start_date`, `camp_id`) VALUES
+(2, '2018-09-27', 1),
+(4, '2018-09-30', 1),
+(5, '2018-09-26', 1);
 
 -- --------------------------------------------------------
 
@@ -820,7 +866,9 @@ CREATE TABLE `organisers` (
 INSERT INTO `organisers` (`id`, `first_name`, `last_name`, `email`, `pass`, `contact`, `add_street`, `add_city`, `add_postal`, `add_state`, `add_country`, `dob`, `p_id`, `p_scan`, `email_verify`, `secret_code`, `status`, `acc_type`, `created`, `b_name`, `b_desc`, `b_photo`, `b_website`, `b_social`, `image`, `b_cert_id`, `b_cert_body`, `b_cert_scan`, `is_owner`, `owner_name`, `owner_email`, `owner_contact`, `owner_card`, `owner_card_image`) VALUES
 (3, 'Rajnish', 'Kumar', 'raj@gm.com', '1537c1dea8479ff52bc68336e323385f', '+10987654321', '', '', '', '', '', '0000-00-00', '', '', 0, 'vCl1534768993', 0, 1, '2018-08-20 18:13:13', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', ''),
 (4, 'Rajnish', 'Kumar', 'ravi@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+919835819214', 'H-23', 'New Delhi', '110025', 'Delhi', '99', '2001-05-01', 'Passport (H20064841)', '300820181231271.jpg', 0, 'frF1534933059', 1, 1, '2018-08-22 15:47:39', 'Ramesh Inn', '<p><span style=\"color:#e74c3c\">We are the best in business.</span></p>\r\n\r\n<p><span style=\"color:#000000\"><strong>We love to cater and help all the travellers</strong></span></p>\r\n', '4_04092018130355.jpg', 'www.ramesh.com', 'facebook.com/rameshinn', '80_1536058199.gif', 'c01-22345-gh', 'Business association of Asia', '4_31082018083951.png', 0, '', '', '', '', ''),
-(5, 'Amit', 'Kashyap', 'abc@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+918287051797', 'Street - 4', 'cansas city', '876543', 'New Jersey', '223', '0000-00-00', '', '', 0, 'eJd1536063410', 1, 2, '2018-09-04 17:46:50', '', '', '', '', '', '', '', '', '', 0, 'Amitabh Kumar', 'amitabh@langjobs.com', '+908765432190', 'RN2144ZX54', '5_06092018090216.jpg');
+(5, 'Amit', 'Kashyap', 'abc@gmail.com', '1537c1dea8479ff52bc68336e323385f', '+918287051797', 'Street - 4', 'cansas city', '876543', 'New Jersey', '223', '0000-00-00', '', '', 0, 'eJd1536063410', 1, 2, '2018-09-04 17:46:50', '', '', '', '', '', '', '', '', '', 0, 'Amitabh Kumar', 'amitabh@langjobs.com', '+908765432190', 'RN2144ZX54', '5_06092018090216.jpg'),
+(6, 'Deepak', 'Singh', 'singh.deepak@gmail.com', '10b8e822d03fb4fd946188e852a4c3e2', '+919835822245', '', '', '', '', '', '0000-00-00', '', '', 0, 'JWP1537444520', 0, 2, '2018-09-20 17:25:20', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', ''),
+(8, 'Amresh', 'Sinha', 'sinhaji@gmail.com', '89b5f7999e6a212b98f11a452bd7fa1a', '345987654321', '', '', '', '', '', '0000-00-00', '', '', 0, 'fkt1537444749', 0, 1, '2018-09-20 17:29:09', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -845,7 +893,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `last_login`, `first_login`, `status`) VALUES
-(3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-09-10 07:38:02', '2018-09-10 07:27:47', 1);
+(3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-09-20 14:22:50', '2018-09-10 07:27:47', 1),
+(4, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DWCtB57EmAuCRS9T9jOPlxSshq4Aw/s96-c/photo.jpg', '2018-09-21 07:35:10', '2018-09-20 14:24:35', 1);
 
 --
 -- Indexes for dumped tables
@@ -879,6 +928,18 @@ ALTER TABLE `camp_for`
 -- Indexes for table `camp_images`
 --
 ALTER TABLE `camp_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `camp_rating`
+--
+ALTER TABLE `camp_rating`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `camp_start_dates`
+--
+ALTER TABLE `camp_start_dates`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -949,13 +1010,13 @@ ALTER TABLE `admin_user`
 -- AUTO_INCREMENT for table `camp`
 --
 ALTER TABLE `camp`
-  MODIFY `camp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `camp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `camp_accomodation`
 --
 ALTER TABLE `camp_accomodation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `camp_for`
@@ -968,6 +1029,18 @@ ALTER TABLE `camp_for`
 --
 ALTER TABLE `camp_images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `camp_rating`
+--
+ALTER TABLE `camp_rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `camp_start_dates`
+--
+ALTER TABLE `camp_start_dates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `camp_type`
@@ -1015,13 +1088,13 @@ ALTER TABLE `meals`
 -- AUTO_INCREMENT for table `organisers`
 --
 ALTER TABLE `organisers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

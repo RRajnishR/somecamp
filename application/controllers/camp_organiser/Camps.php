@@ -99,7 +99,9 @@ class Camps extends CI_Controller {
             'included' => $this->input->post('included'),
             'noincluded' => $this->input->post('notincluded'),
             'things_to_do' => $this->input->post('things_to_do'),
-            'organiser_id' => $this->session->userdata('org_id')
+            'price' => $this->input->post('price'), 
+            'created' => date('Y-m-d H:i:s'),
+            'organiser_id' => $this->session->userdata('org_id'),
         );
         $insert = $this->My_model->insertRecord('camp', $camp_data);
         if($insert){
@@ -110,7 +112,7 @@ class Camps extends CI_Controller {
         } else{
              echo "<script>
                     alert('Something went wrong'); 
-                    //window.location.href = '".base_url('camp_organiser/Camps')."';
+                    window.location.href = '".base_url('camp_organiser/Camps')."';
                 </script>";
         }
     }
@@ -176,7 +178,8 @@ class Camps extends CI_Controller {
             'itinerary' => $this->input->post('program'),
             'included' => $this->input->post('included'),
             'noincluded' => $this->input->post('notincluded'),
-            'things_to_do' => $this->input->post('things_to_do')
+            'things_to_do' => $this->input->post('things_to_do'),
+            'price' => $this->input->post('price')
         );
         $update = $this->My_model->updateRecord('camp', $camp_data, array('camp_id' => $this->input->post('camp_id')));
         if($update>0){
@@ -187,7 +190,7 @@ class Camps extends CI_Controller {
         } else{
              echo "<script>
                     alert('Something went wrong'); 
-                    //window.location.href = '".base_url('camp_organiser/Camps')."';
+                    window.location.href = '".base_url('camp_organiser/Camps')."';
                 </script>";
         }
     }
@@ -309,5 +312,116 @@ class Camps extends CI_Controller {
                     alert('".$message."'); 
                     window.location.href = '".base_url('camp_organiser/Camps/images/').$camp_id."';
                 </script>";
+    }
+    public function addAccomodation(){
+        $data['accomodations'] = $this->My_model->selectRecord('camp_accomodation', '*', array('org_id' => $this->session->userdata('org_id')));
+        $this->load->view('include/org_header');
+		$this->load->view('organiser/accomodation_details', $data);
+        $this->load->view('include/org_footer');
+    }
+    public function save_acc(){
+        $save_data = array(
+            'acc_name' => $this->input->post('acc_name'),
+            'no_room'  => $this->input->post('room_num'),
+            'person_num' => $this->input->post('num_person'),
+            'sharing' => $this->input->post('sharing'),
+            'price' => $this->input->post('price'),
+            'org_id' => $this->session->userdata('org_id'),
+        );
+        $insert = $this->My_model->insertRecord('camp_accomodation', $save_data);
+        if($insert){
+            echo "<script>
+                    alert('Accomodation Created successfully'); 
+                    window.location.href = '".base_url('camp_organiser/Camps/addAccomodation')."';
+                </script>";
+        } else{
+             echo "<script>
+                    alert('Something went wrong'); 
+                    window.location.href = '".base_url('camp_organiser/Camps/addAccomodation')."';
+                </script>";
+        }
+    }
+    public function update_acc($id){
+        $update_data = array(
+            'acc_name' => $this->input->post('acc_name'),
+            'no_room'  => $this->input->post('room_num'),
+            'person_num' => $this->input->post('num_person'),
+            'sharing' => $this->input->post('sharing'),
+            'price' => $this->input->post('price'),
+            'org_id' => $this->session->userdata('org_id'),
+        );
+        $updt = $this->My_model->updateRecord('camp_accomodation', $update_data, array('id' => $id));
+        if($updt>0){
+            echo "<script>
+                    alert('Accomodation detail updates successfully'); 
+                    window.location.href = '".base_url('camp_organiser/Camps/addAccomodation')."';
+                </script>";
+        } else {
+           echo "<script>
+                    alert('Something went wrong, try again Later'); 
+                    window.location.href = '".base_url('camp_organiser/Camps/addAccomodation')."';
+                </script>"; 
+        }
+    }
+    public function addStartdate($camp_id){
+        $data['camp_id'] = $camp_id;
+        $data['all_date'] = $this->My_model->selectRecord('camp_start_dates', '*', array('camp_id' => $camp_id));
+        $this->load->view('include/org_header');
+		$this->load->view('organiser/camp_dates', $data);
+        $this->load->view('include/org_footer');
+    }
+    public function save_date($camp_id){
+        
+        $date = $this->input->post('sdate');
+        $check_date = $this->My_model->selectRecord('camp_start_dates', '*', array('start_date' => $date, 'camp_id'=>$camp_id));
+        if($check_date){
+            echo "<script>
+                alert('Duplicate start dates are not allowed!'); 
+                window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
+                </script>";
+        } else {
+            if (new DateTime() > new DateTime($date)) {
+                 echo "<script>
+                        alert('Please select a valid and future date.'); 
+                        window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
+                    </script>";
+                } else {
+
+                    $add_data = array(
+                        'start_date' =>$date,
+                        'camp_id' => $camp_id
+                    );
+
+                    $insert = $this->My_model->insertRecord('camp_start_dates', $add_data);
+                    if($insert){
+                        echo "<script>
+                                alert('New Start Date added successfully'); 
+                                window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
+                            </script>";
+                    } else{
+                         echo "<script>
+                                alert('Something went wrong'); 
+                                window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
+                            </script>";
+                    }
+                }   
+        }
+    }
+    public function del_start_date($id){
+        $where = array('id' => $this->input->post('date_id'));
+        $del = $this->My_model->deleteRecordPerm('camp_start_dates',$where);
+        if($del){
+            echo "<script>
+                    alert('Date Deleted'); 
+                    window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$id."';
+                </script>";
+        }
+    }
+    public function camp_accomodation($camp_id){
+        $data['camp'] = $this->My_model->selectRecord('camp', '*', array('camp_id' => $camp_id));
+        $data['camp_by_organiser'] = $this->My_model->selectRecord('camp_accomodation', '*', array('org_id' => $this->session->userdata('org_id')));
+        $this->load->view('include/org_header');
+		$this->load->view('organiser/accomodation', $data);
+        $this->load->view('include/org_footer');
     }
 }

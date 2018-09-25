@@ -29,6 +29,7 @@
                         1. Please Upload only image files. Accepted file formats are *.jpg, *.png etc. <br/>
                         2. Try to upload good resolution images with size less than 1 MB. <br/>
                         3. Images with other campers doing some activity gets more attention. <br/>
+                        4. Upload images of food, Nature, accomodations of this camp. <br/>
                     </span>
                   </form> 
                 </div>

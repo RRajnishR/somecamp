@@ -331,12 +331,21 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-3">Camp Price</label>
+                            <div class="col-md-6 col-xs-11">
+                               <input type="number" class="form-control" name="price"/>
+                            </div>
+                            <div class="col-md-2">
+                                <span class="help-block">Help: Keep in mind that the price listed here should not exceed the price listed on your site.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-3">&nbsp;</label>
                             <div class="col-md-4 col-xs-11">
                                <button class="btn btn-success" type="submit"> Create new Camp <i class="fa fa-check-circle"></i></button>
                             </div>
                             <div class="col-md-4">
-                                <span class="help-block">Tip: List of other things which campers can do near your camp</span>
+                                <span class="help-block">Tip: Click on update button once you are satisfied with all the information you have provided about this camp.</span>
                             </div>
                         </div>
                     </form>

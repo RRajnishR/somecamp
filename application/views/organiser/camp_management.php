@@ -20,7 +20,7 @@
                         </div>
                         <br>
                     </div>
-                    <div class="custom-check goleft mt">
+                    <div class="custom-check goleft mt table-responsive">
                        <span class="help-block" style="margin-left:2%; font-weight:bold;">
                             **Help: Hover over buttons/icons to get more information. Upload Video link / Add Images of your camp. This helps our admin to verify your camp asap and Visitors like camp with some good Images.**
                        </span>
@@ -31,7 +31,7 @@
                               <tr>
                                   <th>#</th>
                                   <th>Camp Name</th>
-                                  <th>Camp Details [Edit] </th>
+                                  <th>Manage Extra Details </th>
                                   <th>Created On</th>
                                   <th>Status / Action</th>
                               </tr>
@@ -43,8 +43,7 @@
                                 <tr>
                                     <td><?php echo $count; ?>.</td>
                                     <td><?php echo $c->title; ?></td>
-                                    <td> <a class="btn btn-xs btn-info" title="Edit this camp details" href="<?php echo base_url() ?>camp_organiser/Camps/editCamp/<?php echo $c->camp_id; ?>"><i class="fa fa-file-text-o"></i></a>
-                                        <?php 
+                                    <td><?php 
                                             if(!$c->video_link==""){
                                                 if(filter_var($c->video_link, FILTER_VALIDATE_URL) === FALSE){
                                                     echo '<a class="btn btn-xs btn-warning" href="'.base_url().'camp_organiser/Camps/video/'.$c->camp_id.'" title="Check Your Link again, If it works, ignore this warning"><i class="fa fa-video-camera"></i></a>';
@@ -55,8 +54,9 @@
                                                 echo '<a class="btn btn-xs btn-danger" href="'.base_url().'camp_organiser/Camps/video/'.$c->camp_id.'" title="You have not added any video link of your camp"><i class="fa fa-video-camera"></i></a>';
                                             }
                                         ?>
-                                         <a class="btn btn-xs btn-info" title="Add Images of this camp" href="<?php echo base_url() ?>camp_organiser/Camps/images/<?php echo $c->camp_id; ?>"><i class="fa fa-camera-retro"></i></a> 
-                                         <a href="" class="btn btn-xs btn-sm btn-success" title="Add accomodation, pricing and camp starting dates"><i class="fa fa-calendar"></i> | <i class="fa fa-dollar"></i></a> 
+                                         <a class="btn btn-xs btn-info" title="Manage Images of this camp" href="<?php echo base_url() ?>camp_organiser/Camps/images/<?php echo $c->camp_id; ?>"><i class="fa fa-camera-retro"></i></a> 
+                                         <a class="btn btn-xs btn-info" href="<?php echo base_url(); ?>camp_organiser/Camps/addStartdate/<?php echo $c->camp_id; ?>" title="Add Camp Start Date(s)"><i class="fa fa-calendar"></i></a> 
+                                         <a href="<?php echo base_url() ?>camp_organiser/Camps/camp_accomodation/<?php echo $c->camp_id; ?>" class="btn btn-xs btn-success" title="Link Accomodations to this camp"><i class="fa fa-home"></i></a>
                                     </td>
                                     <td><?php echo $c->created; ?></td>
                                     <td><?php 
@@ -66,7 +66,7 @@
                                             } else {
                                                 echo "<i class='fa fa-times-circle' title='Awaiting Approval'></i>";
                                             }
-                                        ?> &nbsp; <a class="btn btn-xs btn-danger confirmation" title="delete this camp" href="<?php echo base_url() ?>camp_organiser/Camps/deletecamp/<?php echo $c->camp_id; ?>"><i class="fa fa-trash"></i></a>
+                                        ?> &nbsp; <a class="btn btn-xs btn-primary" title="Edit this camp details" href="<?php echo base_url() ?>camp_organiser/Camps/editCamp/<?php echo $c->camp_id; ?>"><i class="fa fa-file-text-o"></i></a> &nbsp; <a class="btn btn-xs btn-danger confirmation" title="delete this camp" href="<?php echo base_url() ?>camp_organiser/Camps/deletecamp/<?php echo $c->camp_id; ?>"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                               <?php  

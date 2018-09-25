@@ -101,19 +101,19 @@
             <a href="<?php echo base_url() ?>camp_organiser/Camps">
               <i class="fa fa-th-large"></i>
               <span>Camps</span>
-              </a>
+            </a>
           </li>
           <li class="mt">
             <a href="<?php echo base_url() ?>camp_organiser/Enquiries">
               <i class="fa fa-comments-o"></i>
               <span>Enquiries</span>
-              </a>
+            </a>
           </li>
           <li class="mt">
-            <a href="<?php echo base_url() ?>camp_organiser/Camp">
-              <i class="fa fa-key"></i>
-              <span>Change Password</span>
-              </a>
+            <a href="<?php echo base_url() ?>camp_organiser/Camp/" title="Manage Accomodations Here">
+              <i class="fa fa-home"></i>
+              <span>Accomodations</span>
+            </a>
           </li>
           <?php 
             } else { ?>
