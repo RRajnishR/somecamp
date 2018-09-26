@@ -8,9 +8,7 @@
     }
     .box{
         width: 100%;
-        border: 1px solid grey;
         margin-bottom: 4px;
-        background: #fff;
     }
     .box{
         max-height: 300px;
@@ -25,7 +23,7 @@
 
     .box::-webkit-scrollbar
     {
-        width: 6px;
+        width: 3px;
         background-color: #F5F5F5;
     }
 
@@ -35,7 +33,7 @@
     }
     .inputGroup {
       display: block;
-      margin: 10px 0;
+      margin: 5px 0;
       position: relative;
     }
     .inputGroup label {
@@ -43,7 +41,7 @@
       width: 100%;
       display: block;
       text-align: left;
-      color: #81af96;
+      color: #7C8086;
       cursor: pointer;
       position: relative;
       z-index: 2;
@@ -93,8 +91,8 @@
       opacity: 1;
     }
     .inputGroup input:checked ~ label:after {
-      background-color: #54E0C7;
-      border-color: #54E0C7;
+      background-color: #7C8086;
+      border-color: #7C8086;
     }
     .inputGroup input {
       width: 32px;
@@ -118,9 +116,12 @@
       line-height: 20px;
     }
     .form h2{
+        font-family: sans-serif;
+        text-transform:uppercase;
         font-size: 1em;
-        font-weight: 800;
+        font-weight: 600;
         margin-bottom: 0px;
+        border-bottom: 1px solid #969AA1;
     }
     table.camp_box{
         border: 1px solid #37d54c;
@@ -130,7 +131,7 @@
         width: 33.33%;
     }
     td.camp_view_button, td.camp_duration, td.camp_rate, td.rating{
-        text-align: right;
+        text-align: center;
     }
 </style>
 <script>
@@ -161,50 +162,63 @@
         </div>
     </div>
     <div class="main" id="camps" style="background-color:#f7f7f7; margin-top:5px; margin-bottom:5px;">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 col-lg-3">
+                  <form class="form">
+                   <h2>Camp Type</h2>
                    <div class="box">
-                      <form class="form">
-                          <h2>Camp Type</h2>
-                          <?php 
-                            foreach($camp_type as $ct){ ?>
-                            <div class="inputGroup">
-                                <input id="<?php echo "ct_".$ct->id; ?>" name="camp_type" type="checkbox"/>
-                                <label for="<?php echo "ct_".$ct->id; ?>"><?php echo $ct->ctype; ?></label>
-                            </div> 
-                          <?php
-                            }
-                          ?>                         
-                        </form> 
+                      <?php 
+                        foreach($camp_type as $ct){ ?>
+                        <div class="inputGroup">
+                            <input id="<?php echo "ct_".$ct->id; ?>" name="camp_type" type="checkbox"/>
+                            <label for="<?php echo "ct_".$ct->id; ?>"><?php echo $ct->ctype; ?></label>
+                        </div> 
+                      <?php
+                        }
+                      ?>                          
                    </div>
+                   <h2>Camp Best For</h2>
                    <div class="box">
-                      <form class="form">
-                          <h2>Camp Best For</h2>
-                          <?php 
-                            foreach($camp_for as $cf){ ?>
-                            <div class="inputGroup">
-                                <input id="<?php echo "cf_".$cf->id; ?>" name="camp_for" type="checkbox"/>
-                                <label for="<?php echo "cf_".$cf->id; ?>"><?php echo $cf->name; ?></label>
-                            </div> 
-                          <?php
-                            }
-                          ?>                         
-                        </form> 
+                      <?php 
+                        foreach($camp_for as $cf){ ?>
+                        <div class="inputGroup">
+                            <input id="<?php echo "cf_".$cf->id; ?>" name="camp_for" type="checkbox"/>
+                            <label for="<?php echo "cf_".$cf->id; ?>"><?php echo $cf->name; ?></label>
+                        </div> 
+                      <?php
+                        }
+                      ?>                         
                    </div>
+                   <h2>Preferred Date</h2>
                    <div class="box">
-                      <input type="text" class="form-control date-picker" value="" placeholder="select Date" data-datepicker-color="primary">
+                      <input type="text" class="form-control date-picker" value="" placeholder="select Date" data-datepicker-color="primary" style="margin-top:4px;">
                    </div>
+                    </form>
                 </div>
                 <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
                     <?php if(is_array($camps)){ 
-                            foreach($camps as $c){ ?>
-                            
+                            echo "<span class='form'><h2 style='text-transform:none;'>".count($camps)." camp(s) found</h2></span>";
+                            foreach($camps as $c){ ?>                        
                             <div class="row">
-                                <div class="col-xs-12">
+                                <div class="col-md-12">
                                     <table class="camp_box table-borderless">
                                         <tr>
-                                            <td rowspan="4" class="camp_image"></td>
+                                           <?php 
+                                                $images = $this->My_model->selectRecord('camp_images', '*', array('camp_id' => $c->camp_id, 'del_status'=>0));
+                                            ?>
+                                            <td rowspan="4" class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-speed="100" style="cursor:pointer;">
+                                                <?php 
+                                                    if(is_array($images)){
+                                                        foreach($images as $i){ ?>
+                                                            <img src="<?php echo base_url(); ?>assets/uploads/organisers/camp_images/<?php echo $i->name; ?>" alt="<?php echo $c->title; ?>"/>
+                                                <?php
+                                                        }
+                                                    } else {
+                                                        echo "<img src='".base_url()."assets/uploads/organisers/camp_images/default.jpg' />";
+                                                    }
+                                                ?>
+                                            </td>
                                             <td class="camp_name"><?php echo $c->title; ?></td>
                                             <td class="rating">
                                                 <span class="far fa-star"></span>
@@ -220,13 +234,25 @@
                                         </tr>
                                         <tr> 
                                             <td></td>
-                                            <td class="camp_duration"><?php echo $c->duration." days /".($c->duration - 1)." Nights"; ?></td>
+                                            <td class="camp_duration"><?php echo $c->duration." days / ".($c->duration - 1)." Nights"; ?></td>
                                         </tr>
                                         <tr>
                                             <td class="camp_speciality">
-                                                <?php echo "<i class='far fa-comment-dots'></i> Instruction language: English <br/>"; ?>
-                                                <?php echo "<i class='fas fa-car'></i> Airport Pickup available <br/>"; ?>
-                                                <?php echo "<i class='fas fa-coffee'></i> Free Drinks available"; ?>
+                                                <?php 
+                                                    if(!$c->main_lang==""){
+                                                        $lang = $this->My_model->selectRecord('langs', '*', array('id' => $c->main_lang));
+                                                        echo "<i class='far fa-comment-dots'></i> Instruction language: ".$lang[0]->name." <br/>";
+                                                    }
+                                                    if($c->pickup_service=="1"){
+                                                        echo "<i class='fas fa-car'></i> Airport Pickup available <br/>";
+                                                    }
+                                                    if($c->inc_meal=="1"){
+                                                        echo "<i class='fas fa-utensils'></i> Free Meals available <br/>";
+                                                    }
+                                                    if($c->inc_drink=="1"){
+                                                        echo "<i class='fas fa-coffee'></i> Free Drinks available";;
+                                                    }
+                                                ?>
                                             </td>
                                             <td class="camp_view_button"><a class="btn btn-primary" href="<?php echo base_url(); ?>Camp/view/<?php echo $c->camp_id; ?>">See Details <i class="fas fa-eye"></i></a></td>
                                         </tr>

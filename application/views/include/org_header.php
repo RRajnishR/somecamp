@@ -110,7 +110,7 @@
             </a>
           </li>
           <li class="mt">
-            <a href="<?php echo base_url() ?>camp_organiser/Camp/" title="Manage Accomodations Here">
+            <a href="<?php echo base_url() ?>camp_organiser/Camps/addAccomodation" title="Manage Accomodations Here">
               <i class="fa fa-home"></i>
               <span>Accomodations</span>
             </a>

@@ -5,7 +5,7 @@
                 <h3><i class="fa fa-th-large"></i> Manage Your Camps</h3>
                 <!--  BASIC PROGRESS BARS -->
                 <div class="showback">
-                    <a class="btn btn-info" href="<?php echo base_url() ?>camp_organiser/Camps/new_camp"><i class="fa fa-plus"></i> Add new camp</a>
+                    <a class="btn btn-info" href="<?php echo base_url() ?>camp_organiser/Camps/new_camp"><i class="fa fa-plus"></i> Add new camp</a> &nbsp; <a href="#" title="What to do after adding a camp" style="float:right;margin-top:0.5%;" data-toggle="modal" data-target="#help"><i class="fa fa-2x fa-question-circle"></i></a>
                 </div>
             </div>
             <!-- /col-lg-6 -->
@@ -85,3 +85,23 @@
     </section>
     <!-- /wrapper -->
 </section>
+<div id="help" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style="background:none;">
+      <div class="modal-body">
+        <div class="col-lg-12 col-md-12 col-sm-12 mb">
+            <div class="steps pn">
+              <input type="submit" value="Provide Following information for every camp" id="submit">
+              <label><i class="fa fa-video-camera"></i> Youtube Video Link Of your Camp</label>
+              <label><i class="fa fa-camera-retro"></i> Images of your Camp</label>
+              <label><i class="fa fa-calendar"></i> Starting dates of the camp.</label>
+              <label><i class="fa fa-home"></i> Accomodations available for the camp.</label>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>

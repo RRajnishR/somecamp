@@ -96,6 +96,7 @@
     <script src="<?php echo base_url(); ?>assets/js/intlTelInput.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/utils.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+    <script src="http://malsup.github.com/jquery.cycle2.js"></script>
     <!--  Google Login Start -->
     <script>
     function onSignIn(googleUser) {
@@ -155,6 +156,15 @@
 //    $(document).ready(function() {
 //      nowuiKit.initSliders();
 //    });
+    $('.cycle-slideshow').cycle('pause');
+    $('.cycle-slideshow').hover(function () {
+        //mouse enter - Resume the slideshow
+        $('.cycle-slideshow').cycle('resume');
+    },
+    function () {
+        //mouse leave - Pause the slideshow
+        $('.cycle-slideshow').cycle('pause');
+    });
     </script>
 </body>
 

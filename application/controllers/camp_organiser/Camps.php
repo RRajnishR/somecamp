@@ -418,10 +418,34 @@ class Camps extends CI_Controller {
         }
     }
     public function camp_accomodation($camp_id){
+        $data['camp_id'] = $camp_id;
         $data['camp'] = $this->My_model->selectRecord('camp', '*', array('camp_id' => $camp_id));
         $data['camp_by_organiser'] = $this->My_model->selectRecord('camp_accomodation', '*', array('org_id' => $this->session->userdata('org_id')));
         $this->load->view('include/org_header');
 		$this->load->view('organiser/accomodation', $data);
         $this->load->view('include/org_footer');
+    }
+    public function camp_acc($camp_id){
+        $acc = "";
+        if($this->input->post('acc')){
+           $acc = implode(',',$this->input->post('acc'));
+        }
+        
+        $update_data = array(
+            'accomodation' => $acc
+        );
+        
+        $updt = $this->My_model->updateRecord('camp', $update_data, array('camp_id' => $camp_id));
+        if($updt>0){
+            echo "<script>
+                    alert('Accomodation detail for this camp updated successfully'); 
+                    window.location.href = '".base_url('camp_organiser/Camps')."';
+                </script>";
+        } else {
+           echo "<script>
+                    alert('Something went wrong, try again Later'); 
+                    window.location.href = '".base_url('camp_organiser/Camps/camp_accomodation/').$camp_id."';
+                </script>"; 
+        }
     }
 }
