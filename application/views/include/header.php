@@ -182,7 +182,7 @@
 
 <body class="index-page sidebar-collapse">
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="1">
+  <nav id="page_menu" class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent" color-on-scroll="1">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="<?php echo base_url(); ?>" rel="tooltip" title="Bookourcamp.com" data-placement="bottom">

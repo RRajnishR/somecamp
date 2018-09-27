@@ -254,7 +254,7 @@
                                                     }
                                                 ?>
                                             </td>
-                                            <td class="camp_view_button"><a class="btn btn-primary" href="<?php echo base_url(); ?>Camp/view/<?php echo $c->camp_id; ?>">See Details <i class="fas fa-eye"></i></a></td>
+                                            <td class="camp_view_button"><a class="btn btn-primary" href="<?php echo base_url(); ?>Camp/view/<?php echo $c->camp_id."-".htmlentities(str_replace(',','',$c->title)); ?>">See Details <i class="fas fa-eye"></i></a></td>
                                         </tr>
                                     </table>
                                 </div>

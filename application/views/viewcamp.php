@@ -1,10 +1,19 @@
+<style>
+    .navbar.navbar-transparent {
+        background: #f96332 !important;
+        padding: 0px !important;
+    }
+</style>
 <script>
     var page_name = "camps";
 </script>
+<?php 
+    $this_camp = $camp_data[0];
+?>
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/slider/normalize.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/slider/ideal-image-slider.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/slider/themes/default/default.css">
-<div class="container">
+<div class="container" style="margin-top:5vw;">
     <div class="row">
         <div class="col-md-12"> 
             <h1>7 Days Wellness and Yoga Retreat in Bali, Indonesia</h1>
@@ -16,30 +25,20 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div id="slider">
-                        <img src="https://via.placeholder.com/700x334?text=Camp+image+1" alt="Slide 1" />
-                        <img src="https://via.placeholder.com/700x334?text=Camp+image+2" alt="Slide 2" />
-                        <img src="https://via.placeholder.com/700x334?text=Camp+image+3" alt="Slide 3" />
-                        <img src="https://via.placeholder.com/700x334?text=Camp+image+4" alt="Slide 4" />
+                        <?php 
+                            if(is_array($pics)){
+                                foreach($pics as $p){ ?>
+                                    <img src="<?php echo base_url(); ?>assets/uploads/organisers/camp_images/<?php echo $p->name ?>" alt="<?php echo "Image of ".$this_camp->title; ?>"/>
+                        <?php
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
-                <div class="col-sm-12 introduction">
-                    <h3>Cleansing Yoga Retreat Bali</h3>
-                    Expert tip: This is one of the most popular yoga retreats offered Indonesia. <br/> <br/>
-
-                    Santhika Retreat Center detoxify continuously throughout life. They process food, thoughts, and all forms of energy. When that flow is continuous and clear, we are steady and flexible. The trouble is that we accumulate more than we process. We become weighted down under the ash of metabolism and the remnants of old emotions. This set systematically moves the energy of the body and mind to keep you light and vitalized. <br/>
-
-                    RETREAT HIGHLIGHTS
-                    
-                    <ul>
-                        <li>Daily yoga classes</li>
-                        <li>Daily meditation sessions</li>
-                        <li>Relax your body in the spa during detoxing programs</li>
-                        <li>Enjoy healthy organic food and drinks with a special diet prepared for you</li>
-                        <li>Have a good time on trekking tours during the retreat</li>
-                        <li>6 nights accommodation</li>
-                        <li>Daily organic meals</li>
-                    </ul>
-                    
+                <div class="col-sm-12 introduction" >
+                    <?php 
+                        echo $this_camp->intro;
+                    ?>
                 </div>
                 <div class="col-sm-12" style="background:white; margin-bottom:10px; padding-bottom: 10px;">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

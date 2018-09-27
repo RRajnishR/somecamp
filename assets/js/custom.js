@@ -127,7 +127,10 @@ if(page_name=="host_signup"){
 }
 //Js For View Camp page
 if(page_name=="camps"){
-    var slider = new IdealImageSlider.Slider('#slider');
+    var slider = new IdealImageSlider.Slider({
+        selector: '#slider',
+	    height: 400
+    });
     slider.addBulletNav();
     slider.start();
 }
