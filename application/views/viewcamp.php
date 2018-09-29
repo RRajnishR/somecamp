@@ -41,7 +41,167 @@
     }
     .intro{
         margin-top: 2vw;
+        font-size: 12px;
+        font-weight: bold;
     }
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <i class="fa fa-comment"></i> Section 1
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis ac leo vel rutrum. Integer varius tristique magna vel dictum. Vestibulum augue magna, convallis id velit a, porttitor fermentum sem.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="fa fa-link"></i>  Section 2
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis ac leo vel rutrum. Integer varius tristique magna vel dictum. Vestibulum augue magna, convallis id velit a, porttitor fermentum sem.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="fa fa-bars"></i>  Section 3
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis ac leo vel rutrum. Integer varius tristique magna vel dictum. Vestibulum augue magna, convallis id velit a, porttitor fermentum sem.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+a:hover, a:focus{
+    outline: none;
+    text-decoration: none;
+}
+#accordion .panel{
+    border:0px none;
+    border-radius: 0px;
+    box-shadow: none;
+    margin-bottom:15px;
+}
+#accordion .panel-heading{
+    padding: 0;
+    border-radius: 0px;
+}
+#accordion .panel-title a{
+    position: relative;
+    display: block;
+    padding: 15px 10px 15px 55px;
+    background: #fff;
+    text-transform:uppercase;
+    transition: all 0.4s ease 0s;
+}
+#accordion .panel-title a i,
+#accordion .panel-title a.collapsed i{
+    position: absolute;
+    top:0;
+    left:-26px;
+    color: #CAD079;
+    font-size: 17px;
+    background: #233859;
+    padding: 15px 19px;
+    border-radius:4px;
+    border:0 none;
+}
+#accordion .panel-title a.collapsed i{
+    background:#fff;
+    color:#333;
+    border:1px solid #d3d3d3;
+}
+#accordion .panel-title a.collapsed:hover i{
+    background:#233859;
+    color:#fff;
+}
+#accordion .panel-body{
+    padding-left:50px;
+    color:#333;
+    line-height: 24px;
+    border-top: 0px none;
+    border-left:1px dashed #233859;
+}
+@media only screen and (max-width: 768px){
+    #accordion .panel-title a i,
+    #accordion .panel-title a.collapsed i{
+        left:-10px;
+    }
+    #accordion .panel-body{
+        padding-left: 15px;
+        margin-left: 15px;
+    }
+}
+    .element{
+        padding-bottom: 15px;
+    }
+    .tag {
+  background: #eee;
+  border-radius: 3px 0 0 3px;
+  color: #999;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+}
+
+.tag::before {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: '';
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.tag::after {
+  background: #fff;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid #eee;
+  border-top: 13px solid transparent;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag:hover {
+  background-color: crimson;
+  color: white;
+}
+
+.tag:hover::after {
+   border-left-color: crimson; 
+}
 </style>
 <script>
     var page_name = "camps";
@@ -79,52 +239,177 @@
                     <?php 
                         echo $this_camp->intro;
                     ?>
+                    <hr/>
+                    <?php 
+                        if(!$this_camp->camp_type==""){
+                            $types = $this->My_model->selectRecord('camp_type', '*', array('id IN ('.$this_camp->camp_type.')' => NULL));
+                            foreach($types as $t) {
+                                echo "<a href='javascript:void(0)' class='tag'>".$t->ctype."</a>";
+                            }
+                        }
+                    ?>
                 </div>
                 <div class="col-sm-12">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default shadow">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                        <i class="fab fa-fort-awesome-alt"></i>Accomodation
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod in mi quis dapibus. Sed eros orci, ultrices et lacus rhoncus, ultrices suscipit libero. Nunc laoreet, ligula mattis imperdiet convallis, sapien nisi auctor dui, nec scelerisque nulla massa et magna.
+                       <?php 
+                            if(!$this_camp->facilities == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="AF">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#facilities" aria-expanded="true" aria-controls="facilities">
+                                            <i class="fas fa-smile-beam"></i> Available Facilities
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="facilities" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="AF">
+                                    <div class="panel-body">
+                                       <div class="row">
+                                        <?php 
+                                            $flist = $this->My_model->selectRecord('facilities', '*', array('id IN ('.$this_camp->facilities.')' => NULL));
+                                            foreach($flist as $f){ ?>
+                                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 element"><?php echo "<i class='far fa-arrow-alt-circle-right'></i> ".$f->facilityname; ?></div>
+                                        <?php 
+                                            }
+                                        ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel panel-default shadow">
-                           
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <i class="far fa-calendar-alt"></i> Program
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod in mi quis dapibus. Sed eros orci, ultrices et lacus rhoncus, ultrices suscipit libero. Nunc laoreet, ligula mattis imperdiet convallis, sapien nisi auctor dui, nec scelerisque nulla massa et magna.
+                        <?php
+                            }
+                        ?>
+                        <?php
+                            if(!$this_camp->other_lang == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="AL">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#other_lang" aria-expanded="true" aria-controls="other_lang">
+                                            <i class="fas fa-language"></i> Other Languages
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="other_lang" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="AL">
+                                    <div class="panel-body">
+                                       <div class="row">
+                                        <?php 
+                                            $llist = $this->My_model->selectRecord('langs', '*', array('id IN ('.$this_camp->other_lang.')' => NULL));
+                                            foreach($llist as $l){ ?>
+                                                <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 element"><?php echo "<i class='far fa-hand-point-right'></i> ".$l->name." (".$l->nativeName.")"; ?></div>
+                                        <?php 
+                                            }
+                                        ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel panel-default shadow">
-                            <div class="panel-heading" role="tab" id="headingThree">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                        <i class="fas fa-location-arrow"></i> Camp Location
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse euismod in mi quis dapibus. Sed eros orci, ultrices et lacus rhoncus, ultrices suscipit libero. Nunc laoreet, ligula mattis imperdiet convallis, sapien nisi auctor dui, nec scelerisque nulla massa et magna.
+                        <?php   
+                            }
+                        ?>
+                        <?php
+                            if(!$this_camp->lot_long == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="loc">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#location" aria-expanded="true" aria-controls="location">
+                                            <i class="fas fa-location-arrow"></i> Location
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="location" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="loc">
+                                    <div class="panel-body">
+                                       <div class="row">
+                                            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                                <iframe style="width:80%; height:300px;" src = "https://maps.google.com/maps?q=<?php echo str_replace(" ", "", $this_camp->lot_long); ?>&hl=es;z=14&amp;output=embed"></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php   
+                            }
+                        ?>
+                         <?php
+                            if(!$this_camp->camp_for == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="camp_for">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#bsf" aria-expanded="true" aria-controls="bsf">
+                                            <i class="fas fa-check-double"></i> Best Suited For
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="bsf" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="camp_for">
+                                    <div class="panel-body">
+                                       <div class="row">
+                                        <?php 
+                                        $camp_for = $this->My_model->selectRecord('camp_for', '*', array('id IN ('.$this_camp->camp_for.')' => NULL));
+                                        foreach($camp_for as $c){ ?>
+                                            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 element"><?php echo "<i class='fas fa-chevron-circle-right'></i> ".$c->name; ?></div>
+                                        <?php 
+                                            }
+                                        ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
+                        <?php
+                            if(!$this_camp->pickup_service == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="ps">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#pickup" aria-expanded="true" aria-controls="pickup">
+                                            <?php 
+                                                $ps = $this_camp->pickup_service;
+                                                if($ps == '1'){
+                                                    echo '<i class="fas fa-plane-arrival"></i> Free Airport Pickup' ;
+                                                } else if($ps == '2') {
+                                                    echo '<i class="fas fa-shuttle-van"></i> <sup style="text-decoration:none;">*</sup>Pickup Available' ;
+                                                } else if($ps == '3'){
+                                                    echo '<i class="fas fa-map-marked-alt"></i> How to reach here' ;
+                                                }
+                                            ?>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="pickup" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="ps">
+                                    <div class="panel-body">
+                                       <div class="row">
+                                            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 element">
+                                                <?php 
+                                                    if(!$this_camp->near_airport==""){ ?>
+                                                        <ul class="list-group">
+                                                          <li class="list-group-item list-group-item-success" style="margin-right:5%;"><i class="fas fa-plane"></i> Nearest Airport: <?php echo $this_camp->near_airport; ?></li>  
+                                                        </ul> <br/>
+                                                <?php 
+                                                    }
+                                                ?>
+                                                <?php
+                                                    if($ps == '1'){
+                                                        echo "Specifications will be conveyed to you via e-mail.";
+                                                    } else if($ps == '2') { 
+                                                        echo "Pick up service: ".$this_camp->pickup_cost."/- ".$this_camp->currency." extra per person";
+                                                    } else if($ps == '3'){ ?>
+                                                        <b>Directions: </b>
+                                                        <?php 
+                                                            if(!$this_camp->camp_direction==""){
+                                                                echo $this_camp->camp_direction;
+                                                            } else {
+                                                                echo "Directions will be updated shortly";
+                                                    } ?>
+                                                <?php   
+                                                    }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
                     </div>
                 </div>
             </div>            
