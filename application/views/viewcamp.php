@@ -278,6 +278,27 @@ a:hover, a:focus{
                         <?php
                             }
                         ?>
+                        
+                        <?php
+                            if(!$this_camp->itinerary == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="prog">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#iti" aria-expanded="true" aria-controls="iti">
+                                            <i class="far fa-calendar-alt"></i> Program / Itinerary
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="iti" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="prog">
+                                    <div class="panel-body">
+                                        <?php echo $this_camp->itinerary; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
+                        
                         <?php
                             if(!$this_camp->other_lang == ""){ ?>
                             <div class="panel panel-default shadow">
@@ -355,6 +376,166 @@ a:hover, a:focus{
                         <?php   
                             }
                         ?>
+                        
+                        <?php
+                            if(!$this_camp->inc_meal == ''){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="inc_meal">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#food" aria-expanded="true" aria-controls="food">
+                                            <i class="fas fa-utensils"></i> Food
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="food" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="inc_meal">
+                                    <div class="panel-body">
+                                       <div class="row">
+                                            <?php
+                                                if($this_camp->inc_meal=='1'){
+                                                    ?>
+                                                       <ul class="list-group col-md-12">
+                                                          <li class="list-group-item list-group-item-success" style="margin-right:5%;"><i class="fab fa-first-order-alt"></i> Food Included! </li>  
+                                                        </ul> 
+                                                        <br/> 
+                                                    <?php
+                                                    if(!$this_camp->meal_list==""){
+                                                        $meals = $this->My_model->selectRecord('meals', '*', array('id IN ('.$this_camp->meal_list.')' => NULL));
+                                                        echo "<b class='col-md-12'>Included Food: </b>";
+                                                        foreach($meals as $m){
+                                                            ?>
+                                                             <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12 element"><?php echo "<i class='fas fa-utensil-spoon'></i> ".$m->meal_type; ?></div>
+                                                            <?php
+                                                        }
+                                                        $food_type = $this->My_model->selectRecord('food_type', '*', array('id IN ('.$this_camp->food_type.')' => NULL));
+                                                        echo "<b class='col-md-12'>Supported Food Type: </b> <br/>";
+                                                        foreach($food_type as $ft){
+                                                            ?>
+                                                            <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 element"><?php echo "<i class='fas fa-utensil-spoon'></i> ".$ft->food_type; ?></div>
+                                                            <?php
+                                                        }
+                                                    }   
+                                                } else {
+                                                    ?>
+                                                    <ul class="list-group col-md-12">
+                                                      <li class="list-group-item list-group-item-success" style="margin-right:5%;"><i class="fab fa-first-order-alt"></i> Food Not Included! </li>  
+                                                    </ul> 
+                                                    <br/> 
+                                                    <?php
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
+                        
+                        <?php
+                            if(!$this_camp->inc_drink == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="drinks">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#drnk" aria-expanded="true" aria-controls="drnk">
+                                            <i class="fas fa-cocktail"></i> Drinks
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="drnk" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="drinks">
+                                    <div class="panel-body">
+                                       <div class="row">
+                                            <?php
+                                            if($this_camp->inc_drink=="1"){
+                                                ?>
+                                                    <ul class="list-group col-md-12">
+                                                          <li class="list-group-item list-group-item-success" style="margin-right:5%;"><i class="fab fa-first-order-alt"></i> Drinks Included! </li>  
+                                                    </ul> 
+                                                    <br/> 
+                                                <?php
+                                                $dlist = $this->My_model->selectRecord('drink_type', '*', array('id IN ('.$this_camp->drink_list.')' => NULL));
+                                                echo "<b class='col-md-12'>Include Drinks: </b>";
+                                                foreach($dlist as $d){
+                                                    ?>
+                                                    <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 element"><?php echo "<i class='fas fa-utensil-spoon'></i> ".$d->drink_type; ?></div>
+                                                    <?php
+                                                }
+                                            } else {
+                                            ?>
+                                            <ul class="list-group col-md-12 element">
+                                                  <li class="list-group-item list-group-item-success" style="margin-right:5%;"><i class="fab fa-first-order-alt"></i> Drinks Not Included </li>  
+                                            </ul> 
+                                            <br/>    
+                                            <?php
+                                            }
+                                           ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
+                        
+                        <?php
+                            if(!$this_camp->included == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="incl">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#wincl" aria-expanded="true" aria-controls="wincl">
+                                            <i class="far fa-dot-circle"></i> What's Included
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="wincl" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="incl">
+                                    <div class="panel-body">
+                                        <?php echo $this_camp->included; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
+                        
+                        <?php
+                            if(!$this_camp->noincluded == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="noincl">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#nowincl" aria-expanded="true" aria-controls="nowincl">
+                                            <i class="far fa-times-circle"></i> What's Not Included
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="nowincl" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="noincl">
+                                    <div class="panel-body">
+                                        <?php echo $this_camp->noincluded; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
+                        
+                        <?php
+                            if(!$this_camp->things_to_do == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="ttodo">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#ttd" aria-expanded="true" aria-controls="ttd">
+                                            <i class="fas fa-clipboard-list"></i> Things To Do (Optional)
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="ttd" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="ttodo">
+                                    <div class="panel-body">
+                                        <?php echo $this_camp->things_to_do; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
+                        
                         <?php
                             if(!$this_camp->pickup_service == ""){ ?>
                             <div class="panel panel-default shadow">
@@ -410,6 +591,29 @@ a:hover, a:focus{
                         <?php   
                             }
                         ?>
+                        
+                        <?php
+                            if(!$this_camp->video_link == ""){ ?>
+                            <div class="panel panel-default shadow">
+                                <div class="panel-heading" role="tab" id="vid">
+                                    <h4 class="panel-title">
+                                        <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#vdo" aria-expanded="true" aria-controls="vdo">
+                                            <i class="fab fa-youtube"></i> Camp's Video
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="vdo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="vid">
+                                    <div class="panel-body">
+                                        <iframe width="60%" height="315"
+                                        src="<?php echo $this_camp->video_link; ?>?rel=0&showinfo=0&cc_load_policy=1">
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php   
+                            }
+                        ?>
+                        
                     </div>
                 </div>
             </div>            
@@ -418,6 +622,11 @@ a:hover, a:focus{
             <div class="row">
                 <div class="col-sm-12">
                     <table class="table table-dark table-borderless shadow">
+                       <tr>
+                           <td><span class="sm">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></td>
+                           <td><small>28 reviews</small></td>
+                       </tr>
                         <tr>
                             <td>Value for money</td>
                             <td><span class="sm">
@@ -441,10 +650,8 @@ a:hover, a:focus{
                             </td>
                         </tr>
                         <tr>
-                            <td>Overall impression</td>
-                            <td><span class="sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                            </td>
-                        </tr>
+                           <td colspan="2" style="text-align:center;"><button class="btn btn-danger btn-xs"><b>Rate this camp</b></button></td>
+                       </tr>
                     </table>
                 </div>
                 <div class="col-sm-12">
@@ -457,17 +664,21 @@ a:hover, a:focus{
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
-                    <span class="small">4 Days/ 3 Nights</span><br/>
-                    From Rs. 5000 /- Per person
+                <div class="col-sm-12 ">
+                    <div class="camp shadow">
+                       <label><i class="far fa-clock"></i> Duration of Camp</label>
+                        <?php echo $this_camp->duration." days / ".($this_camp->duration - 1)." Nights"; ?>                     
+                    </div>
                 </div>
                 <div class="col-sm-12">
                     <label class="small">Select Arrival Date</label>
                     <select class="form-control">
-                        <option>Select Date</option>
-                        <option>31st Aug 2018</option>
-                        <option>31st Aug 2018</option>
-                        <option>31st Aug 2018</option>
+                        <?php 
+                            foreach($start_date as $s){ ?>
+                                <option value="<?php echo $s->id ?>"><?php echo $s->start_date; ?></option>
+                        <?php
+                            }
+                        ?>
                     </select>
                     <br/>
                 </div>

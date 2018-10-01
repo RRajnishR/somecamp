@@ -31,7 +31,7 @@
         var baseurl = '<?php echo base_url(); ?>';
   </script>
   <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id" content="184284430038-e0rkm7s72jgus7isbad487rmrahd8htd.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="681276105655-sf5524g7dadjcb57c9u15v4klm3lj1a9.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
