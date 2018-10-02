@@ -230,7 +230,7 @@
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td class="camp_rate"><?php echo $c->currency.". ".$c->price; ?></td>
+                                            <td class="camp_rate"><?php echo $this->My_model->convert('USD', 'INR', '50'); ?></td>
                                         </tr>
                                         <tr> 
                                             <td></td>

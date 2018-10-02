@@ -621,37 +621,105 @@ a:hover, a:focus{
         <div class="col-md-3 sidebar">
             <div class="row">
                 <div class="col-sm-12">
+                   <?php 
+                        $camp_rating = $this->My_model->selectRecord('camp_rating', array('COUNT(id) as total','AVG(rate_val) as val', ' AVG(rate_acc) as acc', 'AVG(rate_food) as food', ' AVG(rate_loc) as loc', 'AVG(overall_rating) as rating'), array('camp_id' => $this_camp->camp_id) );
+                    ?>
                     <table class="table table-dark table-borderless shadow">
-                       <tr>
-                           <td><span class="sm">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></td>
-                           <td><small>28 reviews</small></td>
-                       </tr>
-                        <tr>
-                            <td>Value for money</td>
-                            <td><span class="sm">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Accommodation & facilities</td>
-                            <td><span class="sm">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Food</td>
-                            <td><span class="sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Location</td>
-                            <td><span class="sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
-                            </td>
-                        </tr>
-                        <tr>
-                           <td colspan="2" style="text-align:center;"><button class="btn btn-danger btn-xs"><b>Rate this camp</b></button></td>
-                       </tr>
+                      <?php 
+                        if(is_array($camp_rating)){
+                            ?>
+                                <tr>
+                                   <td><span class="sm">
+                                        <?php 
+                                            $rate = ceil($camp_rating[0]->rating);
+                                            for($i=1;$i<=5;$i++){
+                                                if($i <= $rate){
+                                                   echo "<i class='fas fa-star'></i>"; 
+                                                } else {
+                                                    echo '<i class="far fa-star"></i>';
+                                                }
+                                            }
+                                        ?>
+                                        </span>
+                                    </td>
+                                   <td><small><?php echo $camp_rating[0]->total; ?> reviews</small></td>
+                               </tr>
+                               <tr>
+                                    <td>Value for money</td>
+                                    <td><span class="sm">
+                                           <?php
+                                            $rate = ceil($camp_rating[0]->val);
+                                            for($i=1;$i<=5;$i++){
+                                                if($i <= $rate){
+                                                   echo "<i class='fas fa-star'></i>"; 
+                                                } else {
+                                                    echo '<i class="far fa-star"></i>';
+                                                }
+                                            }
+                                           ?> 
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Accommodation & facilities</td>
+                                    <td><span class="sm">
+                                        <?php
+                                        $rate = ceil($camp_rating[0]->acc);
+                                        for($i=1;$i<=5;$i++){
+                                            if($i <= $rate){
+                                               echo "<i class='fas fa-star'></i>"; 
+                                            } else {
+                                                echo '<i class="far fa-star"></i>';
+                                            }
+                                        }
+                                       ?>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Food</td>
+                                    <td><span class="sm">
+                                        <?php
+                                        $rate = ceil($camp_rating[0]->food);
+                                        for($i=1;$i<=5;$i++){
+                                            if($i <= $rate){
+                                               echo "<i class='fas fa-star'></i>"; 
+                                            } else {
+                                                echo '<i class="far fa-star"></i>';
+                                            }
+                                        }
+                                       ?>
+                                    </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Location</td>
+                                    <td><span class="sm">
+                                        <?php
+                                        $rate = ceil($camp_rating[0]->loc);
+                                        for($i=1;$i<=5;$i++){
+                                            if($i <= $rate){
+                                               echo "<i class='fas fa-star'></i>"; 
+                                            } else {
+                                                echo '<i class="far fa-star"></i>';
+                                            }
+                                        }
+                                       ?>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                   <td colspan="2" style="text-align:center;"><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><b>Rate this camp</b></button></td>
+                               </tr>
+                        <?php
+                        }  else {
+                           ?>
+                               <tr>
+                               <td colspan="2" style="text-align:center;"><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><b>Be the First one to rate this camp</b></button></td>
+                               </tr>
+                           <?php 
+                        }
+                      ?>
                     </table>
                 </div>
                 <div class="col-sm-12">
@@ -665,9 +733,9 @@ a:hover, a:focus{
                     </div>
                 </div>
                 <div class="col-sm-12 ">
-                    <div class="camp shadow">
-                       <label><i class="far fa-clock"></i> Duration of Camp</label>
-                        <?php echo $this_camp->duration." days / ".($this_camp->duration - 1)." Nights"; ?>                     
+                    <div style="border:1px 7C8086 solid;">
+                       <label><i class="far fa-clock"></i> <b><?php echo $this_camp->duration." days / ".($this_camp->duration - 1)." Nights"; ?></b></label> <br/>
+                        <h2><small>FROM</small> </h2>                     
                     </div>
                 </div>
                 <div class="col-sm-12">
@@ -687,6 +755,25 @@ a:hover, a:focus{
                     <hr>
                     <button class="btn btn-info form-control">Request Reservation</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <?php 
+                    if(!$this->session->userdata('google_id')){
+                            
+                ?>
+                        <?php
+                    } else {
+                        echo "<h2>Please login as camper first, to rate this camp</h2>";
+                    }
+                ?>
             </div>
         </div>
     </div>
