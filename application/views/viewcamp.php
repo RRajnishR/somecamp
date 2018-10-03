@@ -44,57 +44,7 @@
         font-size: 12px;
         font-weight: bold;
     }
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a class="" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <i class="fa fa-comment"></i> Section 1
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis ac leo vel rutrum. Integer varius tristique magna vel dictum. Vestibulum augue magna, convallis id velit a, porttitor fermentum sem.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <i class="fa fa-link"></i>  Section 2
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis ac leo vel rutrum. Integer varius tristique magna vel dictum. Vestibulum augue magna, convallis id velit a, porttitor fermentum sem.
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <i class="fa fa-bars"></i>  Section 3
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                        <div class="panel-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas mattis ac leo vel rutrum. Integer varius tristique magna vel dictum. Vestibulum augue magna, convallis id velit a, porttitor fermentum sem.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-a:hover, a:focus{
+    a:hover, a:focus{
     outline: none;
     text-decoration: none;
 }
@@ -623,10 +573,11 @@ a:hover, a:focus{
                 <div class="col-sm-12">
                    <?php 
                         $camp_rating = $this->My_model->selectRecord('camp_rating', array('COUNT(id) as total','AVG(rate_val) as val', ' AVG(rate_acc) as acc', 'AVG(rate_food) as food', ' AVG(rate_loc) as loc', 'AVG(overall_rating) as rating'), array('camp_id' => $this_camp->camp_id) );
+                        //print_r($camp_rating);
                     ?>
                     <table class="table table-dark table-borderless shadow">
                       <?php 
-                        if(is_array($camp_rating)){
+                        if(!$camp_rating[0]->rating==0){
                             ?>
                                 <tr>
                                    <td><span class="sm">
@@ -735,20 +686,81 @@ a:hover, a:focus{
                 <div class="col-sm-12 ">
                     <div style="border:1px 7C8086 solid;">
                        <label><i class="far fa-clock"></i> <b><?php echo $this_camp->duration." days / ".($this_camp->duration - 1)." Nights"; ?></b></label> <br/>
-                        <h2><small>FROM</small> </h2>                     
+                        <h3><small style="font-size:10px;">FROM</small> 
+                            <?php
+                                $current_currency = 'USD'; 
+                                if($this->session->userdata('selected_currency')){
+                                    $current_currency = $this->session->userdata('selected_currency');
+                                }
+                                $display_amount = "";
+                                if(strcmp($current_currency, $this_camp->currency) == 0){
+                                   $display_amount = $current_currency." ".$this_camp->price."/-";   
+                                } else {
+                                    $display_amount = $current_currency." ".$this->My_model->convert($this_camp->currency, $current_currency, $this_camp->price)."/-";
+                                }
+                                echo $display_amount;
+                            ?>
+                        </h3> 
+                        <label style="font-size:10px; font-style:italic; color:red; text-align:justify;">* Prices are indicative becaue of exchange rate and other variables. Exact price will be provided if you enquire/request for reservation. </label>                    
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <label class="small">Select Arrival Date</label>
-                    <select class="form-control">
+                   <div class="camp shadow" style="border-top:1px solid green;">
+                    <label style="padding:4px;"><b>Select Arrival Date</b></label>
+                    <select class="form-control" name="start_date">
                         <?php 
-                            foreach($start_date as $s){ ?>
-                                <option value="<?php echo $s->id ?>"><?php echo $s->start_date; ?></option>
+                            foreach($start_dates as $s){ ?>
+                                <option value="<?php echo $s->start_date ?>"><?php echo date('l jS \of F Y', strtotime($s->start_date)); ?></option>
                         <?php
                             }
                         ?>
                     </select>
                     <br/>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="padding-top:10px;">
+                   <div class="camp shadow" style="border-top:1px solid green;">
+                    <label for="accomodation" style="padding:4px;"><b>Select Accomodation</b></label>
+                    <?php 
+                        $camp_accomodation = $this->My_model->selectRecord('camp_accomodation', '*', array('id IN ('.$this_camp->accomodation.')'));
+                       ?>
+                           <div class="form-check form-check-radio">
+                                <label class="form-check-label" style="width:95%;">
+                                  <input class="form-check-input" type="radio" name="accomodation" id="exampleRadios1" value="" checked />
+                                  <span class="form-check-sign"></span>
+                                      Default
+                                      <span style="font-size:11px; float:right;" rel="tooltip" title="extra price">
+                                       + <?php echo $current_currency; ?> 0 /-
+                                      </span> 
+                                </label>
+                               </div>
+                       <?php
+                        foreach($camp_accomodation as $ca){
+                            ?>
+                               <div class="form-check form-check-radio">
+                                <label class="form-check-label" style="width:95%;">
+                                  <input class="form-check-input" type="radio" name="accomodation" id="exampleRadios1" value="<?php echo $ca->id; ?>">
+                                  <span class="form-check-sign"></span>
+                                      <?php echo $ca->acc_name; ?>
+                                      <span style="font-size:11px; float:right;" rel="tooltip" title="extra price">
+                                       + <?php 
+                                            $extra_amount = "";
+                                            if(strcmp($current_currency, $this_camp->currency) == 0){
+                                               $extra_amount = $current_currency." ".$ca->price."/-";   
+                                            } else {
+                                                $extra_amount = $current_currency." ".$this->My_model->convert($this_camp->currency, $current_currency, $ca->price)."/-";
+                                            }
+                                            echo $extra_amount;
+                                          ?>
+                                      </span> <br/>
+                                    <span style="color:grey; font-size:10px;"><?php echo $ca->sharing == '1'? 'Private':'Sharing'; ?> <br/> <?php echo $ca->no_room; ?> Rooms |  Max <?php echo $ca->person_num; ?> Person(s)<br/>
+                                    </span>
+                                </label>
+                               </div>
+                            <?php
+                        }
+                    ?>
+                    </div>
                 </div>
                 <div class="col-sm-12">
                     <button class="btn btn-success form-control">Send Enquiry</button>
@@ -764,14 +776,55 @@ a:hover, a:focus{
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body table-responsive">
                 <?php 
                     if(!$this->session->userdata('google_id')){
-                            
-                ?>
-                        <?php
+                        echo "<h4>Please login as camper first, to rate this camp</h4>";
                     } else {
-                        echo "<h2>Please login as camper first, to rate this camp</h2>";
+                        $check = $this->My_model->selectRecord('camp_rating', '*', array('camp_id' => $this_camp->camp_id, 'given_by' => $this->session->userdata('email')));
+                        if(!$check){
+                        ?>
+                            <form action="<?php echo base_url() ?>Home/rate_this_camp" method="post">
+                                <table class="table table-hover table-borderless">
+                                    <tr>
+                                        <td>Value For Money</td>
+                                        <td><input name="rate_val" type="number" min="1" max="5" class="form-control" placeholder="out of 5"  required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Accomodations and Facilities</td>
+                                        <td><input name="rate_acc" type="number" min="1" max="5" class="form-control" placeholder="out of 5"  required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Food</td>
+                                        <td><input name="rate_food" type="number" min="1" max="5" class="form-control" placeholder="out of 5"  required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location</td>
+                                        <td><input name="rate_loc" type="number" min="1" max="5" class="form-control" placeholder="out of 5"  required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Overall Impression</td>
+                                        <td><input name="overall_rating" type="number" min="1" max="5" class="form-control" placeholder="out of 5"  required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suggestion / Comments</td>
+                                        <td><textarea name="comment" class="form-control" style="border:1px solid;border-radius:2px;"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;
+                                            <input type="hidden" name="camp_id" value="<?php echo $this_camp->camp_id; ?>" />
+                                            <input type="hidden" name="given_by" value="<?php echo $this->session->userdata('email'); ?>" />
+                                        </td>
+                                        <td><button type="submit" class='btn btn-success'>Rate it</button></td>
+                                    </tr>
+                                </table>
+                            </form>
+                        <?php
+                        } else {
+                            echo "<h5>You have already rated this camp</h5>";
+                        }
+                    ?>
+                    <?php
                     }
                 ?>
             </div>

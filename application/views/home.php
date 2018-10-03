@@ -221,16 +221,36 @@
                                             </td>
                                             <td class="camp_name"><?php echo $c->title; ?></td>
                                             <td class="rating">
-                                                <span class="far fa-star"></span>
-                                                <span class="far fa-star"></span>
-                                                <span class="far fa-star"></span>
-                                                <span class="far fa-star"></span>
-                                                <span class="far fa-star"></span>
+                                                <?php 
+                                                    $over_all = $this->My_model->selectRecord('camp_rating', array('AVG(overall_rating) as rating'), array('camp_id' => $c->camp_id));
+                                                    $rate = ceil($over_all[0]->rating);
+                                                    for($i=1;$i<=5;$i++){
+                                                        if($i <= $rate){
+                                                           echo "<i class='fas fa-star'></i>"; 
+                                                        } else {
+                                                            echo '<i class="far fa-star"></i>';
+                                                        }
+                                                    }
+                                                ?>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td></td>
-                                            <td class="camp_rate"><?php echo $this->My_model->convert('USD', 'INR', '50'); ?></td>
+                                            <td class="camp_rate">
+                                            <?php
+                                                $current_currency = 'USD'; 
+                                                if($this->session->userdata('selected_currency')){
+                                                    $current_currency = $this->session->userdata('selected_currency');
+                                                }
+                                                $display_amount = "";
+                                                if(strcmp($current_currency, $c->currency) == 0){
+                                                   $display_amount = "<span class='money' rel='tooltip' title='Conversion was not needed'>".$current_currency." ".$c->price."/- </span>";   
+                                                } else {
+                                                    $display_amount = "<span class='money' rel='tooltip' title='~ Approximate Conversion from ".$c->currency."'>".$current_currency." ".$this->My_model->convert($c->currency, $current_currency, $c->price)."/- </span>";
+                                                }
+                                                echo $display_amount;
+                                            ?>
+                                            </td>
                                         </tr>
                                         <tr> 
                                             <td></td>
@@ -250,7 +270,7 @@
                                                         echo "<i class='fas fa-utensils'></i> Free Meals available <br/>";
                                                     }
                                                     if($c->inc_drink=="1"){
-                                                        echo "<i class='fas fa-coffee'></i> Free Drinks available";;
+                                                        echo "<i class='fas fa-coffee'></i> Free Drinks available";
                                                     }
                                                 ?>
                                             </td>

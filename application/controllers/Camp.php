@@ -11,7 +11,7 @@ class Camp extends CI_Controller {
         $this_camp = explode('-', $campid)[0];
         $today = date('Y-m-d');
         $data['camp_data'] = $this->My_model->selectRecord('camp', '*', array('camp_id'=>$this_camp));
-        $data['start_dates'] = $this->My_model->selectRecord('camp_start_dates', '*', array('camp_id'=>$this_camp, 'start_date >= "'.$today.'"'=>NULL));
+        $data['start_dates'] = $this->My_model->selectRecord('camp_start_dates', '*', array('camp_id'=>$this_camp, 'start_date >= "'.$today.'"'=>NULL), array('criteria'=>'start_date', 'order' => 'DESC'));
         //$this->My_model->printQuery(); die();
         $data['pics'] = $this->My_model->selectRecord('camp_images', '*', array('camp_id'=>$this_camp, 'del_status'=>'0'));
         $acc = $data['camp_data'][0]->accomodation;

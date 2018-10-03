@@ -3,21 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
         $data['camp_for'] = $this->My_model->selectRecord('camp_for','*','');
@@ -78,5 +63,62 @@ class Home extends CI_Controller {
             }
         } 
     }
-    
+    public function setcurrency($cur){
+        $prev_url = $_SERVER['HTTP_REFERER'];
+        $this->session->set_userdata('selected_currency', $cur);
+        redirect($prev_url);
+    }
+    public function rate_this_camp(){
+        $rate_val='0';
+        $rate_acc='0';
+        $rate_food='0';
+        $rate_loc='0';
+        $overall_rating='0';
+        if($this->input->post('rate_val') > 5 || $this->input->post('rate_val') < 0){
+            $rate_val = '5';
+        } else {
+            $rate_val = $this->input->post('rate_val');
+        }
+        
+        if($this->input->post('rate_acc') > 5 || $this->input->post('rate_acc') < 0){
+            $rate_acc = '5';
+        } else {
+            $rate_acc = $this->input->post('rate_acc');
+        }
+        
+        if($this->input->post('rate_food') > 5 || $this->input->post('rate_food') < 0){
+            $rate_food = '5';
+        } else {
+            $rate_food = $this->input->post('rate_food');
+        }
+        
+        if($this->input->post('rate_loc') > 5 || $this->input->post('rate_loc') < 0){
+            $rate_loc = '5';
+        } else {
+            $rate_loc = $this->input->post('rate_loc');
+        }
+        
+        if($this->input->post('overall_rating') > 5 || $this->input->post('overall_rating') < 0){
+            $overall_rating = '5';
+        } else {
+            $overall_rating = $this->input->post('overall_rating');
+        }
+        $insert_data = array(
+            'camp_id' => $this->input->post('camp_id'),
+            'rate_val' => $rate_val,
+            'rate_acc' => $rate_acc,
+            'rate_food' => $rate_food,
+            'rate_loc' => $rate_loc,
+            'overall_rating' => $overall_rating,
+            'comment' => htmlentities($this->input->post('comment')),
+            'given_by' => $this->input->post('given_by'),
+        );
+        $idata = $this->My_model->insertRecord('camp_rating', $insert_data);
+        if($idata){
+           echo "<script>
+                    alert('Ratings / Feedback submitted successfully'); 
+                    window.location.href = '".base_url('Camp/view/').$this->input->post('camp_id')."';
+                </script>";
+        }
+    }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2018 at 03:22 PM
+-- Generation Time: Oct 03, 2018 at 02:58 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -188,9 +188,16 @@ CREATE TABLE `camp_rating` (
   `rate_loc` enum('1','2','3','4','5') NOT NULL COMMENT 'location',
   `overall_rating` enum('1','2','3','4','5') NOT NULL COMMENT 'Rating out of 5',
   `comment` tinytext NOT NULL,
-  `given_by` int(11) NOT NULL COMMENT 'Camper_id',
+  `given_by` varchar(200) NOT NULL COMMENT 'Campers email',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Admin can turn off the visibility of comment and rating, by turning value to 0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `camp_rating`
+--
+
+INSERT INTO `camp_rating` (`id`, `camp_id`, `rate_val`, `rate_acc`, `rate_food`, `rate_loc`, `overall_rating`, `comment`, `given_by`, `status`) VALUES
+(5, 1, '5', '4', '3', '2', '4', '&lt;b&gt;Rajnish&lt;/b&gt; ;\r\nawesome place', 'moodi.rajnish@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -211,7 +218,7 @@ CREATE TABLE `camp_start_dates` (
 INSERT INTO `camp_start_dates` (`id`, `start_date`, `camp_id`) VALUES
 (2, '2018-10-27', 1),
 (4, '2018-10-30', 1),
-(5, '2018-09-26', 1);
+(5, '2018-10-25', 1);
 
 -- --------------------------------------------------------
 
@@ -900,8 +907,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `last_login`, `first_login`, `status`) VALUES
-(3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-09-20 14:22:50', '2018-09-10 07:27:47', 1),
-(4, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DWCtB57EmAuCRS9T9jOPlxSshq4Aw/s96-c/photo.jpg', '2018-09-21 07:35:10', '2018-09-20 14:24:35', 1);
+(3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-10-03 12:35:57', '2018-09-10 07:27:47', 1),
+(4, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DWCtB57EmAuCRS9T9jOPlxSshq4Aw/s96-c/photo.jpg', '2018-10-03 12:14:18', '2018-09-20 14:24:35', 1);
 
 --
 -- Indexes for dumped tables
@@ -1041,7 +1048,7 @@ ALTER TABLE `camp_images`
 -- AUTO_INCREMENT for table `camp_rating`
 --
 ALTER TABLE `camp_rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `camp_start_dates`

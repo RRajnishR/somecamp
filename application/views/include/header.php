@@ -202,8 +202,44 @@
               <p>WishCamps(0)</p>
             </a>
           </li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
+              <i class="now-ui-icons business_money-coins"></i>
+              <p><?php if($this->session->userdata('selected_currency')) {echo $this->session->userdata('selected_currency'); } else { echo "USD";}  ?></p>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1" style="height: 350px;overflow-y: auto;overflow-x: hidden;">
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/AUD" > AUD - Australian Dollar </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/CAD" > CAD - Canadian Dollar </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/EUR" > EUR - Euro </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/GBP" > GBP - British Pound </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/USD" > USD - United States Dollar </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/BRL" > BRL - Brazilian Real </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/CHF" > CHF - Swiss Franc </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/CNY" > CNY - Chinese Renminbi Yuan </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/CZK" > CZK - Czech Koruna </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/DKK" > DKK - Danish Krone </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/HKD" > HKD - Hong Kong Dollar </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/IDR" > IDR - Indonesian Rupiah </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/ILS" > ILS - Israeli New Sheqel </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/INR" > INR - Indian Rupee </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/JPY" > JPY - Japanese Yen </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/KRW" > KRW - South Korean Won </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/MXN" > MXN - Mexican Peso </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/MYR" > MYR - Malaysian Ringgit </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/NOK" > NOK - Norwegian Krone </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/NZD" > NZD - New Zealand Dollar </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/PHP" > PHP - Philippine Peso </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/PLN" > PLN - Polish Złoty </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/RUB" > RUB - Russian Ruble </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/SEK" > SEK - Swedish Krona </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/SGD" > SGD - Singapore Dollar </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/THB" > THB - Thai Baht </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/TRY" > TRY - Turkish Lira </a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>Home/setcurrency/ZAR" > ZAR - South Africa, Rand </a>
+            </div>
+          </li>
           <?php 
-                if(!$this->session->userdata('google_id')){
+                if(!$this->session->userdata('google_id') && !$this->session->userdata('email')){
           ?>
           <li class="nav-item">
             <a class="nav-link btn btn-neutral" href="#" role="button" data-toggle="modal" data-target="#signbox">
@@ -212,7 +248,7 @@
             </a>
           </li>
           <?php } else { ?>
-          <li class="nav-item dropdown show">
+          <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-expanded="true">
               <i class="fas fa-user-circle"></i>
               <p>Hi, <?php echo $this->session->userdata('first_name'); ?></p>
@@ -225,19 +261,19 @@
           </li>       
           <?php } ?>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="#" target="_blank">
               <i class="fab fa-twitter"></i>
               <p class="d-lg-none d-xl-none">Twitter</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="#" target="_blank">
               <i class="fab fa-facebook-square"></i>
               <p class="d-lg-none d-xl-none">Facebook</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
+            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="#" target="_blank">
               <i class="fab fa-instagram"></i>
               <p class="d-lg-none d-xl-none">Instagram</p>
             </a>

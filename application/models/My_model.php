@@ -289,7 +289,7 @@ class My_model extends CI_Model {
     }
     //Got this from https://gist.github.com/daveismyname/8067095, when some problem occurs go there. 
     function convert($from,$to,$amount){
-        $url = "https://www.google.com/search?q=".$from.$to;
+        $url = "https://www.google.com/search?q=".$from."+to+".$to;
         $request = curl_init();
         $timeOut = 0;
         curl_setopt ($request, CURLOPT_URL, $url);
