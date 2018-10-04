@@ -21,10 +21,13 @@
   <!-- Custom styles for this template -->
   <link href="<?php echo base_url() ?>assets/admin/css/style.css" rel="stylesheet">
   <link href="<?php echo base_url() ?>assets/admin/css/style-responsive.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="//cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
   <style>
     .round_div{
         text-align: center;
         border: 1px green solid;
+        margin: 4%;
     }
     .first_half, .second_half{
         display: block;
@@ -43,7 +46,7 @@
         color: white;
         border-top: 2px yellow double;
     }
-    .sec
+    
 </style>
 </head>
 
@@ -87,27 +90,27 @@
               </a>
           </li>
           <li class="mt">
-            <a href="<?php echo base_url() ?>camp_admin/Facilities">
-              <i class="fa fa-dashboard"></i>
+            <a href="<?php echo base_url() ?>camp_admin/Organisers">
+              <i class="fa fa-briefcase"></i>
               <span>Manage Organisers</span>
               </a>
           </li>
           <li class="mt">
-            <a href="<?php echo base_url() ?>camp_admin/Admin">
+            <a href="<?php echo base_url() ?>camp_admin/Users">
               <i class="fa fa-dashboard"></i>
               <span>Manage Users</span>
               </a>
           </li>
           <li class="mt">
-            <a href="<?php echo base_url() ?>camp_admin/Admin">
+            <a href="<?php echo base_url() ?>camp_admin/Camps">
               <i class="fa fa-dashboard"></i>
               <span>Manage Camps</span>
               </a>
           </li>
           <li class="mt">
-            <a href="<?php echo base_url() ?>camp_admin/Admin">
+            <a href="<?php echo base_url() ?>camp_admin/Enquiries">
               <i class="fa fa-dashboard"></i>
-              <span>Manage Other things</span>
+              <span>Manage Enquiries</span>
               </a>
           </li>
           <?php 

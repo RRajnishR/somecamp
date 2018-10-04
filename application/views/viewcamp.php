@@ -1,52 +1,52 @@
 <style>
-    .navbar.navbar-transparent {
-        background: #f96332 !important;
-        padding: 0px !important;
-    }
-    body{
-        background: #fff !important;
-    }
-    h3.page_heading{
-        margin-bottom: 15px !important;
-    }
-    .table{
-        font-size: 10px;
-    }
-    .shadow{
-        -webkit-box-shadow: 2px 2px 5px 0px rgba(19,145,73,1);
-        -moz-box-shadow: 2px 2px 5px 0px rgba(19,145,73,1);
-        box-shadow: 2px 2px 5px 0px rgba(19,145,73,1);
-    }
-    .camp{
-        margin-top: 4px;
-    }
-    .camp_image{
-        height: 200px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-    }
-    .organiser{
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        transform: translate3d(-50%,-50%,0);
-        border: 4px solid white;
-    }
-    .camp_desc{
-        font-size: 10px;
-        text-align: justify;
-    }
-    .intro{
-        margin-top: 2vw;
-        font-size: 12px;
-        font-weight: bold;
-    }
-    a:hover, a:focus{
-    outline: none;
-    text-decoration: none;
+.navbar.navbar-transparent {
+    background: #f96332 !important;
+    padding: 0px !important;
+}
+body{
+    background: #fff !important;
+}
+h3.page_heading{
+    margin-bottom: 15px !important;
+}
+.table{
+    font-size: 10px;
+}
+.shadow{
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(19,145,73,1);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(19,145,73,1);
+    box-shadow: 2px 2px 5px 0px rgba(19,145,73,1);
+}
+.camp{
+    margin-top: 4px;
+}
+.camp_image{
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.organiser{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    transform: translate3d(-50%,-50%,0);
+    border: 4px solid white;
+}
+.camp_desc{
+    font-size: 10px;
+    text-align: justify;
+}
+.intro{
+    margin-top: 2vw;
+    font-size: 12px;
+    font-weight: bold;
+}
+a:hover, a:focus{
+outline: none;
+text-decoration: none;
 }
 #accordion .panel{
     border:0px none;
@@ -569,6 +569,10 @@
             </div>            
         </div>
         <div class="col-md-3 sidebar">
+           <form action="" name="camp_form" method="post">
+           <input type="hidden" name="camp_name" value="<?php echo $this_camp->title; ?>" />
+           <input type="hidden" name="org_id" value="<?php echo $this_camp->organiser_id; ?>" />
+           <input type="hidden" name="camp_id" value="<?php echo $this_camp->camp_id; ?>" />
             <div class="row">
                 <div class="col-sm-12">
                    <?php 
@@ -726,7 +730,7 @@
                        ?>
                            <div class="form-check form-check-radio">
                                 <label class="form-check-label" style="width:95%;">
-                                  <input class="form-check-input" type="radio" name="accomodation" id="exampleRadios1" value="" checked />
+                                  <input class="form-check-input" type="radio" name="accomodation" id="exampleRadios1" value="0" checked />
                                   <span class="form-check-sign"></span>
                                       Default
                                       <span style="font-size:11px; float:right;" rel="tooltip" title="extra price">
@@ -763,11 +767,12 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <button class="btn btn-success form-control">Send Enquiry</button>
+                    <button type="button" onclick="change_action('Enquiry')" class="btn btn-success btn-round" style="width:100%;">Send Enquiry </button>
                     <hr>
-                    <button class="btn btn-info form-control">Request Reservation</button>
+                    <button type="button" onclick="change_action('Reservation')" class="btn btn-info btn-round" style="width:100%;">Request Reservation</button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -831,3 +836,13 @@
         </div>
     </div>
 </div>
+<script>
+    function change_action(x){
+        if(x=='Enquiry'){
+            document.camp_form.action = baseurl+"Enquire";
+        } else if(x=='Reservation') {
+            document.camp_form.action = baseurl+"Reserve";
+        }
+        document.camp_form.submit();
+    }
+</script>

@@ -104,15 +104,15 @@
             </a>
           </li>
           <li class="mt">
-            <a href="<?php echo base_url() ?>camp_organiser/Enquiries">
-              <i class="fa fa-comments-o"></i>
-              <span>Enquiries</span>
-            </a>
-          </li>
-          <li class="mt">
             <a href="<?php echo base_url() ?>camp_organiser/Camps/addAccomodation" title="Manage Accomodations Here">
               <i class="fa fa-home"></i>
               <span>Accomodations</span>
+            </a>
+          </li>
+          <li class="mt">
+            <a href="<?php echo base_url() ?>camp_organiser/Enquiries">
+              <i class="fa fa-comments-o"></i>
+              <span>Enquiries</span>
             </a>
           </li>
           <?php 

@@ -21,7 +21,13 @@
   <script src="<?php echo base_url(); ?>assets/admin/lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
   <script src="<?php echo base_url(); ?>assets/admin/lib/common-scripts.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <!--script for this page-->
+<script>
+$(document).ready(function() {
+    $('#organisers_basic_data').DataTable();
+} );
+</script>
   
 </body>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2018 at 02:58 PM
+-- Generation Time: Oct 04, 2018 at 02:49 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -43,7 +43,8 @@ CREATE TABLE `admin_user` (
 --
 
 INSERT INTO `admin_user` (`id`, `user_name`, `password`, `user_type`, `created`, `code`, `status`) VALUES
-(1, 'sharma.amresh@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2018-08-21 13:30:36', 'asqwww32t', 1);
+(1, 'sharma.amresh@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2018-08-21 13:30:36', 'asqwww32t', 1),
+(2, 'amitabh@bookourcamp.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, '2018-10-04 12:41:11', 'remember_rajnish', 1);
 
 -- --------------------------------------------------------
 
@@ -543,6 +544,34 @@ INSERT INTO `drink_type` (`id`, `drink_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `enquiry`
+--
+
+CREATE TABLE `enquiry` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `msg` tinytext NOT NULL,
+  `reply` tinytext NOT NULL,
+  `camp_id` int(11) NOT NULL,
+  `org_id` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `preffered_currency` varchar(10) NOT NULL,
+  `accomodation_selected` int(11) NOT NULL,
+  `enquiry_time` datetime NOT NULL,
+  `forward_to_org` enum('1','2','','') NOT NULL DEFAULT '1' COMMENT 'if 1 show to admin only, if 2 show to org too'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `enquiry`
+--
+
+INSERT INTO `enquiry` (`id`, `fname`, `email`, `msg`, `reply`, `camp_id`, `org_id`, `start_date`, `preffered_currency`, `accomodation_selected`, `enquiry_time`, `forward_to_org`) VALUES
+(1, 'Rajnish', 'raj@gmial.com', 'kjashlf shdfal duhf aosdfhu asfdhu laksdhf', '', 1, 5, '2018-10-30', 'EUR', 2, '2018-10-04 09:06:58', '1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `facilities`
 --
 
@@ -887,6 +916,39 @@ INSERT INTO `organisers` (`id`, `first_name`, `last_name`, `email`, `pass`, `con
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reservations`
+--
+
+CREATE TABLE `reservations` (
+  `id` int(11) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `number_code` varchar(20) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `persons` varchar(10) NOT NULL,
+  `msg` tinytext NOT NULL,
+  `accomodation_selected` int(11) NOT NULL,
+  `preffered_currency` varchar(10) NOT NULL,
+  `start_date` date NOT NULL,
+  `org_id` int(11) NOT NULL,
+  `camp_id` int(11) NOT NULL,
+  `request_time` datetime NOT NULL,
+  `booking_confirmation` enum('yes','no') NOT NULL DEFAULT 'no',
+  `confirm_time` datetime NOT NULL,
+  `total_price` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `fname`, `lname`, `email`, `number_code`, `phone`, `persons`, `msg`, `accomodation_selected`, `preffered_currency`, `start_date`, `org_id`, `camp_id`, `request_time`, `booking_confirmation`, `confirm_time`, `total_price`) VALUES
+(1, 'Rajnish', 'Kumar', 'raj@gmial.com', 'IN 91', '9876543210', '4', 'aEF af ag asg asfg sfh asfg ', 1, 'EUR', '2018-10-27', 5, 1, '2018-10-04 08:37:30', 'no', '0000-00-00 00:00:00', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -909,6 +971,19 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `last_login`, `first_login`, `status`) VALUES
 (3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-10-03 12:35:57', '2018-09-10 07:27:47', 1),
 (4, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DWCtB57EmAuCRS9T9jOPlxSshq4Aw/s96-c/photo.jpg', '2018-10-03 12:14:18', '2018-09-20 14:24:35', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `id` int(11) NOT NULL,
+  `camp_id` int(11) NOT NULL,
+  `camper_email` int(11) NOT NULL,
+  `del_status` tinyint(1) DEFAULT '0' COMMENT 'If 1 it means deleted for camper'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -975,6 +1050,12 @@ ALTER TABLE `drink_type`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `enquiry`
+--
+ALTER TABLE `enquiry`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `facilities`
 --
 ALTER TABLE `facilities`
@@ -1005,9 +1086,21 @@ ALTER TABLE `organisers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `reservations`
+--
+ALTER TABLE `reservations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1018,7 +1111,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin_user`
 --
 ALTER TABLE `admin_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `camp`
@@ -1075,6 +1168,12 @@ ALTER TABLE `drink_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `enquiry`
+--
+ALTER TABLE `enquiry`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
@@ -1105,10 +1204,22 @@ ALTER TABLE `organisers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `reservations`
+--
+ALTER TABLE `reservations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
