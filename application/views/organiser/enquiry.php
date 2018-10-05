@@ -5,87 +5,55 @@
                 <h3><i class="fa fa-comments-o"></i> Enquiries / Question By Visitors </h3>
                 <div class="content-panel">
                     <table class="table table-striped table-advance table-hover">
-                        <h4><i class="fa fa-angle-right"></i> Unreplied Enquiries</h4>
+                        <h4><i class="fa fa-angle-right"></i> Listed Enquiries</h4>
                         <hr>
                         <thead>
                             <tr>
-                                <th><i class="fa fa-bullhorn"></i> Person's Name </th>
-                                <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descrition</th>
-                                <th><i class="fa fa-bookmark"></i> Camp </th>
-                                <th><i class=" fa fa-edit"></i> Status</th>
-                                <th></th>
+                                <th> # </th>
+                                <th> Person's Name </th>
+                                <th> Message </th>
+                                <th> Camp </th>
+                                <th> Reply </th>
+                                <th> Action </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <a href="basic_table.html#">Company Ltd</a>
-                                </td>
-                                <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                <td> </td>
-                                <td><span class="label label-info label-mini">Replied</span></td>
-                                <td>
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="basic_table.html#">
-                                        Dashio co
-                                    </a>
-                                </td>
-                                <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                <td> </td>
-                                <td><span class="label label-warning label-mini">Replied</span></td>
-                                <td>
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="basic_table.html#">
-                                        Another Co
-                                    </a>
-                                </td>
-                                <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                <td> </td>
-                                <td><span class="label label-success label-mini">Awaiting Reply</span></td>
-                                <td>
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="basic_table.html#">Dashio ext</a>
-                                </td>
-                                <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                <td> </td>
-                                <td><span class="label label-success label-mini">Awaiting Reply</span></td>
-                                <td>
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="basic_table.html#">Total Ltd</a>
-                                </td>
-                                <td class="hidden-phone">Lorem Ipsum dolor</td>
-                                <td> </td>
-                                <td><span class="label label-warning label-mini">Replied</span></td>
-                                <td>
-                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                                </td>
-                            </tr>
+                            <?php 
+                                if(is_array($enquiries)){
+                                    $count = 1;
+                                    foreach($enquiries as $e){ ?>
+                                    <tr>
+                                        <td><?php echo $count; ?></td>
+                                        <td><?php echo $e->fname; ?></td>
+                                        <td><?php echo $e->msg; ?></td>
+                                        <td><?php 
+                                                $camp = $this->My_model->selectRecord('camp', array('title'), array('camp_id' => $e->camp_id));
+                                            ?>
+                                                <a href="<?php echo base_url() ?>Camp/view/<?php echo $e->camp_id; ?>" target="_blank"><?php echo $camp[0]->title; ?></a>
+                                        </td>
+                                        <td>
+                                        <?php 
+                                            if($e->reply==""){
+                                        ?>  
+                                            <form action="<?php echo base_url(); ?>camp_organiser/Enquiries/send_save_reply/<?php echo $e->id; ?>" method="post">
+                                                <textarea name="reply" id="" placeholder="Reply here" class="form-control"></textarea>
+                                                <button class="btn btn-info btn-xs">Send Reply</button>
+                                            </form>
+                                        <?php
+                                            } else {
+                                                echo $e->reply;
+                                            }
+                                        ?>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                            <?php
+                                        $count++;
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='6'>No enquiries yet!</td></tr>";
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>

@@ -11,6 +11,7 @@
                         <form method="post" action="<?php echo base_url() ?>camp_organiser/Camps/update_video">
                              <input type="url" name="video_link" placeholder="Eg: http://www.youtube.com/v?watch=afa#143" class="form-control" value="<?php if(!$camp[0]->video_link == ""){ echo $camp[0]->video_link; } ?>" required/>
                              <input type="hidden" name="camp_id" value="<?php echo $camp_id; ?>">
+                             <span class="help-block">^^Paste youtube link here. *Note: We change the youtube link a little to make it embeddable on your camp page.</span>
                              <button class="btn btn-success"> Update Video Link <i class="fa fa-check-circle-o"></i></button>
                          </form>
                     </div>

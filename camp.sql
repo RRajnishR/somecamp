@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2018 at 02:49 PM
+-- Generation Time: Oct 05, 2018 at 03:05 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -92,7 +92,8 @@ CREATE TABLE `camp` (
 --
 
 INSERT INTO `camp` (`camp_id`, `country_id`, `main_lang`, `other_lang`, `address`, `lot_long`, `duration`, `facilities`, `camp_type`, `camp_for`, `title`, `intro`, `currency`, `near_airport`, `pickup_service`, `pickup_cost`, `camp_direction`, `inc_meal`, `meal_list`, `food_type`, `inc_drink`, `drink_list`, `itinerary`, `included`, `noincluded`, `things_to_do`, `video_link`, `price`, `accomodation`, `created`, `organiser_id`, `status`) VALUES
-(1, 4, 5, '3,5', 'Surya Retreat, 100 Calle La Tabaiba, Villaverde, Fuerteventura 35640, Spain', '26.8466882,80.9471667', '27', '4,5,6,10', '1,4', '2,5', '2 Days Rejuvenating Pilates and Yoga Retreat in Fuerteventura, Spain', '<p>There are over 397 units in the National Park System of the United States. These include National Parks, National Monuments, National Historic Site and much much more. Each of these protects a site of importance, whether it is historic or natural. Most people know about the most popular parks, such as Yellowstone National Park and the Grand Canyon National Park, however these are just a small number of the amazing destinations visitors can go within the National Park System. Here are 10 of the little known National Parks that everyone should try to visit.</p>\r\n\r\n<h3 style=\"color:#aaaaaa; font-style:italic\">01</h3>\r\n\r\n<h3>Buffalo National River, Arkansas</h3>\r\n\r\n<p>The Buffalo National River travels for 135 miles through beautiful terrain, and it flows uninhibited, as it is one of the few rivers in the lower 48 states that does not have dams. This river travels east through the Ozarks and flows into the White River. Visitors to this park will find a myriad of activities to enjoy. Floating the river, is of course, one of the most popular activities, visitors can enjoy the river&#39;s waters by canoe, kayak or tube. Those visitors that want to try other activities can enjoy horseback riding, fishing, wildlife viewing, and stopping to explore historic sites.&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n', 'BRL', 'Tokyo International', 3, '100', '<ul><li>Get to the metro</li><li>take yellow line</li><li>get down at kashmere gate, Exit from gate no 4</li><li>Hire an auto for 100/- and reach here </li></ul>', 1, '2,3', '13,16', 1, '4,6', '<p>At the heart of the retreat program, is exceptional yoga and pilates instruction by a team of dedicated and caring teachers who have a heartfelt and down-to-earth approach to wellbeing.</p>\r\n\r\n<p>Below is a sample schedule.</p>\r\n\r\n<h3>SATURDAY</h3>\r\n\r\n<ul>\r\n	<li>New arrivals</li>\r\n	<li>17.30 - 19.00: Gentle yoga</li>\r\n</ul>\r\n\r\n<h3>SUNDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga and pranayama class</li>\r\n	<li>Time for beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>17.00: Pilates session</li>\r\n	<li>18.00: Guided meditation</li>\r\n</ul>\r\n\r\n<h3>MONDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga</li>\r\n	<li>Time for beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>17.00: Pilates session</li>\r\n</ul>\r\n\r\n<h3>TUESDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>11.00 - 12.00: Pilates Q and A</li>\r\n	<li>Time for inclusive massages, beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>16.30 - 17.00: Understanding yoga</li>\r\n	<li>17.00 - 18.15: Yoga and meditation</li>\r\n</ul>\r\n\r\n<h3>WEDNESDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga and meditation</li>\r\n	<li>Inclusive beach transfer to stunning beach, time to visit Natural Park, sand dunes</li>\r\n	<li>Evening is free to rest and explore</li>\r\n</ul>\r\n\r\n<h3>THURSDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>Time for one on one and private sessions</li>\r\n	<li>17.00 - 18.30: Yin Yoga</li>\r\n</ul>\r\n\r\n<h3>FRIDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>Time for one on one and private sessions.</li>\r\n	<li>17.00: Yoga and pranayama</li>\r\n	<li>18.30: Farewell meditation</li>\r\n</ul>\r\n\r\n<h3>SATURDAY</h3>\r\n\r\n<ul>\r\n	<li>Brunch</li>\r\n	<li>Departures</li>\r\n</ul>\r\n', '<ul>\r\n	<li>7 nights accommodation</li>\r\n	<li>2 daily yoga practice</li>\r\n	<li>Meditations</li>\r\n	<li>Pranayamas and conscious breath work</li>\r\n	<li>1 day trip to Es Vedra</li>\r\n	<li>3 meals per day</li>\r\n</ul>\r\n', '<ul>\r\n	<li>Beauty treatments</li>\r\n	<li>Horse riding</li>\r\n	<li>Massages</li>\r\n</ul>\r\n', '<p>So Jao,</p>\r\n\r\n<p>Uth jao</p>\r\n', 'https://www.youtube.com/embed/JyQ6G0TIIf8', 2700, '1,2', '2018-09-14 18:09:33', 5, 1);
+(1, 4, 5, '3,5', 'Surya Retreat, 100 Calle La Tabaiba, Villaverde, Fuerteventura 35640, Spain', '26.8466882,80.9471667', '27', '4,5,6,10', '1,4', '2,5', '2 Days Rejuvenating Pilates and Yoga Retreat in Fuerteventura, Spain', '<p>There are over 397 units in the National Park System of the United States. These include National Parks, National Monuments, National Historic Site and much much more. Each of these protects a site of importance, whether it is historic or natural. Most people know about the most popular parks, such as Yellowstone National Park and the Grand Canyon National Park, however these are just a small number of the amazing destinations visitors can go within the National Park System. Here are 10 of the little known National Parks that everyone should try to visit.</p>\r\n\r\n<h3 style=\"color:#aaaaaa; font-style:italic\">01</h3>\r\n\r\n<h3>Buffalo National River, Arkansas</h3>\r\n\r\n<p>The Buffalo National River travels for 135 miles through beautiful terrain, and it flows uninhibited, as it is one of the few rivers in the lower 48 states that does not have dams. This river travels east through the Ozarks and flows into the White River. Visitors to this park will find a myriad of activities to enjoy. Floating the river, is of course, one of the most popular activities, visitors can enjoy the river&#39;s waters by canoe, kayak or tube. Those visitors that want to try other activities can enjoy horseback riding, fishing, wildlife viewing, and stopping to explore historic sites.&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n', 'BRL', 'Tokyo International', 3, '100', '<ul><li>Get to the metro</li><li>take yellow line</li><li>get down at kashmere gate, Exit from gate no 4</li><li>Hire an auto for 100/- and reach here </li></ul>', 1, '2,3', '13,16', 1, '4,6', '<p>At the heart of the retreat program, is exceptional yoga and pilates instruction by a team of dedicated and caring teachers who have a heartfelt and down-to-earth approach to wellbeing.</p>\r\n\r\n<p>Below is a sample schedule.</p>\r\n\r\n<h3>SATURDAY</h3>\r\n\r\n<ul>\r\n	<li>New arrivals</li>\r\n	<li>17.30 - 19.00: Gentle yoga</li>\r\n</ul>\r\n\r\n<h3>SUNDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga and pranayama class</li>\r\n	<li>Time for beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>17.00: Pilates session</li>\r\n	<li>18.00: Guided meditation</li>\r\n</ul>\r\n\r\n<h3>MONDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga</li>\r\n	<li>Time for beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>17.00: Pilates session</li>\r\n</ul>\r\n\r\n<h3>TUESDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>11.00 - 12.00: Pilates Q and A</li>\r\n	<li>Time for inclusive massages, beach visit, relaxation or for one on one and private sessions.</li>\r\n	<li>16.30 - 17.00: Understanding yoga</li>\r\n	<li>17.00 - 18.15: Yoga and meditation</li>\r\n</ul>\r\n\r\n<h3>WEDNESDAY</h3>\r\n\r\n<ul>\r\n	<li>08.30 - 10.00: Yoga and meditation</li>\r\n	<li>Inclusive beach transfer to stunning beach, time to visit Natural Park, sand dunes</li>\r\n	<li>Evening is free to rest and explore</li>\r\n</ul>\r\n\r\n<h3>THURSDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>Time for one on one and private sessions</li>\r\n	<li>17.00 - 18.30: Yin Yoga</li>\r\n</ul>\r\n\r\n<h3>FRIDAY</h3>\r\n\r\n<ul>\r\n	<li>09.00 - 10.00: Pilates</li>\r\n	<li>Time for one on one and private sessions.</li>\r\n	<li>17.00: Yoga and pranayama</li>\r\n	<li>18.30: Farewell meditation</li>\r\n</ul>\r\n\r\n<h3>SATURDAY</h3>\r\n\r\n<ul>\r\n	<li>Brunch</li>\r\n	<li>Departures</li>\r\n</ul>\r\n', '<ul>\r\n	<li>7 nights accommodation</li>\r\n	<li>2 daily yoga practice</li>\r\n	<li>Meditations</li>\r\n	<li>Pranayamas and conscious breath work</li>\r\n	<li>1 day trip to Es Vedra</li>\r\n	<li>3 meals per day</li>\r\n</ul>\r\n', '<ul>\r\n	<li>Beauty treatments</li>\r\n	<li>Horse riding</li>\r\n	<li>Massages</li>\r\n</ul>\r\n', '<p>So Jao,</p>\r\n\r\n<p>Uth jao</p>\r\n', 'https://www.youtube.com/embed/JyQ6G0TIIf8', 2700, '1,2', '2018-09-14 18:09:33', 5, 1),
+(2, 24, 20, '5,23', ' N Block, Greater Kailash I, Greater Kailash, New Delhi, Delhi 110048', '28.5379969,77.0831346', '10', '5,6,7,12,13,14', '1,8,13', '3,6', 'Summer Camp for Kids', '<h1>Summer Camp for Kids</h1>\r\n\r\n<h2>बच्चों के लिए समर कैंप</h2>\r\n\r\n<p>Centre for Cellular And Molecular Platforms (C-CAMP) is an initiative of Dept of Biotechnology, Ministry of Science and Technology, Govt. of India, with a mandate to be an enabler of cutting edge Life Science Research and Innovation. C-CAMP&nbsp;is also a member of&nbsp;the&nbsp;<a href=\"http://www.ccamp.res.in/#Blisc\">Bangalore Life Sciences Cluster (BLiSC)</a><a href=\"http://www.ccamp.res.in/blisc\">.</a><a href=\"http://www.ccamp.res.in/#\">&nbsp;</a>We&nbsp;facilitate Bioscience Research and Entrepreneurship by providing Research, Development, Training and Services in state-of-the-art Technology Platforms.</p>\r\n\r\n<p>At C-CAMP, we have established State-Of-The-Art Platform Technologies which are essential requirements for success and leadership in the field of Life Sciences. C-CAMP allows Investigators to use Techniques as tools and not be limited by Technological barriers while pursuing challenging scientific questions.</p>\r\n', 'INR', 'Indira Gandhi International Airport, Delhi', 2, '500', '', 1, '1,4', '2,3', 1, '2,3,6', '<ul>\r\n	<li>CAMP is the&nbsp;College Assistance Migrant program, a unique educational program that helps students from migrant and seasonal farmworking backgrounds succceed in college.</li>\r\n	<li>CAMP was established in 1972 and has helped over 20,000 students accomplish their educational goals.</li>\r\n	<li>CAMP offers pre-college transition and first-year support services to help students develop the skills needed to stay in school and succcessfully graduate from college.</li>\r\n</ul>\r\n', '<ol>\r\n	<li>Finding housing and roommates either on-campus or off-campus</li>\r\n	<li>Select and registe for classes and introduce you to other student services</li>\r\n	<li>Adjust to college life through individual and group counseling</li>\r\n	<li>&nbsp;Develop a long-term support system</li>\r\n	<li>Develop study and college survival skills</li>\r\n	<li>Obtain tutors for academic assistance</li>\r\n	<li>Receive supplemental financial assistance for books, supplies, health insurance and transportation</li>\r\n</ol>\r\n', '<p><strong><span style=\"font-size:medium\"><span style=\"font-family:geneva,arial,sans-serif\"><span style=\"font-size:small\">The&nbsp;<strong>College Assistance Migrant Program (CAMP)</strong>&nbsp;is a unique federally-funded educational support and scholarship program that helps more than 2,000 students annually from migrant and seasonal farmworking backgrounds to reach and succeed in college.&nbsp; Participants receive anywhere from $750 to $4,000.00</span></span></span></strong></p>\r\n', '<ul>\r\n	<li>Skip stones</li>\r\n	<li>Build a sand castle</li>\r\n	<li>Fish</li>\r\n	<li>Swim</li>\r\n	<li>Float or lounge</li>\r\n	<li>Boat, canoe, or kayak</li>\r\n	<li>Go water skiing</li>\r\n	<li>Go tubing</li>\r\n	<li>Ride a wave runner</li>\r\n	<li>Play water volleyball or basketball</li>\r\n	<li>Dive</li>\r\n	<li>Snorkel</li>\r\n</ul>\r\n', 'https://www.youtube.com/embed/1J30X7DkvFg', 6000, '3,4', '2018-10-05 07:10:49', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +117,9 @@ CREATE TABLE `camp_accomodation` (
 
 INSERT INTO `camp_accomodation` (`id`, `acc_name`, `no_room`, `person_num`, `sharing`, `price`, `org_id`) VALUES
 (1, 'Hostel', '3', 2, 1, '14', 5),
-(2, 'Tent', '1', 1, 2, '10', 5);
+(2, 'Tent', '1', 1, 2, '10', 5),
+(3, 'Bunk Bed Hostel', '5', 10, 1, '250', 4),
+(4, 'Big Tent', '1', 2, 2, '100', 4);
 
 -- --------------------------------------------------------
 
@@ -172,7 +175,11 @@ INSERT INTO `camp_images` (`id`, `name`, `camp_id`, `del_status`) VALUES
 (2, '19092018085009IMG-20170817-WA0049.jpg', 1, 1),
 (3, '26092018125436partner.jpg', 1, 0),
 (4, '26092018125459IMG-20170807-WA0090.jpg', 1, 0),
-(5, '260920181255364521e8a3-a6a6-4f9b-9cc7-9e1e7a81839e-original.jpeg', 1, 0);
+(5, '260920181255364521e8a3-a6a6-4f9b-9cc7-9e1e7a81839e-original.jpeg', 1, 0),
+(6, '05102018071617camps+news+events.jpg', 2, 0),
+(7, '05102018071732Home-Grid-Sport.jpg', 2, 0),
+(8, '05102018071737images.jpg', 2, 0),
+(9, '05102018071743mount-abu-trekking-camp-aravalli-hills-rajasthan-nbMgzbA-1440x810.jpg', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -219,7 +226,9 @@ CREATE TABLE `camp_start_dates` (
 INSERT INTO `camp_start_dates` (`id`, `start_date`, `camp_id`) VALUES
 (2, '2018-10-27', 1),
 (4, '2018-10-30', 1),
-(5, '2018-10-25', 1);
+(5, '2018-10-25', 1),
+(8, '2018-10-25', 2),
+(9, '2018-10-30', 2);
 
 -- --------------------------------------------------------
 
@@ -553,6 +562,7 @@ CREATE TABLE `enquiry` (
   `email` varchar(150) NOT NULL,
   `msg` tinytext NOT NULL,
   `reply` tinytext NOT NULL,
+  `replied_by` varchar(150) NOT NULL,
   `camp_id` int(11) NOT NULL,
   `org_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
@@ -566,8 +576,8 @@ CREATE TABLE `enquiry` (
 -- Dumping data for table `enquiry`
 --
 
-INSERT INTO `enquiry` (`id`, `fname`, `email`, `msg`, `reply`, `camp_id`, `org_id`, `start_date`, `preffered_currency`, `accomodation_selected`, `enquiry_time`, `forward_to_org`) VALUES
-(1, 'Rajnish', 'raj@gmial.com', 'kjashlf shdfal duhf aosdfhu asfdhu laksdhf', '', 1, 5, '2018-10-30', 'EUR', 2, '2018-10-04 09:06:58', '1');
+INSERT INTO `enquiry` (`id`, `fname`, `email`, `msg`, `reply`, `replied_by`, `camp_id`, `org_id`, `start_date`, `preffered_currency`, `accomodation_selected`, `enquiry_time`, `forward_to_org`) VALUES
+(1, 'Rajnish', 'raj@gmial.com', 'kjashlf shdfal duhf aosdfhu asfdhu laksdhf', '', '', 1, 5, '2018-10-30', 'EUR', 1, '2018-10-04 09:06:58', '2');
 
 -- --------------------------------------------------------
 
@@ -1117,13 +1127,13 @@ ALTER TABLE `admin_user`
 -- AUTO_INCREMENT for table `camp`
 --
 ALTER TABLE `camp`
-  MODIFY `camp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `camp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `camp_accomodation`
 --
 ALTER TABLE `camp_accomodation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `camp_for`
@@ -1135,7 +1145,7 @@ ALTER TABLE `camp_for`
 -- AUTO_INCREMENT for table `camp_images`
 --
 ALTER TABLE `camp_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `camp_rating`
@@ -1147,7 +1157,7 @@ ALTER TABLE `camp_rating`
 -- AUTO_INCREMENT for table `camp_start_dates`
 --
 ALTER TABLE `camp_start_dates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `camp_type`

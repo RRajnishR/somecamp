@@ -227,8 +227,10 @@ class Camps extends CI_Controller {
         $this->load->view('include/org_footer');
     }
     public function update_video(){
+        //making the video embeddable
+        $vlink = str_replace('watch?v=','embed/', $this->input->post('video_link'));
         $where = array('camp_id' => $this->input->post('camp_id'));
-        $change = array('video_link' => $this->input->post('video_link'));
+        $change = array('video_link' => $vlink);
         $updt = $this->My_model->updateRecord('camp', $change, $where);
         if($updt>0){
             echo "<script>
@@ -304,7 +306,7 @@ class Camps extends CI_Controller {
             }
         } 
         $done = $this->My_model->insertRecord('camp_images', $basic_details);
-        if($done == '1' || $done =='0'){
+        if($done){
             $message = "Awesome, Image uploaded successfully";
             
         } 
@@ -373,38 +375,45 @@ class Camps extends CI_Controller {
     public function save_date($camp_id){
         
         $date = $this->input->post('sdate');
-        $check_date = $this->My_model->selectRecord('camp_start_dates', '*', array('start_date' => $date, 'camp_id'=>$camp_id));
-        if($check_date){
-            echo "<script>
-                alert('Duplicate start dates are not allowed!'); 
-                window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
-                </script>";
+        if(!empty($date)){
+            $check_date = $this->My_model->selectRecord('camp_start_dates', '*', array('start_date' => $date, 'camp_id'=>$camp_id));
+            if($check_date){
+                echo "<script>
+                    alert('Duplicate start dates are not allowed!'); 
+                    window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
+                    </script>";
+            } else {
+                if (new DateTime() > new DateTime($date)) {
+                     echo "<script>
+                            alert('Please select a valid and future date.'); 
+                            window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
+                        </script>";
+                    } else {
+
+                        $add_data = array(
+                            'start_date' =>$date,
+                            'camp_id' => $camp_id
+                        );
+
+                        $insert = $this->My_model->insertRecord('camp_start_dates', $add_data);
+                        if($insert){
+                            echo "<script>
+                                    alert('New Start Date added successfully'); 
+                                    window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
+                                </script>";
+                        } else{
+                             echo "<script>
+                                    alert('Something went wrong'); 
+                                    window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
+                                </script>";
+                        }
+                    }   
+            }
         } else {
-            if (new DateTime() > new DateTime($date)) {
-                 echo "<script>
-                        alert('Please select a valid and future date.'); 
+             echo "<script>
+                        alert('Error! Can not save blank date'); 
                         window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
                     </script>";
-                } else {
-
-                    $add_data = array(
-                        'start_date' =>$date,
-                        'camp_id' => $camp_id
-                    );
-
-                    $insert = $this->My_model->insertRecord('camp_start_dates', $add_data);
-                    if($insert){
-                        echo "<script>
-                                alert('New Start Date added successfully'); 
-                                window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
-                            </script>";
-                    } else{
-                         echo "<script>
-                                alert('Something went wrong'); 
-                                window.location.href = '".base_url('camp_organiser/Camps/addStartdate/').$camp_id."';
-                            </script>";
-                    }
-                }   
         }
     }
     public function del_start_date($id){

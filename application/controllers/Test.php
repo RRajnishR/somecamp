@@ -22,4 +22,7 @@ class Test extends CI_Controller {
 	{
         $this->load->view('test');
 	}
+    public function check(){
+        echo $this->My_model->convert('USD', 'INR', '50');
+    }
 }

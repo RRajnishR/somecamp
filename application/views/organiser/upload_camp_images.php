@@ -30,6 +30,7 @@
                         2. Try to upload good resolution images with size less than 1 MB. <br/>
                         3. Images with other campers doing some activity gets more attention. <br/>
                         4. Upload images of food, Nature, accomodations of this camp. <br/>
+                        5. We suggest to upload around 5-6 images maximum.
                     </span>
                   </form> 
                 </div>

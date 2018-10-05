@@ -726,7 +726,8 @@ text-decoration: none;
                    <div class="camp shadow" style="border-top:1px solid green;">
                     <label for="accomodation" style="padding:4px;"><b>Select Accomodation</b></label>
                     <?php 
-                        $camp_accomodation = $this->My_model->selectRecord('camp_accomodation', '*', array('id IN ('.$this_camp->accomodation.')'));
+                        $camp_accomodation = $this->My_model->selectRecord('camp_accomodation', '*', array('id IN ('.$this_camp->accomodation.')' => NULL));
+                       //$this->My_model->printQuery(); die();
                        ?>
                            <div class="form-check form-check-radio">
                                 <label class="form-check-label" style="width:95%;">

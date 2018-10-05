@@ -24,15 +24,17 @@
                 <?php 
                     if(is_array($camp_by_organiser)){
                         foreach($camp_by_organiser as $c){ ?>
-                        <label class="checkbox-inline"><input type="checkbox" name="acc[]" <?php if(in_array($c->id, $acc_arr)) echo "checked"; ?> value="<?php echo $c->id; ?>"><?php echo $c->acc_name; ?></label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="acc[]" <?php if(in_array($c->id, $acc_arr)) echo "checked"; ?> value="<?php echo $c->id; ?>"><?php echo $c->acc_name; ?>
+                        </label>
+                        &nbsp; &nbsp;
                 <?php
                         }
+                        echo "<br/><br/><button class='btn btn-success'>Update Accomodations <i class='fa fa-save'></i></button>";    
                     } else {
                         echo "<div class='help-block'>You have not created any accomodations yet. <a href='".base_url()."camp_organiser/Camps/addAccomodation'>Create Some Now!</a></div>";
                     }
                 ?>
-                      <br/><br/>
-                       <button class="btn btn-success">Update Accomodations <i class="fa fa-save"></i></button>
                     </form>
                     </div>
                 </div>

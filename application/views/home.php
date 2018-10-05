@@ -126,6 +126,8 @@
     table.camp_box{
         border: 1px solid #37d54c;
         table-layout: fixed;
+        margin: 0.5%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     }
     table.camp_box tr td{
         width: 33.33%;
