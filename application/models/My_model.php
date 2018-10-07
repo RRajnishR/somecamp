@@ -289,17 +289,20 @@ class My_model extends CI_Model {
     }
     //Got this from https://gist.github.com/daveismyname/8067095, when some problem occurs go there. 
     function convert($from,$to,$amount){
-        $url = "https://www.google.com/search?q=".$from."+to+".$to;
-        $request = curl_init();
-        $timeOut = 0;
-        curl_setopt ($request, CURLOPT_URL, $url);
-        curl_setopt ($request, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt ($request, CURLOPT_USERAGENT,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36");
-        curl_setopt ($request, CURLOPT_CONNECTTIMEOUT, $timeOut);
-        $response = curl_exec($request);
-        curl_close($request);
-
-        preg_match('~<span [^>]* id="knowledge-currency__tgt-amount"[^>]*>(.*?)</span>~si', $response, $finalData);
-        return floatval((floatval(preg_replace("/[^-0-9\.]/","", $finalData[1]))) * $amount);
+//        $url = "https://www.google.com/search?q=".$from."+to+".$to;
+//        $request = curl_init();
+//        $timeOut = 0;
+//        curl_setopt ($request, CURLOPT_URL, $url);
+//        curl_setopt ($request, CURLOPT_RETURNTRANSFER, 1);
+//        curl_setopt ($request, CURLOPT_USERAGENT,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36");
+//        curl_setopt ($request, CURLOPT_CONNECTTIMEOUT, $timeOut);
+//        $response = curl_exec($request);
+//        curl_close($request);
+//
+//        preg_match('~<span [^>]* id="knowledge-currency__tgt-amount"[^>]*>(.*?)</span>~si', $response, $finalData);
+//        return floatval((floatval(preg_replace("/[^-0-9\.]/","", $finalData[1]))) * $amount);
+            $data = file_get_contents("http://free.currencyconverterapi.com/api/v5/convert?q=".$from."_".$to."&compact=ultra");
+            $a = substr(explode(':', $data)[1], 0, -1);
+            return ceil(floatval($a) * $amount) ;
     }
 }

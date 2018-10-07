@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2018 at 03:05 PM
+-- Generation Time: Oct 07, 2018 at 08:45 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -964,13 +964,22 @@ INSERT INTO `reservations` (`id`, `fname`, `lname`, `email`, `number_code`, `pho
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `google_id` varchar(100) NOT NULL,
+  `google_id` varchar(100) NOT NULL COMMENT 'dont get confused. Any social media id',
   `email` varchar(120) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(80) NOT NULL,
   `photo` varchar(150) NOT NULL,
+  `email_verify` tinyint(1) NOT NULL COMMENT 'Only consider when logging in via normal login',
+  `dob` datetime NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `gender` enum('male','female') NOT NULL,
+  `id_type` varchar(150) NOT NULL,
+  `id_of` varchar(150) NOT NULL,
+  `id_image` varchar(150) NOT NULL,
+  `id_contact` varchar(50) NOT NULL,
   `last_login` datetime NOT NULL,
   `first_login` datetime NOT NULL COMMENT 'date of first login',
+  `social_stat` varchar(50) NOT NULL COMMENT 'if null then it is a regular login else name of the social site ',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'if 1 then approved, else pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -978,9 +987,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `last_login`, `first_login`, `status`) VALUES
-(3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', '2018-10-03 12:35:57', '2018-09-10 07:27:47', 1),
-(4, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DWCtB57EmAuCRS9T9jOPlxSshq4Aw/s96-c/photo.jpg', '2018-10-03 12:14:18', '2018-09-20 14:24:35', 1);
+INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `email_verify`, `dob`, `password`, `gender`, `id_type`, `id_of`, `id_image`, `id_contact`, `last_login`, `first_login`, `social_stat`, `status`) VALUES
+(3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', 0, '0000-00-00 00:00:00', '', 'male', '', '', '', '', '2018-10-03 12:35:57', '2018-09-10 07:27:47', '', 1),
+(4, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DWCtB57EmAuCRS9T9jOPlxSshq4Aw/s96-c/photo.jpg', 0, '0000-00-00 00:00:00', '', 'male', '', '', '', '', '2018-10-03 12:14:18', '2018-09-20 14:24:35', '', 1);
 
 -- --------------------------------------------------------
 

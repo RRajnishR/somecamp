@@ -28,6 +28,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <div class="tab-pane container active" id="camp_access">
+            <a class="btn form-control" href="<?php echo base_url(); ?>Home/user_page"><i class="fas fa-sign-in-alt"></i> Sign Up / Sign In</a>
              <div class="g-signin2 form-control btn" data-onsuccess="onSignIn" data-theme="dark"></div>
           </div>
           <div class="tab-pane container fade" id="host_access">

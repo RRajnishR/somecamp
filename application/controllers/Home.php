@@ -121,4 +121,9 @@ class Home extends CI_Controller {
                 </script>";
         }
     }
+    public function user_page(){
+        $this->load->view('include/header');
+		$this->load->view('log_page');
+        $this->load->view('include/footer');
+    }
 }
