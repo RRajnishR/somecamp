@@ -120,9 +120,8 @@ select.form-control>option{
                 </div>
                 <div class="input-group input-lg">
                   <select name="type" name="btype" id="btype" class="form-control" required>
-                       <option value="">You're ?</option>
-                       <option value="1">An Individual</option>
-                       <option value="2">A Business</option>
+                       <option value="1">You're? An Individual</option>
+                       <option value="2">You're? A Business</option>
                    </select>
                 </div>
                 <div id="sys_alert" style="font-size:12px;font-style:italic;color:white;">      

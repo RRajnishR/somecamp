@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2018 at 08:45 PM
+-- Generation Time: Oct 08, 2018 at 03:21 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -970,9 +970,10 @@ CREATE TABLE `users` (
   `last_name` varchar(80) NOT NULL,
   `photo` varchar(150) NOT NULL,
   `email_verify` tinyint(1) NOT NULL COMMENT 'Only consider when logging in via normal login',
-  `dob` datetime NOT NULL,
+  `dob` date NOT NULL,
   `password` varchar(250) NOT NULL,
-  `gender` enum('male','female') NOT NULL,
+  `gender` enum('male','female','none') NOT NULL,
+  `code` varchar(50) NOT NULL,
   `id_type` varchar(150) NOT NULL,
   `id_of` varchar(150) NOT NULL,
   `id_image` varchar(150) NOT NULL,
@@ -987,9 +988,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `email_verify`, `dob`, `password`, `gender`, `id_type`, `id_of`, `id_image`, `id_contact`, `last_login`, `first_login`, `social_stat`, `status`) VALUES
-(3, '104111753353108464108', 'moodi.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-0xYH6pRqYlY/AAAAAAAAAAI/AAAAAAAAAJ8/vwiHmhxiXPw/s96-c/photo.jpg', 0, '0000-00-00 00:00:00', '', 'male', '', '', '', '', '2018-10-03 12:35:57', '2018-09-10 07:27:47', '', 1),
-(4, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DWCtB57EmAuCRS9T9jOPlxSshq4Aw/s96-c/photo.jpg', 0, '0000-00-00 00:00:00', '', 'male', '', '', '', '', '2018-10-03 12:14:18', '2018-09-20 14:24:35', '', 1);
+INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `email_verify`, `dob`, `password`, `gender`, `code`, `id_type`, `id_of`, `id_image`, `id_contact`, `last_login`, `first_login`, `social_stat`, `status`) VALUES
+(5, '', 'rajnish.kumar@langecole.com', 'Rajesh', 'singh', '08102018131826.png', 1, '2008-04-09', '93279e3308bdbbeed946fc965017f67a', 'male', 'mqG1538984598', 'Driver\'s License', 'Mother', '08102018132943.jpg', '+91-9876543210', '2018-10-08 02:20:26', '2018-10-08 09:43:18', '', 1),
+(6, '108189484396013240833', 'bookourcamp@gmail.com', 'Neha', 'Saini', 'https://lh5.googleusercontent.com/-wjhWgcykW5o/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DW-y5p40ZCxWr6gWuTjO8N8oTsXOw/s96-c/photo.jpg', 1, '0000-00-00', '', 'male', '', '', '', '', '', '2018-10-08 11:54:52', '2018-10-08 11:54:52', 'google', 1),
+(7, '', 'rajnish.kumar@xeler8.com', 'Rajnish', 'Kumar', '', 0, '0000-00-00', 'e10adc3949ba59abbe56e057f20f883e', 'male', 'LYn1539002204', '', '', '', '', '0000-00-00 00:00:00', '2018-10-08 02:36:44', '', 1);
 
 -- --------------------------------------------------------
 
@@ -1232,7 +1234,7 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `wishlist`

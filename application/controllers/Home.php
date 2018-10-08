@@ -5,6 +5,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
+        //print_r($this->session->userdata()); die();
         $data['camp_for'] = $this->My_model->selectRecord('camp_for','*','');
         $data['camp_type'] = $this->My_model->selectRecord('camp_type','*','');
         $data['camps'] = $this->My_model->selectRecord('camp', '*', array('status'=>'1'));
@@ -36,7 +37,8 @@ class Home extends CI_Controller {
                     'email' => $this->input->post('email'),    
                     'first_name' => $this->input->post('fname'),    
                     'last_name' => $this->input->post('lname'),    
-                    'photo' => $this->input->post('photo')
+                    'photo' => $this->input->post('photo'),
+                    'social_stat' => 'google'
                 );
                 $this->session->set_userdata($sess);
                 echo "1";
@@ -49,7 +51,9 @@ class Home extends CI_Controller {
                 'email' => $this->input->post('email'),    
                 'first_name' => $this->input->post('fname'),    
                 'last_name' => $this->input->post('lname'),    
-                'photo' => $this->input->post('photo'),    
+                'photo' => $this->input->post('photo'),
+                'email_verify' => '1',
+                'social_stat' => 'google',    
                 'last_login' => date('Y-m-d H:i:s'),    
                 'first_login' => date('Y-m-d H:i:s'),    
             );
@@ -122,8 +126,130 @@ class Home extends CI_Controller {
         }
     }
     public function user_page(){
+        if($this->session->userdata('email'))
+            redirect(base_url());
+        
         $this->load->view('include/header');
 		$this->load->view('log_page');
         $this->load->view('include/footer');
     }
+    public function register_user(){
+        // check email already exist
+		$iUser  = $this->checkUser($this->input->post('email'));
+		//echo " User==> ".$iUser;
+		if($iUser)
+		{
+			echo '-1';       // duplicate user
+		}
+		else
+		{
+			$code = $this->My_model->getRandomString(3);
+			$today = date('Y-m-d h:i:sa');
+			$data = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name' => $this->input->post('last_name'),
+				'email' => $this->input->post('email'),
+				'password' => md5($this->input->post('password')),
+				'code'  => $code,
+				'first_login' => $today,
+                'status' => '1'
+				);
+			$iInserId = $this->My_model->insertRecord('users',$data);
+			// send verification mail
+            if($iInserId){
+                $subject = 'Bookourcamp.com Account Verification';
+                $message = "Dear ".$this->input->post('first_name').",<br /> <br />
+                            Please click on the below activation link to verify your email address.<br /><br />
+                            <br />"
+                            .base_url().'Home/verifyEmail/' .$code . "<br /> (note: if you can't click on the link just copy and paste it into address bar of your browser.)							
+                            <br /><br /><b>Thanks & Regards</b>, <br /> Bookourcamp Team";
+
+                $send_to = $this->input->post('email');
+                echo $val = $this->My_model->send_mail($send_to, $subject, $message);
+            } else {
+                echo "-1";
+            }
+            
+		}
+    }
+    public function normal_login(){
+        $data = array(
+			'email' => $this->input->post('email'),
+			'password' => $this->input->post('password')
+		);
+		$email = $this->input->post('email');
+		
+		$this->db->where('password',md5($this->input->post('password')));
+       
+        $where = "(email = "."'".$email."'".")";
+		$this->db->where($where);
+		$query = $this->db->get('users');
+		$aResult = $query->result_array();
+		//echo "check";
+		if( $query->num_rows() == 0)
+		{
+			echo '2';
+		}
+		else if( $query->num_rows() > 0 &&  $aResult[0]['status'] == 1  && $aResult[0]['email_verify'] == 1  )
+		{		
+            echo "check";
+			$data = array('last_login' => date('Y-m-d h:i:sa'));
+			$where = array('id' => $aResult[0]['id']);
+			$this->My_model->updateRecord('users',$data,$where);
+			
+			$aSess = array(		
+					'user_id' => $aResult[0]['id'],
+					'first_name' => $aResult[0]['first_name'],
+					'last_name' => $aResult[0]['last_name'],
+					'photo'  => $aResult[0]['photo'],
+					'email'  => $aResult[0]['email'],
+                    'social_stat' => '0'
+					);
+			$this->session->set_userdata($aSess);
+			echo '3';	
+		}
+		else if( $query->num_rows() > 0 &&  $aResult[0]['email_verify'] == 0  )
+		{
+		    echo '0';
+		}
+		else if( $query->num_rows() > 0 && $aResult[0]['status'] == 0  )
+		{
+			echo '-1';
+		} 
+    }
+    
+    
+    public function verifyEmail($code){	
+        $where = array('code' => $code);			
+		$data  = array('email_verify' => 1);
+        
+        $this->My_model->updateRecord('users', $data, $where);
+        if($this->db->affected_rows() >=0){
+           $val = $this->My_model->selectRecord('users', '*', $where);
+           $send_to = $val[0]->email;
+           $subject = "Welcome to Bookourcamp.com | Account Verified";
+           $message = "Dear ".$val[0]->first_name.", <br/>
+           <p style='text-align:justify;'> <b>Congratulations!, You account has been verified successfully.</b></p>
+           <p style='text-align:justify;'>
+                Thanks and Regards,<br/>
+                Bookourcamp.com Team.
+           </p>
+           ";
+           $val = $this->My_model->send_mail($send_to, $subject, $message);
+           echo "<script>
+                    alert('Awesome! Your account is verified successfully.'); 
+                    window.location.href = '".base_url('Home/user_page')."';
+                </script>"; 
+        } else {
+            echo "<script>
+                    alert('Oops! Something went wrong. Try again later / contact us'); 
+                    window.location.href = '".base_url()."';
+                </script>"; 
+        }
+	}
+    public function checkUser($email)
+	{
+		$iNums  = $this->My_model->getNumRows('users','email',$this->input->post('email'));
+		return $iNums; 	
+	}
 }

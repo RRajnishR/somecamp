@@ -305,4 +305,15 @@ class My_model extends CI_Model {
             $a = substr(explode(':', $data)[1], 0, -1);
             return ceil(floatval($a) * $amount) ;
     }
+    public function send_mail($send_to, $subject, $message){
+        $this->load->library('email');
+
+        $this->email->from('donotreply@bookourcamp.com', 'Admin @ Bookourcamp');
+        $this->email->to($send_to);
+
+        $this->email->subject($subject);
+        $this->email->message($message);
+
+        $this->email->send();
+    }
 }

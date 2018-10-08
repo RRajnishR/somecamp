@@ -165,6 +165,118 @@
         $('.cycle-slideshow').cycle('pause');
     });
     </script>
+<script>
+    function registerExpert()
+    {
+        $('#first_name').css('border','1px solid #EAEAEA');
+        $('#email').css('border','1px solid #EAEAEA');
+        $('#password').css('border','1px solid #EAEAEA');
+
+        $('#err_fname').html('');	
+        $('#err_lname').html('');
+        $('#err_email').html('');
+        $('#err_psw').html('');
+
+
+        //alert('KJJ');
+        var first_name = $('#first_name').val();
+        var last_name  = $('#last_name').val();
+        var email      = $('#email').val();
+        var password   = $('#password').val();
+        if(first_name == '')
+        {
+            $('#err_fname').html('Please enter first name');
+            $('#first_name').css('border','solid 1px #FF0000');
+            return false;
+        }
+
+        // email validation
+        if( !isEmail(email))
+        {
+            $("#err_email").html('please enter correct email');
+            $('#email').css('border','solid 1px #FF0000');
+            return false;
+        }
+
+        if(password == '' || password.length < 6)
+        {
+            $('#err_psw').html('Please enter password');
+            $('#password').css('border','solid 1px #FF0000');
+            return false;
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: baseurl+ "Home/register_user",
+            dataType: 'html',
+            data: {first_name:first_name,last_name:last_name,email:email,password:password},
+            success: function(res)
+            {
+                if(res == '-1')
+                    $("#registerResponse").html('This email id is already registerd with us, if this is your email id please login.');
+                else
+                    $("#registerResponse").html('Thank you for registering with us, We will send you a verification mail shortly');
+            },
+            error: function (request, status, error) 
+            {
+                alert(request.responseText);
+            }
+        });
+
+    }
+
+    function loginExpert()
+    {
+        //alert('login');
+        $('#user_id').css('border','solid 1px #EAEAEA');
+        $('#user_id').css('border','solid 1px #EAEAEA');
+
+        $('#err_lemail').html('');
+        $('#err_lpsw').html('');
+
+        var email      = $('#user_id').val();
+        var password   = $('#l_password').val();
+
+        if(email == '')
+        {
+            $('#err_lemail').html('Please enter user id or email id');
+            $('#user_id').css('border','solid 1px #FF0000');
+            return false;
+        }
+
+        if(password == '')
+        {
+            $('#err_lpsw').html('Please enter password');
+            $('#l_password').css('border','solid 1px #FF0000');
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: baseurl+ "Home/normal_login",
+            dataType: 'html',
+            data: {email:email,password:password},
+            success: function(res)
+            {
+                //alert(res);	return false;
+                if(res == '-1')
+                    $("#loginResponse").html('Please Come back later, Admin is currently processing your account');
+                else if(res == '0')
+                    $("#loginResponse").html('Please verify your email id');
+                else if(res == '2')
+                    $("#loginResponse").html('Wrong email id or password');
+                else 
+                    //console.log(res);
+                    window.location.href = baseurl;	
+            },
+            error: function (request, status, error) 
+            {
+                alert(request.responseText);
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

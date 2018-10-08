@@ -254,7 +254,18 @@
               <p>Hi, <?php echo $this->session->userdata('first_name'); ?></p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
-              <a class="dropdown-item" href="<?php echo base_url() ?>Logout">
+              <a class="dropdown-item" href="<?php echo base_url() ?>Profile">
+                <i class="fas fa-user-circle"></i> Profile
+              </a>
+              <?php 
+                if($this->session->userdata('social_stat')=="0"){ ?>
+                  <a class="dropdown-item" href="<?php echo base_url() ?>Profile/changePass">
+                    <i class="fas fa-key"></i> Password
+                  </a>
+               <?php
+                }
+                ?>
+               <a class="dropdown-item" href="<?php echo base_url() ?>Logout">
                 <i class="fas fa-sign-out-alt"></i> Log out
               </a>
             </div>
