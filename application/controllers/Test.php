@@ -20,7 +20,7 @@ class Test extends CI_Controller {
 	 */
 	public function index()
 	{
-        $this->load->view('test');
+        $this->load->view('test2');
 	}
     public function check(){
         echo $this->My_model->convert('USD', 'INR', '50');
