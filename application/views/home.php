@@ -1,10 +1,12 @@
 <style>
     h3 input[type="text"]{
-        border: 4px solid yellow;
-        background: #37d54c;
+        border: 2px solid yellow;
+/*        background: #37d54c;*/
     }
     h3 input[type="text"]::placeholder{
-       color: blue;
+       color: white;
+       font-weight: bold;
+        
     }
     .box{
         width: 100%;
@@ -124,16 +126,59 @@
         border-bottom: 1px solid #969AA1;
     }
     table.camp_box{
+        width: 100%;
         border: 1px solid #37d54c;
         table-layout: fixed;
         margin: 0.5%;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     }
-    table.camp_box tr td{
-        width: 33.33%;
+    table.camp_box tr td:nth-child(1), table.camp_box tr td:nth-child(3){
+        width: 25%;
+    }
+    table.camp_box tr td:nth-child(2){
+        width: 50%;
     }
     td.camp_view_button, td.camp_duration, td.camp_rate, td.rating{
         text-align: center;
+    }
+    td.customcycler{
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        cursor:pointer;
+    }
+    .this_div{
+        transition: background 0.4s ease-in;
+         -webkit-transition: background 0.4s ease-in;
+        -moz-transition: background 0.4s ease-in;
+    }
+    .camp_name, .camp_speciality{
+        text-align: justify;
+        padding: 0px 0px 0px 10px;
+        color: blue;
+        font-weight: bold;
+    }
+    .camp_speciality{
+        color: #6e10b3;
+        font-size: 12px;
+        font-weight: normal;
+    }
+    .camp_speciality > i{
+        color: red;
+        width: 4%;
+    }
+    .rating > i{
+        color: gold;
+    }
+    .camp_duration{
+        font-size: 10px;
+        color: darkblue;
+    }
+    .camp_duration > i{
+        color: red;
+    }
+    .camp_rate > i{
+        color: red;
     }
 </style>
 <script>
@@ -152,7 +197,7 @@
         <div class="container">
             <div class="content-center brand">
                 <img class="n-logo rounded-circle img-raised" src="<?php echo base_url(); ?>assets/logo.png" alt="Book Our Camp Logo">
-                <h1 class="h1-seo"><span class="first_shade">Search</span> <span class="second_shade">Your</span> <span class="third_shade">Favourite Camp</span></h1>
+                <h1 class="h1-seo"><span class="">Search</span> <span class="">Your</span> <span class="">Favourite Camp</span></h1>
                 <h3>
                     <input type="text" class="form-control" placeholder="Search using Name and Location..." />
                     <a href="javascript:void(0);" onclick=""><img class="search-icon" src="<?php echo base_url() ?>assets/images/search-icon.png"></a>
@@ -163,7 +208,7 @@
             </h6>
         </div>
     </div>
-    <div class="main" id="camps" style="background-color:#f7f7f7; margin-top:5px; margin-bottom:5px;">
+    <div class="main" id="camps" style="background-color:#f7f7f7; margin-bottom:5px;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3 col-lg-3">
@@ -201,25 +246,25 @@
                 <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
                     <?php if(is_array($camps)){ 
                             echo "<span class='form'><h2 style='text-transform:none;'>".count($camps)." camp(s) found</h2></span>";
+                            $basic_url = base_url()."assets/uploads/organisers/camp_images/";
                             foreach($camps as $c){ ?>                        
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-12 table-responsive">
                                     <table class="camp_box table-borderless">
                                         <tr>
                                            <?php 
                                                 $images = $this->My_model->selectRecord('camp_images', '*', array('camp_id' => $c->camp_id, 'del_status'=>0));
-                                            ?>
-                                            <td rowspan="4" class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-speed="100" style="cursor:pointer;">
-                                                <?php 
-                                                    if(is_array($images)){
-                                                        foreach($images as $i){ ?>
-                                                            <img src="<?php echo base_url(); ?>assets/uploads/organisers/camp_images/<?php echo $i->name; ?>" alt="<?php echo $c->title; ?>"/>
-                                                <?php
-                                                        }
-                                                    } else {
-                                                        echo "<img src='".base_url()."assets/uploads/organisers/camp_images/default.jpg' />";
+                                                $list_images = array();
+                                                if(is_array($images)){
+                                                    foreach($images as $i){
+                                                        array_push($list_images, $basic_url.$i->name);
                                                     }
-                                                ?>
+                                                } else {
+                                                    array_push($list_images, $basic_url."default.jpg");
+                                                }
+                                            ?>
+                                            <td rowspan="4" class="customcycler" style="background-image:url('<?php echo $list_images[0]; ?>');" data-images="<?php echo implode(', ',$list_images); ?>">
+                                                
                                             </td>
                                             <td class="camp_name"><?php echo $c->title; ?></td>
                                             <td class="rating">
@@ -250,13 +295,13 @@
                                                 } else {
                                                     $display_amount = "<span class='money' rel='tooltip' title='~ Approximate Conversion from ".$c->currency."'>".$current_currency." ".$this->My_model->convert($c->currency, $current_currency, $c->price)."/- </span>";
                                                 }
-                                                echo $display_amount;
+                                                echo "<i class='fas fa-credit-card'></i> ".$display_amount;
                                             ?>
                                             </td>
                                         </tr>
                                         <tr> 
                                             <td></td>
-                                            <td class="camp_duration"><?php echo $c->duration." days / ".($c->duration - 1)." Nights"; ?></td>
+                                            <td class="camp_duration"><i class="far fa-calendar-alt"></i> <?php echo $c->duration." days / ".($c->duration - 1)." Nights"; ?></td>
                                         </tr>
                                         <tr>
                                             <td class="camp_speciality">

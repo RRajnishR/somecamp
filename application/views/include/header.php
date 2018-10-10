@@ -42,6 +42,10 @@
   <link href="<?php echo base_url(); ?>assets/frontend/css/now-ui-kit.css?v=1.2.0" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>assets/frontend/demo/demo.css" rel="stylesheet" />
   <style>
+  .navbar a:not(.btn):not(.dropdown-item){
+      color: #b2ef41;
+      font-weight: bolder;
+  }
   .banner {
   position: relative;
   overflow: hidden;
@@ -176,6 +180,9 @@
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+.bg-primary {
+    background-color: #f951c7 !important;
 }
   </style>
 </head>

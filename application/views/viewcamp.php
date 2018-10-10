@@ -1,6 +1,6 @@
 <style>
 .navbar.navbar-transparent {
-    background: #f96332 !important;
+    background: #f951c7 !important;
     padding: 0px !important;
 }
 body{

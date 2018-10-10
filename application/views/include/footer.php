@@ -95,7 +95,7 @@
     <script src="<?php echo base_url(); ?>assets/js/intlTelInput.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/utils.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
-    <script src="http://malsup.github.com/jquery.cycle2.js"></script>
+<!--    <script src="http://malsup.github.com/jquery.cycle2.js"></script>-->
     <!--  Google Login Start -->
     <script>
     function onSignIn(googleUser) {
@@ -152,17 +152,26 @@
 
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
     }
-//    $(document).ready(function() {
-//      nowuiKit.initSliders();
-//    });
-    $('.cycle-slideshow').cycle('pause');
-    $('.cycle-slideshow').hover(function () {
-        //mouse enter - Resume the slideshow
-        $('.cycle-slideshow').cycle('resume');
-    },
-    function () {
-        //mouse leave - Pause the slideshow
-        $('.cycle-slideshow').cycle('pause');
+    $('document').ready(function(){
+        $('.customcycler').mouseenter(function(){
+            var images = $(this).attr('data-images').split(', '); 
+            $(this).addClass('this_div');
+            var index=0;
+            timer = setInterval(function(){
+                if(index == (images.length-1)){
+                    index = 0;
+                } else {
+                    index++;
+                }
+                var img = images[index];
+                $('.this_div').css('background-image', "url('"+img+"')");
+                //console.log(img);
+            }, 1000)
+        }).mouseleave(function(){
+            $('.customcycler.this_div').removeClass('this_div');
+            clearTimeout(timer);
+        });
+        
     });
     </script>
 <script>
