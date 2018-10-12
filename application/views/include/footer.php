@@ -85,8 +85,6 @@
     <script src="<?php echo base_url(); ?>assets/frontend/js/plugins/bootstrap-switch.js"></script>
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="<?php echo base_url(); ?>assets/frontend/js/plugins/nouislider.min.js" type="text/javascript"></script>
-    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-    <script src="<?php echo base_url(); ?>assets/frontend/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
     <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
     <script src="<?php echo base_url(); ?>assets/frontend/js/now-ui-kit.js?v=1.2.0" type="text/javascript"></script>
     <!--  Old footer files  -->
@@ -95,9 +93,14 @@
     <script src="<?php echo base_url(); ?>assets/js/intlTelInput.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/utils.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <!--    <script src="http://malsup.github.com/jquery.cycle2.js"></script>-->
     <!--  Google Login Start -->
     <script>
+    $('[type="date"]').attr('placeholder', 'Your Arrival Date "YYYY/MM/DD"');
+    $('[type="date"]').flatpickr({
+        minDate: "today"
+    });
     function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log(profile);

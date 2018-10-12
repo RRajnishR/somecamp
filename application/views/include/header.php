@@ -41,6 +41,7 @@
   <link href="<?php echo base_url(); ?>assets/frontend/css/bootstrap.min.css" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>assets/frontend/css/now-ui-kit.css?v=1.2.0" rel="stylesheet" />
   <link href="<?php echo base_url(); ?>assets/frontend/demo/demo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
   .navbar a:not(.btn):not(.dropdown-item){
       color: #b2ef41;

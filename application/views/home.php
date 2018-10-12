@@ -1,7 +1,6 @@
 <style>
     h3 input[type="text"]{
         border: 2px solid yellow;
-/*        background: #37d54c;*/
     }
     h3 input[type="text"]::placeholder{
        color: white;
@@ -9,121 +8,93 @@
         
     }
     .box{
-        width: 100%;
-        margin-bottom: 4px;
+        margin-top: 2%;
+        box-shadow: 0 0 20px rgba(65, 39, 82, 0.5);
+/*        background: #f951c7;*/
     }
-    .box{
-        max-height: 300px;
-        overflow-x: hidden;
-        overflow-y: auto;
+    .pg_tit{
+        margin-top: 2%;
+        margin-left: 0.5%;
+        font-weight: bold;
+        font-size: 1.1em; 
     }
-    .box::-webkit-scrollbar-track
+    .box h4{
+        margin-top: 10px;
+        margin-bottom: 0px;
+        color: blue;
+        padding: 2% 4%;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-bottom: 1px solid red;
+/*        background-color: #928292;*/
+    }
+    .boxes::-webkit-scrollbar-track
     {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         background-color: #F5F5F5;
     }
 
-    .box::-webkit-scrollbar
+    .boxes::-webkit-scrollbar
     {
         width: 3px;
         background-color: #F5F5F5;
     }
 
-    .box::-webkit-scrollbar-thumb
+    .boxes::-webkit-scrollbar-thumb
     {
         background-color: #000000;
     }
-    .inputGroup {
-      display: block;
-      margin: 5px 0;
-      position: relative;
+    .boxes {
+      margin: auto;
+      max-height: 300px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 15px;
     }
-    .inputGroup label {
-      padding: 1px 10px;
-      width: 100%;
+
+    /*Checkboxes styles*/
+    input[type="checkbox"] { display: none; }
+
+    input[type="checkbox"] + label {
       display: block;
-      text-align: left;
-      color: #7C8086;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 10px;
+      font: 14px/20px 'Open Sans', Arial, sans-serif;
+      color: blue;
       cursor: pointer;
-      position: relative;
-      z-index: 2;
-      transition: color 200ms ease-in;
-      overflow: hidden;
+      font-weight: bold;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
-    .inputGroup label:before {
+
+    input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+    input[type="checkbox"] + label:before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid darkblue;
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: .6;
+      -webkit-transition: all .12s, border-color .08s;
+      transition: all .12s, border-color .08s;
+    }
+
+    input[type="checkbox"]:checked + label:before {
       width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      content: '';
-      background-color: #5562eb;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%) scale3d(1, 1, 1);
-              transform: translate(-50%, -50%) scale3d(1, 1, 1);
-      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-      opacity: 0;
-      z-index: -1;
-    }
-    .inputGroup label:after {
-      width: 16px;
-      height: 16px;
-      content: '';
-      border: 2px solid #D1D7DC;
-      background-color: #fff;
-      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
-      background-repeat: no-repeat;
-      background-position: 2px 3px;
-      border-radius: 50%;
-      z-index: 2;
-      position: absolute;
-      right: 0px;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-              transform: translateY(-50%);
-      cursor: pointer;
-      transition: all 200ms ease-in;
-    }
-    .inputGroup input:checked ~ label {
-      color: #fff;
-    }
-    .inputGroup input:checked ~ label:before {
-      -webkit-transform: translate(-50%, -50%) scale3d(56, 56, 1);
-              transform: translate(-50%, -50%) scale3d(56, 56, 1);
+      top: -5px;
+      left: 5px;
+      border-radius: 0;
       opacity: 1;
-    }
-    .inputGroup input:checked ~ label:after {
-      background-color: #7C8086;
-      border-color: #7C8086;
-    }
-    .inputGroup input {
-      width: 32px;
-      height: 32px;
-      order: 1;
-      z-index: 2;
-      position: absolute;
-      right: 30px;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-              transform: translateY(-50%);
-      cursor: pointer;
-      visibility: hidden;
-    }
-    .form {
-      padding: 0 16px;
-      max-width: 550px;
-      margin: 15px auto;
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 20px;
-    }
-    .form h2{
-        font-family: sans-serif;
-        text-transform:uppercase;
-        font-size: 1em;
-        font-weight: 600;
-        margin-bottom: 0px;
-        border-bottom: 1px solid #969AA1;
+      border-top-color: transparent;
+      border-left-color: transparent;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
     }
     table.camp_box{
         width: 100%;
@@ -213,39 +184,40 @@
             <div class="row">
                 <div class="col-md-3 col-lg-3">
                   <form class="form">
-                   <h2>Camp Type</h2>
                    <div class="box">
+                    <h4>Camp Type</h4>
+                     <div class="boxes">
                       <?php 
                         foreach($camp_type as $ct){ ?>
-                        <div class="inputGroup">
                             <input id="<?php echo "ct_".$ct->id; ?>" name="camp_type" type="checkbox"/>
                             <label for="<?php echo "ct_".$ct->id; ?>"><?php echo $ct->ctype; ?></label>
-                        </div> 
                       <?php
                         }
-                      ?>                          
+                      ?>  
+                       </div>                        
                    </div>
-                   <h2>Camp Best For</h2>
+                   
                    <div class="box">
+                    <h4>Camp Best For</h4>
+                     <div class="boxes">
                       <?php 
                         foreach($camp_for as $cf){ ?>
-                        <div class="inputGroup">
                             <input id="<?php echo "cf_".$cf->id; ?>" name="camp_for" type="checkbox"/>
-                            <label for="<?php echo "cf_".$cf->id; ?>"><?php echo $cf->name; ?></label>
-                        </div> 
+                            <label for="<?php echo "cf_".$cf->id; ?>"><?php echo $cf->name; ?></label> 
                       <?php
                         }
-                      ?>                         
+                      ?> 
+                       </div>                        
                    </div>
-                   <h2>Preferred Date</h2>
-                   <div class="box">
-                      <input type="text" class="form-control date-picker" value="" placeholder="select Date" data-datepicker-color="primary" style="margin-top:4px;">
+                   <div class="box" style="background:none;">
+                     <h4>Preferred Date</h4>
+                      <input type="date" class="form-control" value="" placeholder="Date Of Arrival" data-datepicker-color="primary" style="margin-top:4px; border-radius:5%; border: 1px solid red;">
                    </div>
                     </form>
                 </div>
                 <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
                     <?php if(is_array($camps)){ 
-                            echo "<span class='form'><h2 style='text-transform:none;'>".count($camps)." camp(s) found</h2></span>";
+                            echo "<span class='form'><h4 class='pg_tit'>".count($camps)." camp(s) found</h4></span>";
                             $basic_url = base_url()."assets/uploads/organisers/camp_images/";
                             foreach($camps as $c){ ?>                        
                             <div class="row">
