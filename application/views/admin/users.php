@@ -30,7 +30,17 @@
                                     <td class="hidden-phone"><?php echo $o->first_name; ?></td>
                                     <td class="hidden-phone"><?php echo $o->last_name; ?></td>
                                     <td><?php echo $o->email; ?></td>
-                                    <td><img class="img-rounded" src="<?php echo $o->photo; ?>" width="50" height="50" /></td>
+                                    <td>
+                                       <?php 
+                                            $user_img="";
+                                            if($o->social_stat==""){
+                                                $user_img = base_url()."assets/uploads/users/profile/".$o->photo;
+                                            } else {
+                                                $user_img = $o->photo;
+                                            }
+                                        ?>
+                                        <img class="img-rounded" src="<?php echo $user_img; ?>" width="50" height="50" />
+                                    </td>
                                     <td><?php echo date('l jS \of F Y', strtotime($o->first_login)); ?></td>
                                     <td><?php echo $o->status == '1' ? '<i class="fa fa-check-circle-o" title="Approved"></i>':'<i class="fa fa-times-circle-o" title="pending"></i>'; ?></td>
                                     <td>

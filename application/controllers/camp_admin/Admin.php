@@ -14,8 +14,10 @@ class Admin extends CI_Controller {
         if( !$this->session->userdata('admin_id') )
 			redirect('camp_admin/Admin/login','refresh'); 
         
+        $data['reservations'] = $this->My_model->selectRecord('reservations', '*', '', array('criteria' => 'request_time', 'order' => 'DESC'));
+        
         $this->load->view('include/admin_header');
-		$this->load->view('admin/admin');
+		$this->load->view('admin/admin', $data);
         $this->load->view('include/admin_footer');
 	}
     

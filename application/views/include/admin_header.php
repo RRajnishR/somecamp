@@ -97,19 +97,19 @@
           </li>
           <li class="mt">
             <a href="<?php echo base_url() ?>camp_admin/Users">
-              <i class="fa fa-dashboard"></i>
+              <i class="fa fa-users"></i>
               <span>Manage Users</span>
               </a>
           </li>
           <li class="mt">
             <a href="<?php echo base_url() ?>camp_admin/Camps">
-              <i class="fa fa-dashboard"></i>
+              <i class="fa fa-th-large"></i>
               <span>Manage Camps</span>
               </a>
           </li>
           <li class="mt">
             <a href="<?php echo base_url() ?>camp_admin/Enquiries">
-              <i class="fa fa-dashboard"></i>
+              <i class="fa fa-question-circle"></i>
               <span>Manage Enquiries</span>
               </a>
           </li>

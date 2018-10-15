@@ -151,6 +151,29 @@
     .camp_rate > i{
         color: red;
     }
+    @media screen and (max-width: 600px) {
+        td.camp_view_button > .btn{
+            padding: 6px 2px !important;
+        }
+        .camp_name, .rating, .camp_rate{
+            font-size: smaller;
+        }
+        .camp_speciality, .footer{
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+    }
+    @media screen and (max-width: 320px) {
+        td.camp_view_button > .btn {
+            font-size: 0;
+            padding: 10px 10px !important;
+        }
+        td.camp_view_button > .btn > i{
+            font-size: initial;
+        }
+    }
 </style>
 <script>
     var page_name = "home";

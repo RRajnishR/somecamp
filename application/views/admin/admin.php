@@ -35,6 +35,53 @@
                 </div>
             </div>
         </div>
+        <div class="row mb">
+          <!-- page start-->
+          <div class="content-panel table-responsive">
+            <h4>Reservation Requests</h4>
+            <table class="table table-hover" id="organisers_basic_data">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Requested By</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Camp</th>
+                        <th><abbr title="Date Of Arrival">DOA</abbr></th>
+                        <th>Request Time</th>
+                        <th>Confirmation</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        if(is_array($reservations)){
+                          $count = 1;
+                          foreach($reservations as $r){
+                              ?>
+                              <tr>
+                                  <td><?php echo $count; ?></td>
+                                  <td><?php echo $r->fname;  ?></td>
+                                  <td><?php echo $r->email; ?></td>
+                                  <td><?php echo "(".$r->number_code.") - ".$r->phone; ?></td>
+                                  <td><?php $camp = $this->My_model->selectRecord('camp', array('title'), array('camp_id' => $r->camp_id)); echo $camp[0]->title; ?></td>
+                                  <td><?php echo date('l jS \of F Y', strtotime($r->start_date)); ?></td>
+                                  <td><?php echo date('l jS \of F Y h:i:s A', strtotime($r->request_time)); ?></td>
+                                  <td><?php echo $r->booking_confirmation; ?></td>
+                                  <td><a class="btn btn-info btn-xs" href="#"><i class="fa fa-eye"></i></a></td>
+                              </tr>
+                              <?php
+                              $count++;
+                          }
+                        } else {
+                           echo "<tr><td colspan='10'>No reservations yet!<td></tr>"; 
+                        }
+                    ?>
+                </tbody>
+            </table>
+          </div>
+          <!-- page end-->
+        </div>
     </section>
     <!-- /wrapper -->
 </section>
