@@ -28,6 +28,8 @@ class Enquire extends CI_Controller {
                 'camp_id' => $this->input->post('camp_id'),
                 'enquiry_time' => date('Y-m-d h:i:sa'),
             );
+            //Now use the last inserted id, message, to and from. Insert into a new table.
+            //use that messages to create a chat history.
             
             $save = $this->My_model->insertRecord('enquiry', $insert_data);
             if($save){
