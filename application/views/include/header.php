@@ -265,6 +265,9 @@
               <a class="dropdown-item" href="<?php echo base_url() ?>Profile">
                 <i class="fas fa-user-circle"></i> Profile
               </a>
+              <a class="dropdown-item" href="<?php echo base_url() ?>Enquire/show_enquiries">
+                <i class="fas fa-history"></i> Enquiry History
+              </a>
               <?php 
                 if($this->session->userdata('social_stat')=="0"){ ?>
                   <a class="dropdown-item" href="<?php echo base_url() ?>Profile/changePass">

@@ -28,15 +28,69 @@ class Enquire extends CI_Controller {
                 'camp_id' => $this->input->post('camp_id'),
                 'enquiry_time' => date('Y-m-d h:i:sa'),
             );
-            //Now use the last inserted id, message, to and from. Insert into a new table.
-            //use that messages to create a chat history.
             
             $save = $this->My_model->insertRecord('enquiry', $insert_data);
             if($save){
-                echo "<script>
-                    alert('Enquiry sent successfully! Meanwhile Browse through other camps too'); 
-                    window.location.href = '".base_url()."';
-                </script>";
+                $new_insert = array(
+                    'replied_by' => 'User',
+                    'reply' => $this->input->post('msg'),
+                    'replier_id' => $this->input->post('email'),
+                    'reply_time' => date("Y-m-d H:i:s"),
+                    'view_stat' => 0,
+                    'enq_id' => $this->db->insert_id()
+                );
+                $save2 = $this->My_model->insertRecord('enq_history', $new_insert);
+                if($save2){
+                    $user_email = $this->input->post('email');
+                    $check = $this->db->where('email', $user_email)->from("users")->count_all_results();
+                    if($check > 0){
+                        //show alert
+                        echo "<script>
+                            alert('Enquiry sent successfully! Check Enquiry History Page to see the reply of Organiser'); 
+                            window.location.href = '".base_url()."';
+                        </script>";
+                    } else {
+                        //register the user and generate password.
+                        $code = $this->My_model->getRandomString(3);
+                        $pass = $this->My_model->getRandomString(6);
+                        $today = date('Y-m-d h:i:sa');
+                        $data = array(
+                            'first_name' => $this->input->post('fname'),
+                            'last_name' => '',
+                            'email' => $this->input->post('email'),
+                            'password' => md5($pass),
+                            'code'  => $code,
+                            'first_login' => $today,
+                            'status' => '1'
+                            );
+                        $save3 = $this->My_model->insertRecord('users', $data);
+                        if($save3){
+                            //send mail and inform the user
+                            $send_to = $user_email;
+                            $subject = "Bookyourcamp.com | Enquiry Sent";
+                            $message = "Dear ".$this->input->post('fname').",<br /> <br />
+                            Your enquiry was sent to the organiser. They usually reply back in 1-2 hours.<br /><br />
+                            <br /> In the meantime, We have created a camper account for you, incase you want to converse with the organisers more. Use following credentials to login into your account.<br/>Email: ".$user_email."<br/>Password: <b>".$pass."</b><br/><b>Thanks & Regards</b>, <br /> Bookourcamp Team";
+                            $val = $this->My_model->send_mail($send_to, $subject, $message);
+                            if($val){
+                                echo "<script>
+                                    alert('Enquiry sent successfully! Check Enquiry History Page to see the reply of Organiser'); 
+                                    window.location.href = '".base_url()."';
+                                </script>";
+                            } else {
+                                echo "<script>
+                                        alert('Error Sending Confirmation Mail, Please try again after sometime'); 
+                                        window.location.href = '".base_url()."';
+                                    </script>";
+                            }
+                        } else {
+                            echo "<script>
+                                alert('Something went wrong, Please try again after sometime'); 
+                                window.location.href = '".base_url()."';
+                            </script>";
+                        }
+                    }
+                }
             } else {
                 echo "<script>
                     alert('Something went wrong, Please try again after sometime'); 
@@ -44,5 +98,23 @@ class Enquire extends CI_Controller {
                 </script>";
             }
         }
+    }
+    public function show_enquiries(){
+         if(!$this->session->userdata('email'))
+            redirect(base_url());
+        
+        $data['enq'] = $this->My_model->selectRecord('enquiry', '*', array('email' => $this->session->userdata('email')));
+        $this->load->view('include/header');
+		$this->load->view('user_enquiry', $data);
+        $this->load->view('include/footer');
+    }
+    public function chathistory($enq_id){
+        if(!$this->session->userdata('email'))
+            redirect(base_url());
+        
+        $data['enq_history'] = $this->My_model->selectRecord('enq_history', '*', array('enq_id' => $enq_id));
+        $this->load->view('include/header');
+		$this->load->view('user_enq_history', $data);
+        $this->load->view('include/footer');
     }
 }

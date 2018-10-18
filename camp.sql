@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2018 at 03:21 PM
+-- Generation Time: Oct 18, 2018 at 03:05 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -561,23 +561,46 @@ CREATE TABLE `enquiry` (
   `fname` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `msg` tinytext NOT NULL,
-  `reply` tinytext NOT NULL,
-  `replied_by` varchar(150) NOT NULL,
   `camp_id` int(11) NOT NULL,
   `org_id` int(11) NOT NULL,
   `start_date` date NOT NULL,
   `preffered_currency` varchar(10) NOT NULL,
   `accomodation_selected` int(11) NOT NULL,
-  `enquiry_time` datetime NOT NULL,
-  `forward_to_org` enum('1','2','','') NOT NULL DEFAULT '1' COMMENT 'if 1 show to admin only, if 2 show to org too'
+  `enquiry_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `enquiry`
 --
 
-INSERT INTO `enquiry` (`id`, `fname`, `email`, `msg`, `reply`, `replied_by`, `camp_id`, `org_id`, `start_date`, `preffered_currency`, `accomodation_selected`, `enquiry_time`, `forward_to_org`) VALUES
-(1, 'Rajnish', 'raj@gmial.com', 'kjashlf shdfal duhf aosdfhu asfdhu laksdhf', '', '', 1, 5, '2018-10-30', 'EUR', 1, '2018-10-04 09:06:58', '2');
+INSERT INTO `enquiry` (`id`, `fname`, `email`, `msg`, `camp_id`, `org_id`, `start_date`, `preffered_currency`, `accomodation_selected`, `enquiry_time`) VALUES
+(1, 'Rajnish', 'rajnish.kumar@langecole.com', 'kjashlf shdfal duhf aosdfhu asfdhu laksdhf', 1, 5, '2018-10-30', 'EUR', 1, '2018-10-04 09:06:58'),
+(3, 'Ramesh', 'kumar@gmail.com', 'Rajnish Kumar is awesome', 2, 4, '2018-10-30', 'USD', 3, '2018-10-18 10:33:07'),
+(4, 'Lol', 'Rakesh@yahoo.in', 'abcd efgh ijkl mnop qrst uvwx yz', 1, 5, '2018-10-30', 'USD', 1, '2018-10-18 10:36:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enq_history`
+--
+
+CREATE TABLE `enq_history` (
+  `id` int(11) NOT NULL,
+  `replied_by` enum('Admin','Org','User') NOT NULL,
+  `reply` text NOT NULL,
+  `replier_id` varchar(150) NOT NULL,
+  `reply_time` datetime NOT NULL,
+  `view_stat` tinyint(4) NOT NULL,
+  `enq_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Equiry Chat History';
+
+--
+-- Dumping data for table `enq_history`
+--
+
+INSERT INTO `enq_history` (`id`, `replied_by`, `reply`, `replier_id`, `reply_time`, `view_stat`, `enq_id`) VALUES
+(1, 'User', 'Rajnish Kumar is awesome', 'kumar@gmail.com', '2018-10-18 10:33:08', 0, 1),
+(2, 'User', 'abcd efgh ijkl mnop qrst uvwx yz', 'Rakesh@yahoo.in', '2018-10-18 10:36:48', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -989,9 +1012,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `google_id`, `email`, `first_name`, `last_name`, `photo`, `email_verify`, `dob`, `password`, `gender`, `code`, `id_type`, `id_of`, `id_image`, `id_contact`, `last_login`, `first_login`, `social_stat`, `status`) VALUES
-(5, '', 'rajnish.kumar@langecole.com', 'Rajesh', 'singh', '08102018131826.png', 1, '2008-04-09', '93279e3308bdbbeed946fc965017f67a', 'male', 'mqG1538984598', 'Driver\'s License', 'Mother', '08102018132943.jpg', '+91-9876543210', '2018-10-08 02:20:26', '2018-10-08 09:43:18', '', 1),
+(5, '', 'rajnish.kumar@langecole.com', 'Rajesh', 'singh', '08102018131826.png', 1, '2008-04-09', '93279e3308bdbbeed946fc965017f67a', 'male', 'mqG1538984598', 'Driver\'s License', 'Mother', '08102018132943.jpg', '+91-9876543210', '2018-10-18 02:57:17', '2018-10-08 09:43:18', '', 1),
 (6, '108189484396013240833', 'bookourcamp@gmail.com', 'Neha', 'Saini', 'https://lh5.googleusercontent.com/-wjhWgcykW5o/AAAAAAAAAAI/AAAAAAAAAAA/AAN31DW-y5p40ZCxWr6gWuTjO8N8oTsXOw/s96-c/photo.jpg', 1, '0000-00-00', '', 'male', '', '', '', '', '', '2018-10-08 11:54:52', '2018-10-08 11:54:52', 'google', 1),
-(7, '', 'rajnish.kumar@xeler8.com', 'Rajnish', 'Kumar', '', 0, '0000-00-00', 'e10adc3949ba59abbe56e057f20f883e', 'male', 'LYn1539002204', '', '', '', '', '0000-00-00 00:00:00', '2018-10-08 02:36:44', '', 1);
+(7, '', 'rajnish.kumar@xeler8.com', 'Rajnish', 'Kumar', '', 0, '0000-00-00', 'e10adc3949ba59abbe56e057f20f883e', 'male', 'LYn1539002204', '', '', '', '', '0000-00-00 00:00:00', '2018-10-08 02:36:44', '', 1),
+(8, '100776891027907869832', 'ravisai.rajnish@gmail.com', 'Rajnish', 'Kumar', 'https://lh3.googleusercontent.com/-37tdaUnkiNM/AAAAAAAAAAI/AAAAAAAAAAA/ABtNlbCFDU7lOHGwGf43r33L2DNQCn6zvg/s96-c/photo.jpg', 1, '0000-00-00', '', 'male', '', '', '', '', '', '2018-10-17 12:33:26', '2018-10-17 12:33:26', 'google', 1),
+(9, '', 'kumar@gmail.com', 'Ramesh', '', '', 0, '0000-00-00', 'c292e61f19d3edcf13d13e5acb216982', 'male', 'Snz1539851588', '', '', '', '', '0000-00-00 00:00:00', '2018-10-18 10:33:08', '', 1),
+(10, '', 'Rakesh@yahoo.in', 'Lol', '', '', 0, '0000-00-00', '88f93588d32ca8f1a6f9ac38d414a3a6', 'male', 'Llq1539851809', '', '', '', '', '0000-00-00 00:00:00', '2018-10-18 10:36:49', '', 1);
 
 -- --------------------------------------------------------
 
@@ -1074,6 +1100,12 @@ ALTER TABLE `drink_type`
 -- Indexes for table `enquiry`
 --
 ALTER TABLE `enquiry`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `enq_history`
+--
+ALTER TABLE `enq_history`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1192,7 +1224,13 @@ ALTER TABLE `drink_type`
 -- AUTO_INCREMENT for table `enquiry`
 --
 ALTER TABLE `enquiry`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `enq_history`
+--
+ALTER TABLE `enq_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `facilities`
@@ -1234,7 +1272,7 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
