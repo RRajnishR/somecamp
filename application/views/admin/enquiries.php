@@ -14,7 +14,6 @@
                             <th>Message</th>
                             <th>About Camp</th>
                             <th>Expected <abbr title="Date Of Arrival">DOA</abbr></th>
-                            <th>Reply Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -34,8 +33,7 @@
                                         <a href="<?php echo base_url() ?>camp_admin/Camps/view_camp/<?php echo $e->camp_id; ?>"><?php echo $camp[0]->title; ?></a>
                                     </td>
                                     <td><?php echo $e->start_date; ?></td>
-                                    <td><?php echo !$e->reply == "" ? '<i class="fa fa-check-circle-o" title="Reply Sent"></i>':'<i class="fa fa-spinner" title="Reply Pending. Click on View to Reply else forward to Organiser"></i>'; ?></td>
-                                    <td><a href="<?php echo base_url(); ?>camp_admin/Enquiries/view/<?php echo $e->id; ?>" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></a> &nbsp; <a href="<?php echo base_url(); ?>camp_admin/Enquiries/forward/<?php echo $e->id; ?>" class="btn btn-xs btn-warning" title="Forward to Organiser" <?php echo $e->forward_to_org == "1" ? "":"disabled"; ?> ><i class="fa fa-mail-forward"></i></a></td>
+                                    <td><a href="<?php echo base_url() ?>camp_admin/Enquiries/view/<?php echo $e->id ?>" class="btn btn-xs btn-danger" title="see conversation history between camper and organiser"><i class="fa fa-comments-o"></i></a></td>
                                 </tr>    
                                 <?php
                                     $count++;

@@ -13,7 +13,6 @@
                                 <th> Person's Name </th>
                                 <th> Message </th>
                                 <th> Camp </th>
-                                <th> Reply </th>
                                 <th> Action </th>
                             </tr>
                         </thead>
@@ -31,21 +30,7 @@
                                             ?>
                                                 <a href="<?php echo base_url() ?>Camp/view/<?php echo $e->camp_id; ?>" target="_blank"><?php echo $camp[0]->title; ?></a>
                                         </td>
-                                        <td>
-                                        <?php 
-                                            if($e->reply==""){
-                                        ?>  
-                                            <form action="<?php echo base_url(); ?>camp_organiser/Enquiries/send_save_reply/<?php echo $e->id; ?>" method="post">
-                                                <textarea name="reply" id="" placeholder="Reply here" class="form-control"></textarea>
-                                                <button class="btn btn-info btn-xs">Send Reply</button>
-                                            </form>
-                                        <?php
-                                            } else {
-                                                echo $e->reply;
-                                            }
-                                        ?>
-                                        </td>
-                                        <td></td>
+                                        <td><a href="<?php echo base_url() ?>camp_organiser/Enquiries/reply/<?php echo $e->id; ?>" class="btn btn-xs btn-info" title="see and reply to this conversation"><i class="fa fa-comments-o"></i></a></td>
                                     </tr>
                             <?php
                                         $count++;

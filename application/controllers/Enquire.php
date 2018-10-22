@@ -111,10 +111,36 @@ class Enquire extends CI_Controller {
     public function chathistory($enq_id){
         if(!$this->session->userdata('email'))
             redirect(base_url());
-        
+        $data['enq_id'] = $enq_id;
         $data['enq_history'] = $this->My_model->selectRecord('enq_history', '*', array('enq_id' => $enq_id));
         $this->load->view('include/header');
 		$this->load->view('user_enq_history', $data);
         $this->load->view('include/footer');
+    }
+    public function continue_enq($enq_id){
+        if(!$this->session->userdata('email'))
+            redirect(base_url());
+        
+        $insert_data = array(
+            'replied_by' => 'User',
+            'reply' => $this->db->escape($this->input->post('reply_to_camp')),
+            'replier_id' => $this->session->userdata('email'),
+            'reply_time' => date("Y-m-d h:i:sa"),
+            'view_stat' => 0,
+            'enq_id' => $enq_id
+        );
+        
+        $save = $this->My_model->insertRecord('enq_history', $insert_data);
+        if($save){
+            echo "<script>
+                    alert('New Enquiry Sent!'); 
+                    window.location.href = '".base_url()."Enquire/chathistory/".$enq_id."';
+                </script>";
+        } else {
+            echo "<script>
+                    alert('Something went wrong, Try again later.'); 
+                    window.location.href = '".base_url()."Enquire/chathistory/".$enq_id."';
+                </script>";
+        }
     }
 }

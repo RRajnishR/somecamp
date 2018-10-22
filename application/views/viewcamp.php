@@ -664,13 +664,13 @@ text-decoration: none;
                                     </td>
                                 </tr>
                                 <tr>
-                                   <td colspan="2" style="text-align:center;"><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><b>Rate this camp</b></button></td>
+                                   <td colspan="2" style="text-align:center;"><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><b>Rate this camp</b></button></td>
                                </tr>
                         <?php
                         }  else {
                            ?>
                                <tr>
-                               <td colspan="2" style="text-align:center;"><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><b>Be the First one to rate this camp</b></button></td>
+                               <td colspan="2" style="text-align:center;"><button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal"><b>Be the First one to rate this camp</b></button></td>
                                </tr>
                            <?php 
                         }
@@ -784,7 +784,7 @@ text-decoration: none;
         <div class="modal-content">
             <div class="modal-body table-responsive">
                 <?php 
-                    if(!$this->session->userdata('google_id')){
+                    if(!$this->session->userdata('email')){
                         echo "<h4>Please login as camper first, to rate this camp</h4>";
                     } else {
                         $check = $this->My_model->selectRecord('camp_rating', '*', array('camp_id' => $this_camp->camp_id, 'given_by' => $this->session->userdata('email')));
