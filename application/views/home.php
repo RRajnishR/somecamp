@@ -21,7 +21,7 @@
     .box h4{
         margin-top: 10px;
         margin-bottom: 0px;
-        color: blue;
+        color: #37d54c /*blue*/;
         padding: 2% 4%;
         text-transform: uppercase;
         font-weight: bold;
@@ -193,8 +193,10 @@
                 <img class="n-logo rounded-circle img-raised" src="<?php echo base_url(); ?>assets/logo.png" alt="Book Our Camp Logo">
                 <h1 class="h1-seo"><span class="">Search</span> <span class="">Your</span> <span class="">Favourite Camp</span></h1>
                 <h3>
-                    <input type="text" class="form-control" placeholder="Search using Name and Location..." />
-                    <a href="javascript:void(0);" onclick=""><img class="search-icon" src="<?php echo base_url() ?>assets/images/search-icon.png"></a>
+                    <form id="searching_box" action="<?php echo base_url(); ?>" method="get">
+                    <input type="text" name="keyword" class="form-control" placeholder="Search using Name and Location..." />
+                    <a href="javascript:void(0);" onclick="searching_box.submit();"><img class="search-icon" src="<?php echo base_url() ?>assets/images/search-icon.png"></a>
+                    </form>
                 </h3>
             </div>
             <h6 class="category category-absolute">
@@ -212,7 +214,7 @@
                      <div class="boxes">
                       <?php 
                         foreach($camp_type as $ct){ ?>
-                            <input id="<?php echo "ct_".$ct->id; ?>" name="camp_type" type="checkbox"/>
+                            <input id="<?php echo "ct_".$ct->id; ?>" value="<?php echo $ct->id; ?>" name="camp_type[]" type="checkbox"/>
                             <label for="<?php echo "ct_".$ct->id; ?>"><?php echo $ct->ctype; ?></label>
                       <?php
                         }
@@ -225,7 +227,7 @@
                      <div class="boxes">
                       <?php 
                         foreach($camp_for as $cf){ ?>
-                            <input id="<?php echo "cf_".$cf->id; ?>" name="camp_for" type="checkbox"/>
+                            <input id="<?php echo "cf_".$cf->id; ?>" value="<?php echo $cf->id; ?>" name="camp_for[]" type="checkbox"/>
                             <label for="<?php echo "cf_".$cf->id; ?>"><?php echo $cf->name; ?></label> 
                       <?php
                         }
@@ -234,13 +236,19 @@
                    </div>
                    <div class="box" style="background:none;">
                      <h4>Preferred Date</h4>
-                      <input type="date" class="form-control" value="" placeholder="Date Of Arrival" data-datepicker-color="primary" style="margin-top:4px; border-radius:5%; border: 1px solid red;">
+                      <input type="date" name="doa" class="form-control" value="" placeholder="Date Of Arrival" data-datepicker-color="primary" style="border: 1px solid blue; border-radius: .25rem; background-color:white; width:95%; margin:2.5%; color:blue;">
+                      <button style="margin-left:35%;" class="btn btn-sm btn-info"><i class="fab fa-searchengin"></i> Search</button>
                    </div>
                     </form>
                 </div>
                 <div class="col-md-9 col-lg-9 col-xs-12 col-sm-12">
                     <?php if(is_array($camps)){ 
-                            echo "<span class='form'><h4 class='pg_tit'>".count($camps)." camp(s) found</h4></span>";
+                            if($this->input->get('camp_type') || $this->input->get('camp_for') || $this->input->get('doa') || $this->input->get('keyword')){
+                                echo "<span class='form'><h4 class='pg_tit'>Sorry, Your search returned 0 camps. But have a look at these similar camps: </h4></span>";
+                            } else {
+                                echo "<span class='form'><h4 class='pg_tit'>".count($camps)." camp(s) found</h4></span>";
+                            }
+                            
                             $basic_url = base_url()."assets/uploads/organisers/camp_images/";
                             foreach($camps as $c){ ?>                        
                             <div class="row">
